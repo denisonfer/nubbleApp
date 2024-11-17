@@ -29,7 +29,7 @@ import { TrashIcon } from '../../assets/icons/TrashIcon';
 import { useAppTheme } from '../../hooks/useAppTheme';
 import { TThemeColors } from '../../theme/theme';
 type TProps = {
-  name: keyof typeof iconsMapper;
+  name: TIconNames;
   size?: number;
   color?: TThemeColors;
 };
@@ -69,3 +69,5 @@ const iconsMapper = {
   settings: SettingsIcon,
   trash: TrashIcon,
 };
+
+export type TIconNames = keyof typeof iconsMapper;
