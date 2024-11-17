@@ -16,5 +16,5 @@ export function ScrollViewContainer({ backgroundColor, children }: TProps) {
 }
 
 export function ViewContainer({ backgroundColor, children }: TProps) {
-  return <View style={{ backgroundColor }}>{children}</View>;
+  return <View style={{ backgroundColor, flex: 1 }}>{children}</View>;
 }

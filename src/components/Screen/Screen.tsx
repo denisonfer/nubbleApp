@@ -13,9 +13,9 @@ type TProps = {
   scrollable?: boolean;
 };
 export function Screen({
+  children,
   canGoBack = false,
   scrollable = false,
-  children,
 }: TProps) {
   const { top, bottom } = useAppSafeArea();
   const { colors } = useAppTheme();
