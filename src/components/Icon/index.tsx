@@ -1,4 +1,5 @@
 import React from 'react';
+import { Pressable } from 'react-native';
 import { ArrowLeftIcon } from '../../assets/icons/ArrowLeftIcon';
 import { ArrowRightIcon } from '../../assets/icons/ArrowRightIcon';
 import { BellIcon } from '../../assets/icons/BellIcon';
@@ -32,10 +33,24 @@ type TProps = {
   name: TIconNames;
   size?: number;
   color?: TThemeColors;
+  onPress?: () => void;
 };
-export function Icon({ name, size, color = 'backgroundContrast' }: TProps) {
+export function Icon({
+  name,
+  size,
+  onPress,
+  color = 'backgroundContrast',
+}: TProps) {
   const { colors } = useAppTheme();
   const IconComponent = iconsMapper[name];
+
+  if (onPress) {
+    return (
+      <Pressable onPress={onPress} hitSlop={10}>
+        <IconComponent size={size} color={colors[color]} />
+      </Pressable>
+    );
+  }
 
   return <IconComponent size={size} color={colors[color]} />;
 }

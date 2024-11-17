@@ -1,15 +1,10 @@
-import React, { ReactElement, useRef } from 'react';
-import { Pressable, TextInput, TextInputProps, TextStyle } from 'react-native';
+import React, { useRef } from 'react';
+import { Pressable, TextInput, TextStyle } from 'react-native';
 import { useAppTheme } from '../../hooks/useAppTheme';
 import { Box, TBoxProps } from '../Box/Box';
 import { $fontFamilies, $fontSizes, Text } from '../Text';
+import { TInputProps } from './types';
 
-type TInputProps = TextInputProps & {
-  label: string;
-  errorMessage?: string;
-  boxProps?: TBoxProps;
-  RightComponent?: ReactElement;
-};
 export function Input({
   label,
   errorMessage,
