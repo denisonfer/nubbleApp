@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActivityIndicator } from '../ActivityIndicator';
+import { ActivityIndicator } from '../ActivityIndicator/ActivityIndicator';
 import { TouchableOpacityBox } from '../Box/Box';
 import { Text } from '../Text';
 import { buttonPresetMapper, TButtonProps } from './types';

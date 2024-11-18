@@ -1,8 +1,8 @@
-import { useNavigation } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { useCallback } from 'react';
+import React from 'react';
+import { Pressable } from 'react-native';
 import { Box } from '../../../components/Box/Box';
-import { Button } from '../../../components/Button';
+import { Button } from '../../../components/Button/Button';
 import { Input } from '../../../components/Input/Input';
 import { PasswordInput } from '../../../components/Input/PasswordInput/PasswordInput';
 import { Screen } from '../../../components/Screen/Screen';
@@ -10,12 +10,14 @@ import { Text } from '../../../components/Text';
 import { RootStackParamList } from '../../../routes/Routes';
 
 type TScreenProps = NativeStackScreenProps<RootStackParamList, 'LoginScreen'>;
-export function LoginScreen() {
-  const navigation = useNavigation<TScreenProps['navigation']>();
-
-  const navigateToSignUp = useCallback(() => {
+export function LoginScreen({ navigation }: TScreenProps) {
+  function navigateToSignUp() {
     navigation.navigate('SignUpScreen');
-  }, []);
+  }
+
+  function navigateToForgotPassword() {
+    navigation.navigate('ForgotPasswordScreen');
+  }
 
   return (
     <Screen>
@@ -39,9 +41,11 @@ export function LoginScreen() {
           boxProps={{ mb: 'spc20' }}
         />
 
-        <Text preset="paragraphSmall" bold color="primary">
-          Esqueci minha senha
-        </Text>
+        <Pressable onPress={navigateToForgotPassword}>
+          <Text preset="paragraphSmall" bold color="primary">
+            Esqueci minha senha
+          </Text>
+        </Pressable>
 
         <Button mt="spc48" title="Entrar" />
         <Button

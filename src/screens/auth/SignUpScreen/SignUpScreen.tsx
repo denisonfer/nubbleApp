@@ -1,19 +1,19 @@
-import { useNavigation } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
-import { Button } from '../../../components/Button';
+import { Button } from '../../../components/Button/Button';
 import { Input } from '../../../components/Input/Input';
 import { PasswordInput } from '../../../components/Input/PasswordInput/PasswordInput';
 import { Screen } from '../../../components/Screen/Screen';
 import { Text } from '../../../components/Text';
+import { useAppResetNavigation } from '../../../hooks/useAppResetNavigation';
 import { RootStackParamList } from '../../../routes/Routes';
 
 type TScreenProps = NativeStackScreenProps<RootStackParamList, 'LoginScreen'>;
 
-export function SignUpScreen() {
-  const navigation = useNavigation<TScreenProps['navigation']>();
+export function SignUpScreen({ navigation }: TScreenProps) {
+  const { reset } = useAppResetNavigation();
   function submitForm() {
-    navigation.navigate('SuccessScreen', {
+    reset({
       title: 'Sua conta foi criada com sucesso!',
       description: 'Agora é só fazer login na nossa plataforma',
       icon: { name: 'checkRound', color: 'success' },
