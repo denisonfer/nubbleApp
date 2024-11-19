@@ -11,7 +11,6 @@ export type TButtonProps = TTouchableOpacityBoxProps & {
   title: string;
   isLoading?: boolean;
   preset?: TButtonPreset;
-  isDisabled?: boolean;
 };
 
 export const buttonPresetMapper: Record<

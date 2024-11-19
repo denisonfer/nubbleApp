@@ -8,11 +8,11 @@ export function Button({
   title,
   isLoading = false,
   preset = 'primary',
-  isDisabled = false,
+  disabled = false,
   ...touchableOpacityBoxProps
 }: TButtonProps) {
   const buttonPreset =
-    buttonPresetMapper[preset][isDisabled ? 'disabled' : 'default'];
+    buttonPresetMapper[preset][disabled ? 'disabled' : 'default'];
   return (
     <TouchableOpacityBox
       alignItems="center"
@@ -20,7 +20,7 @@ export function Button({
       borderRadius="br16"
       height={50}
       paddingHorizontal="spc20"
-      disabled={isDisabled || isLoading}
+      disabled={disabled || isLoading}
       {...buttonPreset.container}
       {...touchableOpacityBoxProps}>
       {isLoading ? (

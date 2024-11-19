@@ -2,9 +2,9 @@ import React from 'react';
 import { useAppBoolean } from '../../../hooks/useAppBoolean';
 import { Icon } from '../../Icon/Icon';
 import { Input } from '../Input';
-import { TInputProps } from '../types';
+import { TPasswordInputProps } from './types';
 
-export function PasswordInput(props: Omit<TInputProps, 'RightComponent'>) {
+export function PasswordInput(props: TPasswordInputProps) {
   const [showPassword, toggleVisiblePassword] = useAppBoolean();
 
   return (

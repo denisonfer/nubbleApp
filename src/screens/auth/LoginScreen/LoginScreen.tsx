@@ -1,16 +1,31 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React from 'react';
+import React, { useCallback } from 'react';
+import { useForm } from 'react-hook-form';
 import { Pressable } from 'react-native';
 import { Box } from '../../../components/Box/Box';
 import { Button } from '../../../components/Button/Button';
-import { Input } from '../../../components/Input/Input';
-import { PasswordInput } from '../../../components/Input/PasswordInput/PasswordInput';
+import { FormInput } from '../../../components/Input/FormInput/FormInput';
+import { FormPasswordInput } from '../../../components/Input/PasswordInput/FormPasswordInput/FormPasswordInput';
 import { Screen } from '../../../components/Screen/Screen';
 import { Text } from '../../../components/Text';
 import { RootStackParamList } from '../../../routes/Routes';
+import { TLoginForm } from './types';
 
 type TScreenProps = NativeStackScreenProps<RootStackParamList, 'LoginScreen'>;
+
 export function LoginScreen({ navigation }: TScreenProps) {
+  const { control, formState, handleSubmit } = useForm<TLoginForm>({
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+    mode: 'onChange',
+  });
+
+  const submitForm = useCallback(({ email, password }: TLoginForm) => {
+    console.log('email', email);
+    console.log('password', password);
+  }, []);
   function navigateToSignUp() {
     navigation.navigate('SignUpScreen');
   }
@@ -29,15 +44,29 @@ export function LoginScreen({ navigation }: TScreenProps) {
           Digite seu e-mail e senha para entrar{' '}
         </Text>
 
-        <Input
+        <FormInput
           label="E-mail"
           placeholder="Digite seu e-mail"
+          name="email"
+          control={control}
+          rules={{
+            required: 'E-mail obrigatório',
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              message: 'E-mail inválido',
+            },
+          }}
           boxProps={{ mb: 'spc20' }}
         />
 
-        <PasswordInput
+        <FormPasswordInput
           label="Senha"
           placeholder="Digite sua senha"
+          name="password"
+          control={control}
+          rules={{
+            required: 'Senha obrigatória',
+          }}
           boxProps={{ mb: 'spc20' }}
         />
 
@@ -47,7 +76,12 @@ export function LoginScreen({ navigation }: TScreenProps) {
           </Text>
         </Pressable>
 
-        <Button mt="spc48" title="Entrar" />
+        <Button
+          mt="spc48"
+          title="Entrar"
+          onPress={handleSubmit(submitForm)}
+          disabled={!formState.isValid}
+        />
         <Button
           onPress={navigateToSignUp}
           preset="outline"
