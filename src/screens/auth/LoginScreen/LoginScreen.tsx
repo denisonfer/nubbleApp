@@ -1,3 +1,4 @@
+import { zodResolver } from '@hookform/resolvers/zod';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
@@ -9,12 +10,13 @@ import { FormPasswordInput } from '../../../components/Input/PasswordInput/FormP
 import { Screen } from '../../../components/Screen/Screen';
 import { Text } from '../../../components/Text';
 import { RootStackParamList } from '../../../routes/Routes';
-import { TLoginForm } from './types';
+import { loginSchema, TLoginForm } from './loginSchema';
 
 type TScreenProps = NativeStackScreenProps<RootStackParamList, 'LoginScreen'>;
 
 export function LoginScreen({ navigation }: TScreenProps) {
   const { control, formState, handleSubmit } = useForm<TLoginForm>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: '',
       password: '',
@@ -49,13 +51,6 @@ export function LoginScreen({ navigation }: TScreenProps) {
           placeholder="Digite seu e-mail"
           name="email"
           control={control}
-          rules={{
-            required: 'E-mail obrigatório',
-            pattern: {
-              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-              message: 'E-mail inválido',
-            },
-          }}
           boxProps={{ mb: 'spc20' }}
         />
 
@@ -64,9 +59,6 @@ export function LoginScreen({ navigation }: TScreenProps) {
           placeholder="Digite sua senha"
           name="password"
           control={control}
-          rules={{
-            required: 'Senha obrigatória',
-          }}
           boxProps={{ mb: 'spc20' }}
         />
 

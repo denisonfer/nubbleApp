@@ -1,3 +1,4 @@
+import { zodResolver } from '@hookform/resolvers/zod';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -8,13 +9,14 @@ import { Screen } from '../../../components/Screen/Screen';
 import { Text } from '../../../components/Text';
 import { useAppResetNavigation } from '../../../hooks/useAppResetNavigation';
 import { RootStackParamList } from '../../../routes/Routes';
-import { TSignUpForm } from './types';
+import { signUpSchema, TSignUpForm } from './signUpSchema';
 
 type TScreenProps = NativeStackScreenProps<RootStackParamList, 'LoginScreen'>;
 
 export function SignUpScreen({ navigation }: TScreenProps) {
   const { reset } = useAppResetNavigation();
   const { control, handleSubmit, formState } = useForm<TSignUpForm>({
+    resolver: zodResolver(signUpSchema),
     defaultValues: {
       username: '',
       password: '',
@@ -48,9 +50,6 @@ export function SignUpScreen({ navigation }: TScreenProps) {
       <FormInput
         name="username"
         control={control}
-        rules={{
-          required: 'O username é obrigatório',
-        }}
         label="Seu username"
         placeholder="@"
         boxProps={{ mb: 'spc16' }}
@@ -59,9 +58,6 @@ export function SignUpScreen({ navigation }: TScreenProps) {
       <FormInput
         name="fullName"
         control={control}
-        rules={{
-          required: 'O nome completo é obrigatório',
-        }}
         label="Nome completo"
         placeholder="Digite seu nome completo"
         boxProps={{ mb: 'spc16' }}
@@ -71,13 +67,6 @@ export function SignUpScreen({ navigation }: TScreenProps) {
       <FormInput
         name="email"
         control={control}
-        rules={{
-          required: 'O e-mail é obrigatório',
-          pattern: {
-            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-            message: 'Formato de e-mail inválido',
-          },
-        }}
         label="E-mail"
         placeholder="Digite seu e-mail"
         boxProps={{ mb: 'spc16' }}
@@ -87,13 +76,6 @@ export function SignUpScreen({ navigation }: TScreenProps) {
       <FormPasswordInput
         name="password"
         control={control}
-        rules={{
-          required: 'A senha é obrigatória',
-          minLength: {
-            value: 6,
-            message: 'A senha precisa ter pelo menos 6 caracteres',
-          },
-        }}
         label="Senha"
         placeholder="Digite sua senha"
       />
