@@ -1,15 +1,18 @@
+import {
+  Box,
+  Button,
+  FormInput,
+  FormPasswordInput,
+  Screen,
+  Text,
+} from '@components';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { Pressable } from 'react-native';
-import { Box } from '../../../components/Box/Box';
-import { Button } from '../../../components/Button/Button';
-import { FormInput } from '../../../components/Input/FormInput/FormInput';
-import { FormPasswordInput } from '../../../components/Input/PasswordInput/FormPasswordInput/FormPasswordInput';
-import { Screen } from '../../../components/Screen/Screen';
-import { Text } from '../../../components/Text';
-import { RootStackParamList } from '../../../routes/Routes';
+
+import { RootStackParamList } from '@routes';
 import { loginSchema, TLoginForm } from './loginSchema';
 
 type TScreenProps = NativeStackScreenProps<RootStackParamList, 'LoginScreen'>;

@@ -2,16 +2,19 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Button } from '../../../components/Button/Button';
-import { FormInput } from '../../../components/Input/FormInput/FormInput';
-import { FormPasswordInput } from '../../../components/Input/PasswordInput/FormPasswordInput/FormPasswordInput';
-import { Screen } from '../../../components/Screen/Screen';
-import { Text } from '../../../components/Text';
-import { useAppResetNavigation } from '../../../hooks/useAppResetNavigation';
-import { RootStackParamList } from '../../../routes/Routes';
+
+import {
+  Button,
+  FormInput,
+  FormPasswordInput,
+  Screen,
+  Text,
+} from '@components';
+import { useAppResetNavigation } from '@hooks';
+import { RootStackParamList } from '@routes';
 import { signUpSchema, TSignUpForm } from './signUpSchema';
 
-type TScreenProps = NativeStackScreenProps<RootStackParamList, 'LoginScreen'>;
+type TScreenProps = NativeStackScreenProps<RootStackParamList, 'SignUpScreen'>;
 
 export function SignUpScreen({ navigation }: TScreenProps) {
   const { reset } = useAppResetNavigation();
