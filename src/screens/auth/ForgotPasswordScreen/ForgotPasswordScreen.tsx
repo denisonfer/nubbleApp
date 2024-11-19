@@ -1,11 +1,17 @@
+import { zodResolver } from '@hookform/resolvers/zod';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
+import { useForm } from 'react-hook-form';
 import { Button } from '../../../components/Button/Button';
-import { Input } from '../../../components/Input/Input';
+import { FormInput } from '../../../components/Input/FormInput/FormInput';
 import { Screen } from '../../../components/Screen/Screen';
 import { Text } from '../../../components/Text';
 import { useAppResetNavigation } from '../../../hooks/useAppResetNavigation';
 import { RootStackParamList } from '../../../routes/Routes';
+import {
+  forgotPasswordSchema,
+  TForgotPasswordForm,
+} from './forgotPasswordSchema';
 
 type TScreenProps = NativeStackScreenProps<
   RootStackParamList,
@@ -15,7 +21,16 @@ type TScreenProps = NativeStackScreenProps<
 export function ForgotPasswordScreen({ navigation }: TScreenProps) {
   const { reset } = useAppResetNavigation();
 
-  function sendRecoverPassword() {
+  const { control, handleSubmit, formState } = useForm<TForgotPasswordForm>({
+    resolver: zodResolver(forgotPasswordSchema),
+    defaultValues: {
+      email: '',
+    },
+    mode: 'onChange',
+  });
+
+  function sendRecoverPassword({ email }: TForgotPasswordForm) {
+    console.log('email: ', email);
     reset({
       title: `Enviamos as instruções ${'\n'}para seu e-mail`,
       description:
@@ -33,13 +48,20 @@ export function ForgotPasswordScreen({ navigation }: TScreenProps) {
         Digite seu e-mail e enviaremos as instruções para redefinição de senha
       </Text>
 
-      <Input
+      <FormInput
         label="E-mail"
         placeholder="Digite seu e-mail"
         boxProps={{ mb: 'spc48' }}
+        name="email"
+        control={control}
+        keyboardType="email-address"
       />
 
-      <Button title="Recuperar senha" onPress={sendRecoverPassword} />
+      <Button
+        title="Recuperar senha"
+        onPress={handleSubmit(sendRecoverPassword)}
+        disabled={!formState.isValid}
+      />
     </Screen>
   );
 }
