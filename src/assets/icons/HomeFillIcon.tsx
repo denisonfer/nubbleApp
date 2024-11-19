@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Path, Svg } from 'react-native-svg';
 
+import { TBasicIconProps } from '@components';
+
 export function HomeFillIcon({ size = 20, color = 'black' }: TBasicIconProps) {
   return (
     <Svg width={size} height={size} viewBox="0 0 20 20" fill="none">

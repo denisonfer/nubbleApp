@@ -1,0 +1,4 @@
+#yarn test
+#yarn code-check
+yarn lint
+
