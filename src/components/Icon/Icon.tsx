@@ -1,5 +1,6 @@
 import React from 'react';
 import { Pressable } from 'react-native';
+
 import { ArrowLeftIcon } from '../../assets/icons/ArrowLeftIcon';
 import { ArrowRightIcon } from '../../assets/icons/ArrowRightIcon';
 import { BellIcon } from '../../assets/icons/BellIcon';
@@ -30,6 +31,7 @@ import { SearchIcon } from '../../assets/icons/SearchIcon';
 import { SettingsIcon } from '../../assets/icons/SettingsIcon';
 import { TrashIcon } from '../../assets/icons/TrashIcon';
 import { useAppTheme } from '../../hooks/useAppTheme';
+
 import { TIconProps } from './types';
 
 export function Icon({

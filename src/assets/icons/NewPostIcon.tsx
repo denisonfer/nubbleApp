@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { Path, Svg } from 'react-native-svg';
+
 import { TBasicIconProps } from '../../components/Icon/types';
 
 export function NewPostIcon({ size = 20, color = 'black' }: TBasicIconProps) {

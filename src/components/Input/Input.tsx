@@ -1,8 +1,10 @@
 import React, { useRef } from 'react';
 import { Pressable, TextInput, TextStyle } from 'react-native';
+
 import { useAppTheme } from '../../hooks/useAppTheme';
 import { Box, TBoxProps } from '../Box/Box';
 import { $fontFamilies, $fontSizes, Text } from '../Text/Text';
+
 import { TInputProps } from './types';
 
 export function Input({

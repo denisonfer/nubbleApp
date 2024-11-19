@@ -1,3 +1,10 @@
+import React, { useCallback } from 'react';
+import { Pressable } from 'react-native';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useForm } from 'react-hook-form';
+
 import {
   Box,
   Button,
@@ -6,13 +13,8 @@ import {
   Screen,
   Text,
 } from '@components';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { useCallback } from 'react';
-import { useForm } from 'react-hook-form';
-import { Pressable } from 'react-native';
-
 import { RootStackParamList } from '@routes';
+
 import { loginSchema, TLoginForm } from './loginSchema';
 
 type TScreenProps = NativeStackScreenProps<RootStackParamList, 'LoginScreen'>;

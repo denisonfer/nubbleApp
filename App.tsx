@@ -1,9 +1,10 @@
 import React from 'react';
 
-import { Routes } from '@routes';
 import { ThemeProvider } from '@shopify/restyle';
-import { theme } from '@theme';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+
+import { Routes } from '@routes';
+import { theme } from '@theme';
 
 if (__DEV__) {
   require('./src/reactotron');

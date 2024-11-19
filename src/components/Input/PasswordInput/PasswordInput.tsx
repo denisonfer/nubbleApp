@@ -1,7 +1,9 @@
 import React from 'react';
+
 import { useAppBoolean } from '../../../hooks/useAppBoolean';
 import { Icon } from '../../Icon/Icon';
 import { Input } from '../Input';
+
 import { TPasswordInputProps } from './types';
 
 export function PasswordInput(props: TPasswordInputProps) {

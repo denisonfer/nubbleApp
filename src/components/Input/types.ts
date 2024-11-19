@@ -1,5 +1,6 @@
 import { ReactElement } from 'react';
 import { TextInputProps } from 'react-native';
+
 import { TBoxProps } from '../Box/Box';
 
 export type TInputProps = TextInputProps & {

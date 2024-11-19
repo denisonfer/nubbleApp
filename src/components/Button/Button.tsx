@@ -1,7 +1,9 @@
 import React from 'react';
+
 import { ActivityIndicator } from '../ActivityIndicator/ActivityIndicator';
 import { TouchableOpacityBox } from '../Box/Box';
 import { Text } from '../Text/Text';
+
 import { buttonPresetMapper, TButtonProps } from './types';
 
 export function Button({

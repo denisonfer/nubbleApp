@@ -1,4 +1,5 @@
 import { TThemeColors } from '../../theme/theme';
+
 import { TIconNames } from './Icon';
 
 export type TBasicIconProps = {
