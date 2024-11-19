@@ -9,7 +9,7 @@
     "start": "react-native start",
     "test": "jest",
     "prepare": "husky"
-    },
+  },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
     "@react-navigation/native": "^7.0.3",
@@ -27,6 +27,8 @@
     "@babel/core": "^7.25.2",
     "@babel/preset-env": "^7.25.3",
     "@babel/runtime": "^7.25.0",
+    "@commitlint/cli": "^19.6.0",
+    "@commitlint/config-conventional": "^19.6.0",
     "@react-native-community/cli": "15.0.1",
     "@react-native-community/cli-platform-android": "15.0.1",
     "@react-native-community/cli-platform-ios": "15.0.1",
