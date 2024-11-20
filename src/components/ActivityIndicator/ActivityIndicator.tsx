@@ -10,6 +10,7 @@ import { TThemeColors } from '../../theme/theme';
 type TActivityIndicatorProps = Omit<ActivityIndicatorProps, 'color'> & {
   color: TThemeColors;
 };
+
 export function ActivityIndicator({
   color,
   ...activityIndicatorProps

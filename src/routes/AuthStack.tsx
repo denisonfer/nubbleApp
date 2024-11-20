@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { TIconProps } from 'src/components/Icon/types';
 
 import {
   ForgotPasswordScreen,
@@ -9,6 +8,8 @@ import {
   SignUpScreen,
   SuccessScreen,
 } from '@screens';
+
+import { TIconProps } from 'src/components/Icon/types';
 
 export type TAuthStackParamList = {
   LoginScreen: undefined;

@@ -1,4 +1,4 @@
-/* eslint-disable react-native/no-inline-styles */
+
 import React, { ReactNode } from 'react';
 import { KeyboardAvoidingView, Platform } from 'react-native';
 
@@ -15,6 +15,7 @@ type TProps = {
   canGoBack?: boolean;
   scrollable?: boolean;
 };
+
 export function Screen({
   children,
   canGoBack = false,

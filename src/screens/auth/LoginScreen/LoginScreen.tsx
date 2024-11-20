@@ -13,11 +13,11 @@ import {
   Screen,
   Text,
 } from '@components';
-import { RootStackParamList } from '@routes';
+import { TAuthStackParamList } from '@routes';
 
 import { loginSchema, TLoginForm } from './loginSchema';
 
-type TScreenProps = NativeStackScreenProps<RootStackParamList, 'LoginScreen'>;
+type TScreenProps = NativeStackScreenProps<TAuthStackParamList, 'LoginScreen'>;
 
 export function LoginScreen({ navigation }: TScreenProps) {
   const { control, formState, handleSubmit } = useForm<TLoginForm>({
@@ -33,6 +33,7 @@ export function LoginScreen({ navigation }: TScreenProps) {
     console.log('email', email);
     console.log('password', password);
   }, []);
+
   function navigateToSignUp() {
     navigation.navigate('SignUpScreen');
   }

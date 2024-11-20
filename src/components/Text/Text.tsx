@@ -8,7 +8,7 @@ import { TTheme } from '../../theme/theme';
 const SRText = createText<TTheme>();
 type TSRTextProps = ComponentProps<typeof SRText>;
 
-type Props = TSRTextProps & {
+type TProps = TSRTextProps & {
   children: React.ReactNode;
   preset?: TTextVariants;
   bold?: boolean;
@@ -24,7 +24,7 @@ export function Text({
   italic,
   semiBold,
   ...tSRTextProps
-}: Props) {
+}: TProps) {
   const presetStyle = $fontSizes[preset];
   const fontFamily = getFontFamily(preset, bold, italic, semiBold);
 

@@ -6,10 +6,6 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Routes } from '@routes';
 import { theme } from '@theme';
 
-if (__DEV__) {
-  require('./src/reactotron');
-}
-
 function App(): React.JSX.Element {
   return (
     <SafeAreaProvider>

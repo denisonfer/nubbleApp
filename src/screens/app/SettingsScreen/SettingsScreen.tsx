@@ -10,7 +10,7 @@ type TScreenProps = NativeStackScreenProps<
   'SettingsScreen'
 >;
 
-export function SettingsScreen({ navigation }: TScreenProps) {
+export function SettingsScreen({}: TScreenProps) {
   return (
     <Screen>
       <Text preset="headingLarge">Settings</Text>

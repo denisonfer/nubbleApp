@@ -6,6 +6,7 @@ import { Button, Screen, Text } from '@components';
 import { TAppStackParamList } from '@routes';
 
 type TScreenProps = NativeStackScreenProps<TAppStackParamList, 'HomeScreen'>;
+
 export function HomeScreen({ navigation }: TScreenProps) {
   return (
     <Screen>

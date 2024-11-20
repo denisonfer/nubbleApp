@@ -1,4 +1,4 @@
-/* eslint-disable react-native/no-inline-styles */
+
 import React, { ReactNode } from 'react';
 import { ScrollView, View } from 'react-native';
 
@@ -6,6 +6,7 @@ type TProps = {
   children: ReactNode;
   backgroundColor: string;
 };
+
 export function ScrollViewContainer({ backgroundColor, children }: TProps) {
   return (
     <ScrollView
