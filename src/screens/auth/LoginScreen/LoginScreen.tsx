@@ -2,7 +2,6 @@ import React, { useCallback } from 'react';
 import { Pressable } from 'react-native';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useForm } from 'react-hook-form';
 
 import {
@@ -13,13 +12,11 @@ import {
   Screen,
   Text,
 } from '@components';
-import { TAuthStackParamList } from '@routes';
+import { TAuthScreenProps } from '@routes';
 
 import { loginSchema, TLoginForm } from './loginSchema';
 
-type TScreenProps = NativeStackScreenProps<TAuthStackParamList, 'LoginScreen'>;
-
-export function LoginScreen({ navigation }: TScreenProps) {
+export function LoginScreen({ navigation }: TAuthScreenProps<'LoginScreen'>) {
   const { control, formState, handleSubmit } = useForm<TLoginForm>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
