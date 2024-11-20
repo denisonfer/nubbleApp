@@ -4,5 +4,7 @@ export * from './auth/SignUpScreen/SignUpScreen';
 export * from './auth/SuccessScreen/SuccessScreen';
 
 //app
+export * from './app/FavoritesScreen/FavoritesScreen';
 export * from './app/HomeScreen/HomeScreen';
-export * from './app/SettingsScreen/SettingsScreen';
+export * from './app/NewPostScreen/NewPostScreen';
+export * from './app/ProfileScreen/ProfileScreen';
