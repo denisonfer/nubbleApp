@@ -9,6 +9,7 @@ type TScreenProps = NativeStackScreenProps<
   TAppStackParamList,
   'SettingsScreen'
 >;
+
 export function SettingsScreen({ navigation }: TScreenProps) {
   return (
     <Screen>
