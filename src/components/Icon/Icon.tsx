@@ -24,6 +24,7 @@ import { HomeFillIcon } from '../../assets/icons/HomeFillIcon';
 import { HomeIcon } from '../../assets/icons/HomeIcon';
 import { MessageIcon } from '../../assets/icons/MessageIcon';
 import { MessageRoundIcon } from '../../assets/icons/MessageRoundIcon';
+import { MoreIcon } from '../../assets/icons/MoreIcon';
 import { NewPostIcon } from '../../assets/icons/NewPostIcon';
 import { ProfileFillIcon } from '../../assets/icons/ProfileFillIcon';
 import { ProfileIcon } from '../../assets/icons/ProfileIcon';
@@ -78,6 +79,7 @@ const iconsMapper = {
   homeFill: HomeFillIcon,
   message: MessageIcon,
   messageRoundIcon: MessageRoundIcon,
+  more: MoreIcon,
   newPost: NewPostIcon,
   profile: ProfileIcon,
   profileFill: ProfileFillIcon,

@@ -1,17 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { FlatList, ListRenderItemInfo } from 'react-native';
 
-import { Button, Screen, Text } from '@components';
+import { PostItem, Screen } from '@components';
 import { TAppBottomTabScreenProps } from '@routes';
 
-export function HomeScreen({
-  navigation,
-}: TAppBottomTabScreenProps<'HomeScreen'>) {
+import { IPost, postServices } from '@domains';
+
+export function HomeScreen({}: TAppBottomTabScreenProps<'HomeScreen'>) {
+  const [postList, setPostList] = useState<IPost[]>([]);
+  console.log('postList: ', postList);
+
+  useEffect(() => {
+    postServices.getList().then(setPostList);
+  }, []);
+
+  function renderPost({ item: post }: ListRenderItemInfo<IPost>) {
+    return <PostItem post={post} />;
+  }
+
   return (
     <Screen>
-      <Text preset="headingLarge">Home Screen</Text>
-      <Button
-        title="Favoritos"
-        onPress={() => navigation.navigate('FavoritesScreen')}
+      <FlatList
+        data={postList}
+        keyExtractor={post => post.id}
+        renderItem={renderPost}
+        showsVerticalScrollIndicator={false}
       />
     </Screen>
   );

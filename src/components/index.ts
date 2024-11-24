@@ -7,6 +7,7 @@ export * from './Input/FormInput/FormInput';
 export * from './Input/Input';
 export * from './Input/PasswordInput/FormPasswordInput/FormPasswordInput';
 export * from './Input/PasswordInput/PasswordInput';
+export * from './PostItem/PostItem';
 export * from './Screen/Containers';
 export * from './Screen/Screen';
 export * from './Text/Text';
