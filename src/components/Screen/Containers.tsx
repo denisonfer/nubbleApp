@@ -1,6 +1,5 @@
-
 import React, { ReactNode } from 'react';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, StyleProp, View, ViewStyle } from 'react-native';
 
 type TProps = {
   children: ReactNode;
@@ -11,12 +10,14 @@ export function ScrollViewContainer({ backgroundColor, children }: TProps) {
   return (
     <ScrollView
       keyboardShouldPersistTaps="handled"
-      style={{ backgroundColor, flex: 1 }}>
+      style={[$container, { backgroundColor }]}>
       {children}
     </ScrollView>
   );
 }
 
 export function ViewContainer({ backgroundColor, children }: TProps) {
-  return <View style={{ backgroundColor, flex: 1 }}>{children}</View>;
+  return <View style={[$container, { backgroundColor }]}>{children}</View>;
 }
+
+const $container: StyleProp<ViewStyle> = { flex: 1 };

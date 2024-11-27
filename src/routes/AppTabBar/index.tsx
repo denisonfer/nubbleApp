@@ -1,3 +1,5 @@
+import { StyleProp, ViewStyle } from 'react-native';
+
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
 import { Box, Icon, Text, TouchableOpacityBox } from '@components';
@@ -12,7 +14,6 @@ export function AppTabBar({
   descriptors,
   navigation,
 }: BottomTabBarProps) {
-  //const { buildHref } = useLinkBuilder();
   const { bottom } = useAppSafeArea();
 
   return (
@@ -57,7 +58,7 @@ export function AppTabBar({
             testID={options.tabBarButtonTestID}
             onPress={onPress}
             onLongPress={onLongPress}
-            style={{ flex: 1 }}>
+            style={$touchableOpacityBox}>
             <Icon
               name={isFocused ? tabItem.icon.focused : tabItem.icon.unfocused}
               color={tabItemColor}
@@ -75,3 +76,5 @@ export function AppTabBar({
     </Box>
   );
 }
+
+const $touchableOpacityBox: StyleProp<ViewStyle> = { flex: 1 };

@@ -1,4 +1,4 @@
-import { Image } from 'react-native';
+import { Image, ImageStyle, StyleProp, TextStyle } from 'react-native';
 
 import { Box, Icon, Text } from '@components';
 
@@ -15,10 +15,10 @@ export function PostHeader({ author }: TProps) {
     <Box flexDirection="row" mb="spc16" alignItems="center">
       <Image
         source={{ uri: author.profileURL }}
-        style={{ width: 32, height: 32, borderRadius: 14 }}
+        style={$image}
         resizeMode="cover"
       />
-      <Text preset="paragraphMedium" ml="spc12" semiBold style={{ flex: 1 }}>
+      <Text preset="paragraphMedium" ml="spc12" semiBold style={$text}>
         {author.name}
       </Text>
 
@@ -26,3 +26,10 @@ export function PostHeader({ author }: TProps) {
     </Box>
   );
 }
+
+const $image: StyleProp<ImageStyle> = {
+  width: 32,
+  height: 32,
+  borderRadius: 14,
+};
+const $text: StyleProp<TextStyle> = { flex: 1 };
