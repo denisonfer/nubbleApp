@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { Box, Icon, Text, TIconNames, TouchableOpacityBox } from '@components';
 
 import { IPost } from '@domains';

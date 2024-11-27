@@ -3,6 +3,7 @@ import { Box } from '@components';
 import { IPost } from '@domains';
 
 import { PostActions } from './components/PostActions';
+import { PostBottom } from './components/PostBottom';
 import { PostHeader } from './components/PostHeader';
 import { PostImage } from './components/PostImage';
 
@@ -19,6 +20,11 @@ export function PostItem({ post }: IProps) {
         commentCount={post.commentCount}
         reactionCount={post.reactionCount}
         favoriteCount={post.favoriteCount}
+      />
+      <PostBottom
+        author={post.author}
+        text={post.text}
+        commentCount={post.commentCount}
       />
     </Box>
   );

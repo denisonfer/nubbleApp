@@ -1,3 +1,4 @@
+import React from 'react';
 import { Image, ImageStyle, StyleProp, TextStyle } from 'react-native';
 
 import { Box, Icon, Text } from '@components';

@@ -1,3 +1,4 @@
+import React from 'react';
 import { Dimensions, Image, ImageStyle, StyleProp } from 'react-native';
 
 import { IPost } from '@domains';
