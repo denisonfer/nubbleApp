@@ -26,6 +26,7 @@ module.exports = [
     },
     rules: {
       ...pluginImport.configs.recommended.rules,
+      'react-native/no-inline-styles': 'warn',
       'no-multiple-empty-lines': ['error', { max: 1 }],
       'no-trailing-spaces': ['error'],
       'prefer-const': ['error', { destructuring: 'all' }],

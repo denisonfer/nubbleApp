@@ -1,17 +1,22 @@
 import React, { ReactNode } from 'react';
-import { KeyboardAvoidingView, Platform } from 'react-native';
+import {
+  KeyboardAvoidingView,
+  Platform,
+  StyleProp,
+  ViewStyle,
+} from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 
 import { useAppSafeArea } from '../../hooks/useAppSafeArea';
 import { useAppTheme } from '../../hooks/useAppTheme';
-import { Box, TouchableOpacityBox } from '../Box/Box';
+import { Box, TBoxProps, TouchableOpacityBox } from '../Box/Box';
 import { Icon } from '../Icon/Icon';
 import { Text } from '../Text/Text';
 
 import { ScrollViewContainer, ViewContainer } from './Containers';
 
-type TProps = {
+type TProps = TBoxProps & {
   children: ReactNode;
   canGoBack?: boolean;
   scrollable?: boolean;
@@ -21,6 +26,8 @@ export function Screen({
   children,
   canGoBack = false,
   scrollable = false,
+  style,
+  ...tBoxProps
 }: TProps) {
   const { top, bottom } = useAppSafeArea();
   const { colors } = useAppTheme();
@@ -30,15 +37,18 @@ export function Screen({
 
   return (
     <KeyboardAvoidingView
-      style={{ flex: 1 }}
+      style={$keyboardAvoidingView}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <Container backgroundColor={colors.background}>
         <Box
-          paddingHorizontal="spc24"
-          style={{
-            paddingTop: Math.max(top),
-            paddingBottom: Math.max(bottom),
-          }}>
+          style={[
+            {
+              paddingTop: Math.max(top),
+              paddingBottom: Math.max(bottom),
+            },
+            style,
+          ]}
+          {...tBoxProps}>
           {canGoBack && (
             <TouchableOpacityBox
               onPress={navigation.goBack}
@@ -57,3 +67,7 @@ export function Screen({
     </KeyboardAvoidingView>
   );
 }
+
+const $keyboardAvoidingView: StyleProp<ViewStyle> = {
+  flex: 1,
+};

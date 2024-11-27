@@ -12,7 +12,7 @@ interface IProps {
 
 export function PostItem({ post }: IProps) {
   return (
-    <Box mb="spc32">
+    <Box mb="spc32" paddingHorizontal="spc24">
       <PostHeader author={post.author} />
       <PostImage imageURL={post.imageURL} />
       <PostActions
