@@ -1,5 +1,4 @@
-import { api } from '@api';
-import { IApiPaginated } from 'src/api/types';
+import { api, IApiPaginated } from '@api';
 
 import { IPostListApi } from './types';
 
