@@ -11,6 +11,8 @@ import { TAppBottomTabScreenProps } from '@routes';
 
 import { IPost, postServices } from '@domains';
 
+import { HomeHeader } from './components/HomeHeader';
+
 export function HomeScreen({}: TAppBottomTabScreenProps<'HomeScreen'>) {
   const [postList, setPostList] = useState<IPost[]>([]);
   console.log('postList: ', postList);
@@ -30,6 +32,7 @@ export function HomeScreen({}: TAppBottomTabScreenProps<'HomeScreen'>) {
         keyExtractor={post => post.id}
         renderItem={renderPost}
         showsVerticalScrollIndicator={false}
+        ListHeaderComponent={<HomeHeader />}
       />
     </Screen>
   );
