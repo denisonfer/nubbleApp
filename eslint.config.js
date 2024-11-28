@@ -61,6 +61,11 @@ module.exports = [
               position: 'before',
             },
             {
+              pattern: '@assets/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
               pattern: '@+(routes|screens|components|hooks|theme)',
               group: 'internal',
               position: 'before',

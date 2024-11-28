@@ -1,8 +1,6 @@
 import React from 'react';
 import { Pressable } from 'react-native';
 
-import { useAppTheme } from '@hooks';
-
 import {
   ArrowLeftIcon,
   ArrowRightIcon,
@@ -35,6 +33,8 @@ import {
   SettingsIcon,
   TrashIcon,
 } from '@assets/icons';
+
+import { useAppTheme } from '@hooks';
 
 import { TIconProps } from './types';
 
