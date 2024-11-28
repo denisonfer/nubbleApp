@@ -15,7 +15,6 @@ import { HomeHeader } from './components/HomeHeader';
 
 export function HomeScreen({}: TAppBottomTabScreenProps<'HomeScreen'>) {
   const [postList, setPostList] = useState<IPost[]>([]);
-  console.log('postList: ', postList);
 
   useEffect(() => {
     postServices.getList().then(setPostList);

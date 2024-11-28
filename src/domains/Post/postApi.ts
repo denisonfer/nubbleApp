@@ -1,8 +1,12 @@
-import { postListMock } from './postListMock';
-import { IPost } from './types';
+import { api } from '@api';
+import { IApiPaginated } from 'src/api/types';
 
-async function getList(): Promise<IPost[]> {
-  return postListMock;
+import { IPostListApi } from './types';
+
+async function getList(): Promise<IApiPaginated<IPostListApi>> {
+  const response = await api.get<IApiPaginated<IPostListApi>>('/user/post');
+
+  return response.data;
 }
 
 export const postApi = { getList };
