@@ -12,17 +12,17 @@ import { useScrollToTop } from '@react-navigation/native';
 import { PostItem, Screen } from '@components';
 import { TAppBottomTabScreenProps } from '@routes';
 
-import { IPost, usePostList } from '@domains';
+import { TPost, usePostList } from '@domains';
 
 import { HomeEmpty } from './components/HomeEmpty';
 import { HomeHeader } from './components/HomeHeader';
 
 export function HomeScreen({}: TAppBottomTabScreenProps<'HomeScreen'>) {
-  const flatListRef = useRef<FlatList<IPost>>(null);
+  const flatListRef = useRef<FlatList<TPost>>(null);
   const { postList, loading, error, refresh, fetchNextPage } = usePostList();
   useScrollToTop(flatListRef);
 
-  function renderPost({ item: post }: ListRenderItemInfo<IPost>) {
+  function renderPost({ item: post }: ListRenderItemInfo<TPost>) {
     return <PostItem post={post} />;
   }
 

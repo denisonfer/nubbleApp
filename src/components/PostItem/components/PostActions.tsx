@@ -2,10 +2,10 @@ import React from 'react';
 
 import { Box, Icon, Text, TIconNames, TouchableOpacityBox } from '@components';
 
-import { IPost } from '@domains';
+import { TPost } from '@domains';
 
 type TPropsPostActions = Pick<
-  IPost,
+  TPost,
   'reactionCount' | 'commentCount' | 'favoriteCount'
 >;
 

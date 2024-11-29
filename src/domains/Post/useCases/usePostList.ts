@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
 
 import { postServices } from '../postServices';
-import { IPost } from '../types';
+import { TPost } from '../types';
 
 export function usePostList() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<unknown>();
-  const [postList, setPostList] = useState<IPost[]>([]);
+  const [postList, setPostList] = useState<TPost[]>([]);
   const [page, setPage] = useState(1);
   const [hasNextPage, setHasNextPage] = useState(true);
 

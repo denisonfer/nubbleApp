@@ -1,17 +1,3 @@
-export interface IPost {
-  id: string;
-  text: string;
-  author: {
-    profileURL: string;
-    name: string;
-    userName: string;
-  };
-  imageURL: string;
-  reactionCount: number;
-  commentCount: number;
-  favoriteCount: number;
-}
-
 export interface IPostListApi {
   id: number;
   text: string;
@@ -38,3 +24,16 @@ export interface IPostListApi {
     comments_count: string;
   };
 }
+export type TPost = {
+  id: string;
+  text: string;
+  author: {
+    profileURL: string;
+    name: string;
+    userName: string;
+  };
+  imageURL: string;
+  reactionCount: number;
+  commentCount: number;
+  favoriteCount: number;
+};

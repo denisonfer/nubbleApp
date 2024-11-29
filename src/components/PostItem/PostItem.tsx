@@ -1,6 +1,6 @@
 import { Box } from '@components';
 
-import { IPost } from '@domains';
+import { TPost } from '@domains';
 
 import { PostActions } from './components/PostActions';
 import { PostBottom } from './components/PostBottom';
@@ -8,7 +8,7 @@ import { PostHeader } from './components/PostHeader';
 import { PostImage } from './components/PostImage';
 
 interface IProps {
-  post: IPost;
+  post: TPost;
 }
 
 export function PostItem({ post }: IProps) {

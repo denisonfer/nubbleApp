@@ -3,9 +3,9 @@ import { Image, ImageStyle, StyleProp, TextStyle } from 'react-native';
 
 import { Box, Icon, Text } from '@components';
 
-import { IPost } from '@domains';
+import { TPost } from '@domains';
 
-type TProps = Pick<IPost, 'author'>;
+type TProps = Pick<TPost, 'author'>;
 
 export function PostHeader({ author }: TProps) {
   function moreOptions() {

@@ -2,9 +2,9 @@ import React from 'react';
 
 import { Box, Text } from '@components';
 
-import { IPost } from '@domains';
+import { TPost } from '@domains';
 
-type TProps = Pick<IPost, 'author' | 'text' | 'commentCount'>;
+type TProps = Pick<TPost, 'author' | 'text' | 'commentCount'>;
 
 export function PostBottom({ author, text, commentCount }: TProps) {
   const commentText = getCommentText(commentCount);

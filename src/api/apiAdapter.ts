@@ -2,7 +2,7 @@ import { TMetaData } from '@types';
 
 import { IMetaApi } from './types';
 
-function adaptToMetaData(meta: IMetaApi): TMetaData {
+function toMetaData(meta: IMetaApi): TMetaData {
   return {
     total: meta.total,
     perPage: meta.per_page,
@@ -14,4 +14,4 @@ function adaptToMetaData(meta: IMetaApi): TMetaData {
   };
 }
 
-export const apiAdapter = { adaptToMetaData };
+export const apiAdapter = { toMetaData };
