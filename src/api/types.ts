@@ -1,4 +1,4 @@
-interface IMetaApi {
+export interface IMetaApi {
   total: number;
   per_page: number;
   current_page: number;
@@ -17,4 +17,9 @@ interface IMetaApi {
 export interface IApiPaginated<TData> {
   meta: IMetaApi;
   data: TData[];
+}
+
+export interface IPageParams {
+  page?: number;
+  per_page?: number;
 }

@@ -1,6 +1,6 @@
 import { IPost, IPostListApi } from './types';
 
-function adaptPostList(postListApi: IPostListApi): IPost {
+function adaptToPostList(postListApi: IPostListApi): IPost {
   return {
     id: postListApi.id.toString(),
     text: postListApi.text,
@@ -16,4 +16,4 @@ function adaptPostList(postListApi: IPostListApi): IPost {
   };
 }
 
-export const postAdapter = { adaptPostList };
+export const postAdapter = { adaptToPostList };

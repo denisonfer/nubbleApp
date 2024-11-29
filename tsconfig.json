@@ -13,6 +13,7 @@
       "@theme": ["./src/theme"],
       "@domains": ["./src/domains"],
       "@api": ["./src/api"],
+      "@types": ["./src/types"],
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,
