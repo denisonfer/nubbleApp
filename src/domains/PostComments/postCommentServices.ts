@@ -16,7 +16,7 @@ async function getPostCommentList({
 }: TProps): Promise<TPagination<TPostComment>> {
   const postCommentList = await postCommentApi.getPostCommentList(postId, {
     page,
-    per_page: 5,
+    per_page: 10,
   });
 
   return {

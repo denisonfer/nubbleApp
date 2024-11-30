@@ -1,7 +1,7 @@
 import React from 'react';
-import { Image, ImageStyle, StyleProp, TextStyle } from 'react-native';
+import { StyleProp, TextStyle } from 'react-native';
 
-import { Box, Icon, Text } from '@components';
+import { Avatar, Box, Icon, Text } from '@components';
 
 import { TPost } from '@domains';
 
@@ -14,11 +14,7 @@ export function PostHeader({ author }: TProps) {
 
   return (
     <Box flexDirection="row" mb="spc16" alignItems="center">
-      <Image
-        source={{ uri: author.profileURL }}
-        style={$image}
-        resizeMode="cover"
-      />
+      <Avatar profileURL={author.profileURL} />
       <Text preset="paragraphMedium" ml="spc12" semiBold style={$text}>
         {author.name}
       </Text>
@@ -28,9 +24,4 @@ export function PostHeader({ author }: TProps) {
   );
 }
 
-const $image: StyleProp<ImageStyle> = {
-  width: 32,
-  height: 32,
-  borderRadius: 14,
-};
 const $text: StyleProp<TextStyle> = { flex: 1 };

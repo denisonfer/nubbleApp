@@ -62,5 +62,9 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  "resolutions": {
+    "reactotron-core-client@npm:2.9.6": "patch:reactotron-core-client@npm%3A2.9.6#~/.yarn/patches/reactotron-core-client-npm-2.9.6-41de8915bd.patch"
   }
+
 }

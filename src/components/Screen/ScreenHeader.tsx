@@ -16,8 +16,7 @@ export function ScreenHeader({ canGoBack, title }: TProps) {
       alignItems="center"
       justifyContent="space-between"
       flexDirection="row"
-      mb="spc24"
-      paddingHorizontal="spc24">
+      mb="spc24">
       {canGoBack && (
         <TouchableOpacityBox
           onPress={navigation.goBack}
