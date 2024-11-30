@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+
+import { useNavigation } from '@react-navigation/native';
 
 import { Box, Text } from '@components';
 
 import { TPost } from '@domains';
 
-type TProps = Pick<TPost, 'author' | 'text' | 'commentCount'>;
+type TProps = Pick<TPost, 'author' | 'text' | 'commentCount' | 'id'>;
 
-export function PostBottom({ author, text, commentCount }: TProps) {
+export function PostBottom({ author, text, commentCount, id }: TProps) {
+  const navigate = useNavigation();
+
   const commentText = getCommentText(commentCount);
+
+  const navigateToPostCommentScreen = useCallback(() => {
+    navigate.navigate('PostCommentScreen', { postId: id });
+  }, [id]);
 
   return (
     <Box mt="spc16">
@@ -20,7 +28,7 @@ export function PostBottom({ author, text, commentCount }: TProps) {
         bold
         color="primary"
         mt="spc8"
-        onPress={() => {}}>
+        onPress={navigateToPostCommentScreen}>
         {commentText}
       </Text>
     </Box>

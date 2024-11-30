@@ -1,9 +1,9 @@
 import { apiAdapter } from '@api';
+import { TPostComment } from '@domains';
 import { TPagination } from '@types';
 
-import { postCommentAdapter } from './PostCommentAdapter';
+import { postCommentAdapter } from './postCommentAdapter';
 import { postCommentApi } from './postCommentApi';
-import { TPostComment } from './postCommentTypes';
 
 type TProps = {
   postId: number;

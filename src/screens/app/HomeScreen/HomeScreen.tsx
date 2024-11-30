@@ -19,7 +19,13 @@ import { HomeHeader } from './components/HomeHeader';
 
 export function HomeScreen({}: TAppBottomTabScreenProps<'HomeScreen'>) {
   const flatListRef = useRef<FlatList<TPost>>(null);
-  const { postList, loading, error, refresh, fetchNextPage } = usePostList();
+  const {
+    list: postList,
+    loading,
+    error,
+    refresh,
+    fetchNextPage,
+  } = usePostList();
   useScrollToTop(flatListRef);
 
   function renderPost({ item: post }: ListRenderItemInfo<TPost>) {
