@@ -1,9 +1,9 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { api, IApiPaginated, IPageParams } from '@api';
 
 import { IPostCommentApi } from './postCommentTypes';
 
 async function getPostCommentList(
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   post_id: number,
   params?: IPageParams,
 ): Promise<IApiPaginated<IPostCommentApi>> {
@@ -20,4 +20,16 @@ async function getPostCommentList(
   return response.data;
 }
 
-export const postCommentApi = { getPostCommentList };
+async function createComment(
+  post_id: number,
+  message: string,
+): Promise<IPostCommentApi> {
+  const response = await api.post<IPostCommentApi>('/user/post_comment', {
+    post_id,
+    message,
+  });
+
+  return response.data;
+}
+
+export const postCommentApi = { getPostCommentList, createComment };

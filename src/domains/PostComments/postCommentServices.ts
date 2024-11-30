@@ -25,4 +25,13 @@ async function getPostCommentList({
   };
 }
 
-export const postCommentServices = { getPostCommentList };
+async function createComment(
+  postId: number,
+  message: string,
+): Promise<TPostComment> {
+  const postComment = await postCommentApi.createComment(postId, message);
+
+  return postCommentAdapter.toPostCommentList(postComment);
+}
+
+export const postCommentServices = { getPostCommentList, createComment };

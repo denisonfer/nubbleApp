@@ -1,42 +1,49 @@
 import React from 'react';
 import { FlatList, ListRenderItemInfo } from 'react-native';
 
-import { Screen } from '@components';
+import { Box, Screen } from '@components';
 import { useAppSafeArea } from '@hooks';
 import { TAppScreenProps } from '@routes';
 
 import { TPostComment, usePostCommentList } from '@domains';
 
-import { PostCommentBottom, PostCommentItem } from './components';
+import {
+  PostCommentBottom,
+  PostCommentItem,
+  PostCommentMessage,
+} from './components';
 
 export function PostCommentScreen({
   route,
 }: TAppScreenProps<'PostCommentScreen'>) {
   const { postId } = route.params;
-  const { list, hasNextPage, fetchNextPage } = usePostCommentList(
+  const { bottom } = useAppSafeArea();
+  const { list, hasNextPage, fetchNextPage, refresh } = usePostCommentList(
     parseInt(postId),
   );
-  const { bottom } = useAppSafeArea();
 
   function renderItem({ item }: ListRenderItemInfo<TPostComment>) {
     return <PostCommentItem postComment={item} />;
   }
 
   return (
-    <Screen canGoBack title="Comentários" paddingHorizontal="spc24">
-      <FlatList
-        contentContainerStyle={{ paddingBottom: bottom }}
-        data={list}
-        keyExtractor={item => item.id}
-        renderItem={renderItem}
-        ListFooterComponent={
-          <PostCommentBottom
-            hasNextPage={hasNextPage}
-            onPress={fetchNextPage}
-          />
-        }
-        showsVerticalScrollIndicator={false}
-      />
+    <Screen flex={1} canGoBack title="Comentários" paddingHorizontal="spc24">
+      <Box flex={1} justifyContent="space-between">
+        <FlatList
+          contentContainerStyle={{ paddingBottom: bottom }}
+          data={list}
+          keyExtractor={item => item.id}
+          renderItem={renderItem}
+          ListFooterComponent={
+            <PostCommentBottom
+              hasNextPage={hasNextPage}
+              onPress={fetchNextPage}
+            />
+          }
+          showsVerticalScrollIndicator={false}
+        />
+        <PostCommentMessage postId={parseInt(postId)} onAddComment={refresh} />
+      </Box>
     </Screen>
   );
 }

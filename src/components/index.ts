@@ -6,6 +6,7 @@ export * from './Icon/Icon';
 export * from './Icon/types';
 export * from './Input/FormInput/FormInput';
 export * from './Input/Input';
+export * from './Input/MessageInput/MessageInput';
 export * from './Input/PasswordInput/FormPasswordInput/FormPasswordInput';
 export * from './Input/PasswordInput/PasswordInput';
 export * from './PostItem/PostItem';
