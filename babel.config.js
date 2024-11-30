@@ -16,6 +16,7 @@ module.exports = {
           '@domains': './src/domains',
           '@api': './src/api',
           '@types': './src/types',
+          '@utils': './src/utils',
         },
       },
     ],

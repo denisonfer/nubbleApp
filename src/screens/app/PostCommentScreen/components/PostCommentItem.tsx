@@ -13,11 +13,13 @@ export function PostCommentItem({ postComment }: TProps) {
     <Box flexDirection="row" mb="spc16" alignItems="center">
       <Avatar profileURL={postComment.author.profileURL} />
 
-      <Box ml="spc12">
+      <Box ml="spc12" flex={1}>
         <Text preset="paragraphSmall" bold>
           {postComment.author.name}
         </Text>
-        <Text preset="paragraphSmall">{postComment.message}</Text>
+        <Text preset="paragraphSmall">
+          {postComment.message} - {postComment.createdAtRelative}
+        </Text>
       </Box>
     </Box>
   );

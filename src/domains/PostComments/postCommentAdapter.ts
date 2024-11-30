@@ -1,3 +1,5 @@
+import { formatDateRelative } from '@utils';
+
 import { IPostCommentApi, TPostComment } from './postCommentTypes';
 
 function toPostCommentList(postCommentApi: IPostCommentApi): TPostComment {
@@ -5,6 +7,7 @@ function toPostCommentList(postCommentApi: IPostCommentApi): TPostComment {
     id: postCommentApi.id.toString(),
     message: postCommentApi.message,
     createdAt: postCommentApi.created_at,
+    createdAtRelative: formatDateRelative(postCommentApi.created_at),
     author: {
       id: postCommentApi.user.id.toString(),
       profileURL: postCommentApi.user.profile_url,

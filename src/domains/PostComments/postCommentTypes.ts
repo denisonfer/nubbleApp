@@ -34,6 +34,7 @@ export type TPostComment = {
   id: string;
   message: string;
   createdAt: string;
+  createdAtRelative: string;
   author: {
     id: string;
     profileURL: string;
