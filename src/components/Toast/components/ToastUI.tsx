@@ -19,7 +19,7 @@ const MAX_WIDTH = Dimensions.get('screen').width * 0.9;
 export function ToastUI({ toast }: TProps) {
   const position: TToastPosition = toast.position || 'bottom';
   return (
-    <Box style={[{ [position]: 100, ...$shadowProps }]} {...$wrapper}>
+    <Box {...$wrapper} style={[{ [position]: 100 }, $shadowProps]}>
       <Icon {...iconMapper[toast.type]} />
       <Text {...$text} preset="paragraphMedium" bold ml="spc12">
         {toast.message}
@@ -41,14 +41,14 @@ const iconMapper: Record<TToastType, TIconProps> = {
 
 const $wrapper: TBoxProps = {
   flexDirection: 'row',
-  position: 'absolute',
   alignItems: 'center',
-  alignSelf: 'center',
   borderRadius: 'br16',
   backgroundColor: 'gray5',
   paddingHorizontal: 'spc24',
   paddingVertical: 'spc16',
   maxWidth: MAX_WIDTH,
+  position: 'absolute',
+  alignSelf: 'center',
 };
 
 const $text: TTextProps = {
