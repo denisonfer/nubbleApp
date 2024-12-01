@@ -1,4 +1,3 @@
 #yarn test
-yarn lint
 yarn code-check
 

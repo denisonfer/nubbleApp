@@ -9,7 +9,7 @@
     "start": "react-native start",
     "test": "jest",
     "prepare": "husky",
-    "code-check": "npx tsc --noEmit"
+    "code-check": "eslint . && npx tsc --noEmit"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
