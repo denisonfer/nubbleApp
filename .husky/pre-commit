@@ -1,5 +1,4 @@
 #yarn test
-yarn lint --fix
 yarn lint
 yarn code-check
 
