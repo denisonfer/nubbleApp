@@ -66,6 +66,16 @@ module.exports = [
               position: 'before',
             },
             {
+              pattern: '@infra',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '@services',
+              group: 'internal',
+              position: 'before',
+            },
+            {
               pattern: '@+(routes|screens|components|hooks|theme)',
               group: 'internal',
               position: 'before',

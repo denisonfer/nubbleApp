@@ -1,5 +1,6 @@
-import { postCommentServices, TPostComment } from '@domains';
 import { TMutationProps, useMutation } from '@infra';
+
+import { postCommentServices, TPostComment } from '@domains';
 
 export function usePostCommentCreate(options?: TMutationProps<TPostComment>) {
   const { mutate, loading, error } = useMutation<

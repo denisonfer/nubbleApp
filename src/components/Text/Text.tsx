@@ -6,9 +6,9 @@ import { createText } from '@shopify/restyle';
 import { TTheme } from '../../theme/theme';
 
 const SRText = createText<TTheme>();
-type TSRTextProps = ComponentProps<typeof SRText>;
+export type TTextProps = ComponentProps<typeof SRText>;
 
-type TProps = TSRTextProps & {
+type TProps = TTextProps & {
   children: React.ReactNode;
   preset?: TTextVariants;
   bold?: boolean;
@@ -23,7 +23,7 @@ export function Text({
   bold,
   italic,
   semiBold,
-  ...tSRTextProps
+  ...tTextProps
 }: TProps) {
   const presetStyle = $fontSizes[preset];
   const fontFamily = getFontFamily(preset, bold, italic, semiBold);
@@ -32,7 +32,7 @@ export function Text({
     <SRText
       color="backgroundContrast"
       style={[presetStyle, { fontFamily }, style]}
-      {...tSRTextProps}>
+      {...tTextProps}>
       {children}
     </SRText>
   );

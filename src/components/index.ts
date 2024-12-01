@@ -13,3 +13,4 @@ export * from './PostItem/PostItem';
 export * from './Screen/Containers';
 export * from './Screen/Screen';
 export * from './Text/Text';
+export * from './Toast/Toast';
