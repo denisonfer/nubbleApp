@@ -19,6 +19,7 @@ import { HomeHeader } from './components/HomeHeader';
 
 export function HomeScreen({}: TAppBottomTabScreenProps<'HomeScreen'>) {
   const flatListRef = useRef<FlatList<TPost>>(null);
+  useScrollToTop(flatListRef);
   const {
     list: postList,
     loading,
@@ -26,7 +27,6 @@ export function HomeScreen({}: TAppBottomTabScreenProps<'HomeScreen'>) {
     refresh,
     fetchNextPage,
   } = usePostList();
-  useScrollToTop(flatListRef);
 
   function renderPost({ item: post }: ListRenderItemInfo<TPost>) {
     return <PostItem post={post} />;
@@ -48,7 +48,11 @@ export function HomeScreen({}: TAppBottomTabScreenProps<'HomeScreen'>) {
         onEndReached={fetchNextPage}
         onEndReachedThreshold={0.5}
         refreshControl={
-          <RefreshControl refreshing={loading} onRefresh={refresh} />
+          <RefreshControl
+            refreshing={loading}
+            onRefresh={refresh}
+            progressViewOffset={50}
+          />
         }
         refreshing={loading}
       />

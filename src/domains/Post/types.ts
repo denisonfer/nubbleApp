@@ -28,6 +28,7 @@ export type TPost = {
   id: string;
   text: string;
   author: {
+    id: string;
     profileURL: string;
     name: string;
     userName: string;

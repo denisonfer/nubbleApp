@@ -34,4 +34,30 @@ async function createComment(
   return postCommentAdapter.toPostCommentList(postComment);
 }
 
-export const postCommentServices = { getPostCommentList, createComment };
+async function removeComment(commentId: number): Promise<string> {
+  const response = await postCommentApi.removeComment(commentId);
+
+  return response;
+}
+
+function isAllowedRemoveComment(
+  userId: number,
+  commentAuthorId: number,
+  postAuthorId: number,
+) {
+  switch (true) {
+    case userId === commentAuthorId:
+      return true;
+    case userId === postAuthorId:
+      return true;
+    default:
+      return false;
+  }
+}
+
+export const postCommentServices = {
+  getPostCommentList,
+  createComment,
+  removeComment,
+  isAllowedRemoveComment,
+};

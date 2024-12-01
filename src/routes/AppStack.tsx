@@ -11,6 +11,7 @@ export type TAppStackParamList = {
   AppBottomTab: NavigatorScreenParams<TAppBottomTabParamList>;
   PostCommentScreen: {
     postId: string;
+    postAuthorId: string;
   };
 };
 

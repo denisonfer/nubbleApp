@@ -16,14 +16,20 @@ import {
 export function PostCommentScreen({
   route,
 }: TAppScreenProps<'PostCommentScreen'>) {
-  const { postId } = route.params;
+  const { postId, postAuthorId } = route.params;
   const { bottom } = useAppSafeArea();
   const { list, hasNextPage, fetchNextPage, refresh } = usePostCommentList(
     parseInt(postId),
   );
 
   function renderItem({ item }: ListRenderItemInfo<TPostComment>) {
-    return <PostCommentItem postComment={item} />;
+    return (
+      <PostCommentItem
+        postComment={item}
+        onRemoveComment={refresh}
+        postAuthorId={postAuthorId}
+      />
+    );
   }
 
   return (

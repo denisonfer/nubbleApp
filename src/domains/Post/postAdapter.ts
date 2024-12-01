@@ -5,6 +5,7 @@ function toPostList(postListApi: IPostListApi): TPost {
     id: postListApi.id.toString(),
     text: postListApi.text,
     author: {
+      id: postListApi.user.id.toString(),
       profileURL: postListApi.user.profile_url,
       name: postListApi.user.first_name,
       userName: postListApi.user.username,

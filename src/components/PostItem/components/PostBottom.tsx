@@ -14,7 +14,10 @@ export function PostBottom({ author, text, commentCount, id }: TProps) {
   const commentText = getCommentText(commentCount);
 
   const navigateToPostCommentScreen = useCallback(() => {
-    navigate.navigate('PostCommentScreen', { postId: id });
+    navigate.navigate('PostCommentScreen', {
+      postId: id,
+      postAuthorId: author.id,
+    });
   }, [id]);
 
   return (

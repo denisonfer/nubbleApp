@@ -1,4 +1,4 @@
-import { usePaginatedList } from '@domains';
+import { usePaginatedList } from '@infra';
 
 import { postServices } from '../postServices';
 
