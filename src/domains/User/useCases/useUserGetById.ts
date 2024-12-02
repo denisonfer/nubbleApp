@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+
+import { EQueryKeys } from '@infra';
 
 import { userServices } from '../userServices';
-import { TUser } from '../userTypes';
 
 export function useUserGetById(userId: number) {
-  const [loading, setLoading] = useState(false);
+  /*   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<unknown>();
   const [user, setUser] = useState<TUser>();
 
@@ -25,7 +26,16 @@ export function useUserGetById(userId: number) {
 
   useEffect(() => {
     getById();
-  }, [userId]);
+  }, [userId]); */
 
-  return { getById, loading, error, user };
+  const {
+    data: user,
+    isLoading: loading,
+    error,
+  } = useQuery({
+    queryKey: [EQueryKeys.UserGetById, userId],
+    queryFn: () => userServices.getById(userId),
+  });
+
+  return { user, loading, error };
 }

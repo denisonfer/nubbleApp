@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef } from 'react';
-import { Animated, StyleProp, ViewStyle } from 'react-native';
+import { Animated } from 'react-native';
 
 import { useToast, useToastActions } from '@services';
 
@@ -55,7 +55,7 @@ export function Toast() {
   return <ToastUI toast={toast} />;
 }
 
-const $wrapper: StyleProp<ViewStyle> = {
+/* const $wrapper: StyleProp<ViewStyle> = {
   position: 'absolute',
   alignSelf: 'center',
-};
+}; */

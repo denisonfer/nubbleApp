@@ -1,4 +1,5 @@
 const { fixupPluginRules } = require('@eslint/compat');
+const pluginQuery = require('@tanstack/eslint-plugin-query');
 const pluginImport = require('eslint-plugin-import');
 const pluginReactNative = require('eslint-plugin-react-native');
 const pluginUnusedImports = require('eslint-plugin-unused-imports');
@@ -9,6 +10,7 @@ module.exports = [
     ...config,
     files: ['**/*.ts', '**/*.tsx'],
   })),
+  ...pluginQuery.configs['flat/recommended'],
   //default
   {
     name: '@promentech/eslint-config',
