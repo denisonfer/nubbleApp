@@ -34,7 +34,7 @@ export const itemTabMapper: Record<
       unfocused: 'bookmark',
     },
   },
-  ProfileScreen: {
+  MyProfileScreen: {
     label: 'Meu perfil',
     icon: {
       focused: 'profileFill',

@@ -3,7 +3,7 @@ import React from 'react';
 import { NavigatorScreenParams } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { PostCommentScreen } from '@screens';
+import { PostCommentScreen, ProfileScreen } from '@screens';
 
 import { AppBottomTab, TAppBottomTabParamList } from './AppBottomTab';
 
@@ -12,6 +12,9 @@ export type TAppStackParamList = {
   PostCommentScreen: {
     postId: string;
     postAuthorId: string;
+  };
+  ProfileScreen: {
+    userId: string;
   };
 };
 
@@ -27,6 +30,7 @@ export function AppStack() {
       }}>
       <Stack.Screen name="AppBottomTab" component={AppBottomTab} />
       <Stack.Screen name="PostCommentScreen" component={PostCommentScreen} />
+      <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
     </Stack.Navigator>
   );
 }

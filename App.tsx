@@ -7,6 +7,8 @@ import { Toast } from '@components';
 import { Routes } from '@routes';
 import { theme } from '@theme';
 
+import './reactotron';
+
 function App(): React.JSX.Element {
   return (
     <SafeAreaProvider>
