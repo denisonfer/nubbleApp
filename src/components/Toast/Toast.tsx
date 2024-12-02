@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef } from 'react';
-import { Animated } from 'react-native';
+import { Animated, StyleProp, ViewStyle } from 'react-native';
 
-import { useToast, useToastActions } from '@services';
+import { TToastPosition, useToast, useToastActions } from '@services';
 
 import { ToastUI } from './components/ToastUI';
 
@@ -12,18 +12,12 @@ export function Toast() {
   const { hideToast } = useToastActions();
   const opacityEffect = useRef(new Animated.Value(0)).current;
 
-  const runEnteringAnimation = useCallback(() => {
-    Animated.timing(opacityEffect, {
-      toValue: 1,
-      duration: 1000,
-      useNativeDriver: true,
-    }).start();
-  }, [opacityEffect]);
+  const position: TToastPosition = toast?.position || 'bottom';
 
-  const runExitingAnimation = useCallback(
-    (callback: Animated.EndCallback) => {
+  const fadeAnimation = useCallback(
+    (value: number, callback?: Animated.EndCallback) => {
       Animated.timing(opacityEffect, {
-        toValue: 0,
+        toValue: value,
         duration: 1000,
         useNativeDriver: true,
       }).start(callback);
@@ -31,12 +25,20 @@ export function Toast() {
     [opacityEffect],
   );
 
+  const runEnteringAnimation = useCallback(() => {
+    fadeAnimation(1);
+  }, [fadeAnimation]);
+
+  const runExitingAnimation = useCallback(() => {
+    fadeAnimation(0, hideToast);
+  }, [fadeAnimation, hideToast]);
+
   useEffect(() => {
     if (toast) {
       runEnteringAnimation();
 
       const timer = setTimeout(() => {
-        runExitingAnimation(hideToast);
+        runExitingAnimation();
       }, toast?.duration || DEFAULT_DURATION);
 
       return () => {
@@ -47,15 +49,19 @@ export function Toast() {
 
   if (!toast) return null;
 
-  /* return (
-    <Animated.View style={[$wrapper, { opacity: opacityEffect }]}>
+  return (
+    <Animated.View style={$wrapper(opacityEffect, position)}>
       <ToastUI toast={toast} />
     </Animated.View>
-  ); */
-  return <ToastUI toast={toast} />;
+  );
 }
 
-/* const $wrapper: StyleProp<ViewStyle> = {
+const $wrapper = (
+  opacity: Animated.Value,
+  position: TToastPosition,
+): StyleProp<ViewStyle> => ({
   position: 'absolute',
   alignSelf: 'center',
-}; */
+  [position]: 100,
+  opacity,
+});

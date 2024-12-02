@@ -1,8 +1,7 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { Dimensions } from 'react-native';
 
-import { TToast, TToastPosition, TToastType } from '@services';
+import { TToast, TToastType } from '@services';
 
 import { TIconProps } from '@components';
 import { $shadowProps } from '@theme';
@@ -17,9 +16,8 @@ type TProps = {
 
 const MAX_WIDTH = Dimensions.get('screen').width * 0.9;
 export function ToastUI({ toast }: TProps) {
-  const position: TToastPosition = toast.position || 'bottom';
   return (
-    <Box {...$wrapper} style={[{ [position]: 100 }, $shadowProps]}>
+    <Box {...$wrapper}>
       <Icon {...iconMapper[toast.type]} />
       <Text {...$text} preset="paragraphMedium" bold ml="spc12">
         {toast.message}
@@ -47,8 +45,7 @@ const $wrapper: TBoxProps = {
   paddingHorizontal: 'spc24',
   paddingVertical: 'spc16',
   maxWidth: MAX_WIDTH,
-  position: 'absolute',
-  alignSelf: 'center',
+  style: $shadowProps,
 };
 
 const $text: TTextProps = {
