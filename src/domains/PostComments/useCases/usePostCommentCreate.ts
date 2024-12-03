@@ -1,19 +1,43 @@
-import { TMutationProps, useMutation } from '@infra';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+import { EQueryKeys, TMutationProps } from '@infra';
 
 import { postCommentServices, TPostComment } from '@domains';
 
-export function usePostCommentCreate(options?: TMutationProps<TPostComment>) {
-  const { mutate, loading, error } = useMutation<
-    { postId: number; message: string },
-    TPostComment
-  >(
-    ({ postId, message }) => postCommentServices.createComment(postId, message),
-    options,
-  );
+type TCreateCommentDTO = {
+  postId: number;
+  message: string;
+};
 
-  async function createComment(postId: number, message: string) {
-    await mutate({ postId, message });
+export function usePostCommentCreate(options?: TMutationProps<TPostComment>) {
+  const queryClient = useQueryClient();
+  const {
+    mutate,
+    isPending: isLoading,
+    isError,
+  } = useMutation<TPostComment, unknown, TCreateCommentDTO>({
+    mutationFn: ({ postId, message }) =>
+      postCommentServices.createComment(postId, message),
+
+    onSuccess: (postCommentData, { postId }) => {
+      queryClient.invalidateQueries({
+        queryKey: [EQueryKeys.UsePostCommentList, postId],
+      });
+
+      if (options?.onSuccess) {
+        options.onSuccess(postCommentData);
+      }
+    },
+    onError: error => {
+      if (options?.onError) {
+        options.onError(error);
+      }
+    },
+  });
+
+  async function createComment({ postId, message }: TCreateCommentDTO) {
+    mutate({ postId, message });
   }
 
-  return { createComment, loading, error };
+  return { createComment, isLoading, isError };
 }

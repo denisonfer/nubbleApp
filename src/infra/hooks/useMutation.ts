@@ -5,6 +5,9 @@ export type TMutationProps<TData> = {
   onError?: (error: unknown) => void;
 };
 
+/**
+ * @deprecated Use useMutation from `@tanstack/react-query`
+ */
 export function useMutation<TArgs, TData>(
   mutationFn: (args: TArgs) => Promise<TData>,
   options?: TMutationProps<TData>,

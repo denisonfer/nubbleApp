@@ -18,7 +18,7 @@ export function PostCommentScreen({
 }: TAppScreenProps<'PostCommentScreen'>) {
   const { postId, postAuthorId } = route.params;
   const { bottom } = useAppSafeArea();
-  const { list, hasNextPage, fetchNextPage, refresh } = usePostCommentList(
+  const { list, hasNextPage, fetchNextPage } = usePostCommentList(
     parseInt(postId),
   );
 
@@ -26,8 +26,8 @@ export function PostCommentScreen({
     return (
       <PostCommentItem
         postComment={item}
-        onRemoveComment={refresh}
         postAuthorId={postAuthorId}
+        postId={parseInt(postId)}
       />
     );
   }
@@ -48,7 +48,7 @@ export function PostCommentScreen({
           }
           showsVerticalScrollIndicator={false}
         />
-        <PostCommentMessage postId={parseInt(postId)} onAddComment={refresh} />
+        <PostCommentMessage postId={parseInt(postId)} />
       </Box>
     </Screen>
   );

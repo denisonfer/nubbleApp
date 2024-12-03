@@ -13,19 +13,14 @@ import {
 
 type TProps = {
   postComment: TPostComment;
+  postId: number;
   postAuthorId: string;
-  onRemoveComment: () => void;
 };
 
-export function PostCommentItem({
-  postComment,
-  onRemoveComment,
-  postAuthorId,
-}: TProps) {
+export function PostCommentItem({ postComment, postAuthorId, postId }: TProps) {
   const { showToast } = useToastActions();
   const { mutate } = usePostCommentRemove({
     onSuccess: () => {
-      onRemoveComment();
       showToast({
         type: 'success',
         message: 'Comentário deletado',
@@ -43,7 +38,7 @@ export function PostCommentItem({
     Alert.alert('Remover comentário', 'Deseja remover esse comentário?', [
       {
         text: 'Remover',
-        onPress: () => mutate({ commentId: parseInt(postComment.id) }),
+        onPress: () => mutate({ commentId: parseInt(postComment.id), postId }),
         style: 'destructive',
       },
       {

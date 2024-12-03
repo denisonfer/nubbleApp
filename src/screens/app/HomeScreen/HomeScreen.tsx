@@ -22,9 +22,9 @@ export function HomeScreen({}: TAppBottomTabScreenProps<'HomeScreen'>) {
   useScrollToTop(flatListRef);
   const {
     list: postList,
-    loading,
-    error,
-    refresh,
+    isLoading,
+    isError,
+    refetch,
     fetchNextPage,
   } = usePostList();
 
@@ -42,19 +42,19 @@ export function HomeScreen({}: TAppBottomTabScreenProps<'HomeScreen'>) {
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={<HomeHeader />}
         ListEmptyComponent={
-          <HomeEmpty loading={loading} error={error} refetch={refresh} />
+          <HomeEmpty loading={isLoading} error={isError} refetch={refetch} />
         }
         contentContainerStyle={$contentContainer(postList.length || 0)}
         onEndReached={fetchNextPage}
         onEndReachedThreshold={0.5}
         refreshControl={
           <RefreshControl
-            refreshing={loading}
-            onRefresh={refresh}
+            refreshing={isLoading}
+            onRefresh={refetch}
             progressViewOffset={50}
           />
         }
-        refreshing={loading}
+        refreshing={isLoading}
       />
     </Screen>
   );

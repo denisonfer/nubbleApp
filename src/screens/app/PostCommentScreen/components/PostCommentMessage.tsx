@@ -7,13 +7,11 @@ import { usePostCommentCreate } from '@domains';
 
 type TProps = {
   postId: number;
-  onAddComment: () => void;
 };
 
-export function PostCommentMessage({ postId, onAddComment }: TProps) {
+export function PostCommentMessage({ postId }: TProps) {
   const { createComment } = usePostCommentCreate({
     onSuccess: () => {
-      onAddComment();
       setMessage('');
       Keyboard.dismiss();
     },
@@ -21,8 +19,8 @@ export function PostCommentMessage({ postId, onAddComment }: TProps) {
   const [message, setMessage] = useState('');
 
   const onPressSend = useCallback(async () => {
-    await createComment(postId, message);
-  }, [createComment, message]);
+    await createComment({ postId, message });
+  }, [createComment, message, postId]);
 
   return (
     <MessageInput

@@ -1,67 +1,54 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+
+import { useInfiniteQuery } from '@tanstack/react-query';
 
 import { TPagination } from '@types';
 
+type TUsePaginatedListResult<TData> = {
+  list: TData[];
+  isLoading: boolean;
+  isError: boolean;
+  hasNextPage: boolean;
+  refetch: () => void;
+  fetchNextPage: () => void;
+};
+
 export function usePaginatedList<TData>(
+  queryKey: readonly unknown[],
   getList: ({ page }: { page: number }) => Promise<TPagination<TData>>,
-) {
+): TUsePaginatedListResult<TData> {
   const [list, setList] = useState<TData[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<unknown>();
-  const [page, setPage] = useState(1);
-  const [hasNextPage, setHasNextPage] = useState(true);
 
-  const fetchInitialPostList = useCallback(async () => {
-    try {
-      setError(undefined);
-      setLoading(true);
-      const { data, meta } = await getList({ page: 1 });
-      setList(data);
-
+  const query = useInfiniteQuery<TPagination<TData>>({
+    queryKey,
+    queryFn: ({ pageParam = 1 }) => getList({ page: pageParam as number }),
+    initialPageParam: 1,
+    getNextPageParam: ({ meta }) => {
       if (meta.hasNextPage) {
-        setPage(2);
-        setHasNextPage(true);
-      } else {
-        setHasNextPage(false);
+        return meta.currentPage + 1;
       }
-    } catch (error) {
-      console.error('fetchInitialPostList - ERROR: ', error);
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
-  }, [page]);
 
-  const fetchNextPage = useCallback(async () => {
-    if (loading || !hasNextPage) return;
+      return undefined;
+    },
 
-    try {
-      setLoading(true);
-      const { data, meta } = await getList({ page });
-      setList(prev => [...prev, ...data]);
+    staleTime: 1000 * 30, // 30 seconds
+  });
 
-      if (meta.hasNextPage) {
-        setPage(prev => prev + 1);
-      } else {
-        setHasNextPage(false);
-      }
-    } catch (error) {
-      console.error('fetchNextPage - ERROR: ', error);
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
-  }, [loading, page]);
+  const { isLoading, isError, refetch, fetchNextPage, hasNextPage } = query;
 
   useEffect(() => {
-    fetchInitialPostList();
-  }, []);
+    if (query.data) {
+      const newList = query.data.pages.flatMap(page => page.data);
+
+      setList(newList);
+    }
+  }, [query.data]);
 
   return {
-    loading,
-    error,
     list,
-    refresh: fetchInitialPostList,
+    isLoading,
+    isError,
+    refetch,
     fetchNextPage,
     hasNextPage,
   };
