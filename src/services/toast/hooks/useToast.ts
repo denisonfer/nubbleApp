@@ -8,7 +8,7 @@ export function useToast(): TToastService['toast'] {
   return toast;
 }
 
-export function useToastActions(): Pick<
+export function useToastServices(): Pick<
   TToastService,
   'showToast' | 'hideToast'
 > {

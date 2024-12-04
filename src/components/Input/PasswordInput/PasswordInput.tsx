@@ -11,11 +11,11 @@ export function PasswordInput(props: TPasswordInputProps) {
 
   return (
     <Input
-      secureTextEntry={showPassword}
+      secureTextEntry={!showPassword}
       {...props}
       RightComponent={
         <Icon
-          name={showPassword ? 'eyeOn' : 'eyeOff'}
+          name={!showPassword ? 'eyeOn' : 'eyeOff'}
           color="gray2"
           onPress={toggleVisiblePassword}
         />

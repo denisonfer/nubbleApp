@@ -14,3 +14,9 @@ export * from './PostComments/useCases/usePostCommentRemove';
 export * from './User/useCases/useUserGetById';
 export * from './User/userServices';
 export * from './User/userTypes';
+
+// Auth
+export * from './Auth/authServices';
+export * from './Auth/authTypes';
+export * from './Auth/useCases/useAuthLogout';
+export * from './Auth/useCases/useAuthSignIn';

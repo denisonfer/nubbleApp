@@ -10,6 +10,7 @@ export type TBasicIconProps = {
 export type TIconProps = {
   name: TIconNames;
   size?: number;
+  /** @default backgroundContrast */
   color?: TThemeColors;
   onPress?: () => void;
 };

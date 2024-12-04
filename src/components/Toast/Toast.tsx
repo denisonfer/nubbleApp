@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import { Animated, StyleProp, ViewStyle } from 'react-native';
 
-import { TToastPosition, useToast, useToastActions } from '@services';
+import { TToastPosition, useToast, useToastServices } from '@services';
 
 import { ToastUI } from './components/ToastUI';
 
@@ -9,7 +9,7 @@ const DEFAULT_DURATION = 4000;
 
 export function Toast() {
   const toast = useToast();
-  const { hideToast } = useToastActions();
+  const { hideToast } = useToastServices();
   const opacityEffect = useRef(new Animated.Value(0)).current;
 
   const position: TToastPosition = toast?.position || 'bottom';

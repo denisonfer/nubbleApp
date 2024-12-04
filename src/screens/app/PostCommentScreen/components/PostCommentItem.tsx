@@ -1,7 +1,7 @@
 import React from 'react';
 import { Alert, Pressable } from 'react-native';
 
-import { useToastActions } from '@services';
+import { useToastServices } from '@services';
 
 import { Avatar, Box, Text } from '@components';
 
@@ -18,7 +18,7 @@ type TProps = {
 };
 
 export function PostCommentItem({ postComment, postAuthorId, postId }: TProps) {
-  const { showToast } = useToastActions();
+  const { showToast } = useToastServices();
   const { mutate } = usePostCommentRemove({
     onSuccess: () => {
       showToast({

@@ -7,7 +7,4 @@ export const api = axios.create({
     ios: 'http://localhost:3333',
     android: 'http://10.0.2.2:3333',
   }),
-  headers: {
-    Authorization: `Bearer Mw.t7ev3KeeJGdHQpbFOOG5Ol_V9kg7XHHhBevnwAJU2Dy85o8mNfNkHTzTjVFI`,
-  },
 });

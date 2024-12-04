@@ -1,14 +1,28 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 
-import { EQueryKeys } from '@infra';
+import { TMutationProps } from '@infra';
+
+import { useAuthCredentials } from '@services';
 
 import { authServices } from '../authServices';
 
-export function useAuthLogout() {
-  const { isSuccess, isError, isLoading } = useQuery({
-    queryKey: [EQueryKeys.Auth],
-    queryFn: () => authServices.logout(),
+export function useAuthLogout(options?: TMutationProps<void>) {
+  const { logout, removeApiToken } = authServices;
+  const { removeCredentials } = useAuthCredentials();
+
+  const { mutate, isPending, isError } = useMutation<string, unknown, void>({
+    retry: false,
+    mutationFn: () => logout(),
+    onSuccess: () => {
+      removeApiToken();
+      removeCredentials();
+    },
+    onError: error => {
+      if (options?.onError) {
+        options.onError(error);
+      }
+    },
   });
 
-  return { isSuccess, isError, isLoading };
+  return { mutate, loading: isPending, isError };
 }

@@ -4,6 +4,8 @@ import { Pressable } from 'react-native';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
+import { useToastServices } from '@services';
+
 import {
   Box,
   Button,
@@ -13,6 +15,8 @@ import {
   Text,
 } from '@components';
 import { TAuthScreenProps } from '@routes';
+
+import { useAuthSignIn } from '@domains';
 
 import { loginSchema, TLoginForm } from './loginSchema';
 
@@ -26,9 +30,24 @@ export function LoginScreen({ navigation }: TAuthScreenProps<'LoginScreen'>) {
     mode: 'onChange',
   });
 
+  const { mutate, loading } = useAuthSignIn();
+  const { showToast } = useToastServices();
+
   const submitForm = useCallback(({ email, password }: TLoginForm) => {
-    console.log('email', email);
-    console.log('password', password);
+    const credentials = {
+      email,
+      password,
+    };
+
+    mutate(credentials, {
+      onError: () => {
+        showToast({
+          type: 'error',
+          message: 'Credenciais inválidas',
+          position: 'top',
+        });
+      },
+    });
   }, []);
 
   function navigateToSignUp() {
@@ -76,6 +95,7 @@ export function LoginScreen({ navigation }: TAuthScreenProps<'LoginScreen'>) {
           title="Entrar"
           onPress={handleSubmit(submitForm)}
           disabled={!formState.isValid}
+          isLoading={loading}
         />
         <Button
           onPress={navigateToSignUp}
