@@ -74,6 +74,10 @@ export function LoginScreen({ navigation }: TAuthScreenProps<'LoginScreen'>) {
           name="email"
           control={control}
           boxProps={{ mb: 'spc20' }}
+          keyboardType="email-address"
+          autoCapitalize="none"
+          autoCorrect={false}
+          textContentType="emailAddress"
         />
 
         <FormPasswordInput

@@ -7,7 +7,7 @@ const ENDPOINT = '/users';
 async function getById(userId: number): Promise<IUserApi> {
   const response = await api.get<IUserApi>(`${ENDPOINT}/${userId}`);
 
-  return response.data;
+  return response;
 }
 
 export const userApi = { getById };

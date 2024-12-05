@@ -33,7 +33,7 @@ export function ForgotPasswordScreen() {
   }
 
   return (
-    <Screen canGoBack>
+    <Screen canGoBack paddingHorizontal="spc24">
       <Text preset="headingLarge" mb="spc16">
         Esqueci minha senha
       </Text>

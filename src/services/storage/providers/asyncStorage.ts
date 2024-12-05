@@ -16,4 +16,9 @@ export const asyncStorage: TStorage = {
   removeItem: async key => {
     await AsyncStorage.removeItem(key);
   },
+
+  getAllKeys: async () => {
+    const keys = await AsyncStorage.getAllKeys();
+    return keys;
+  },
 };

@@ -7,14 +7,13 @@ import { useAuthCredentials } from '@services';
 import { authServices } from '../authServices';
 
 export function useAuthLogout(options?: TMutationProps<void>) {
-  const { logout, removeApiToken } = authServices;
+  const { logout } = authServices;
   const { removeCredentials } = useAuthCredentials();
 
   const { mutate, isPending, isError } = useMutation<string, unknown, void>({
     retry: false,
     mutationFn: () => logout(),
     onSuccess: () => {
-      removeApiToken();
       removeCredentials();
     },
     onError: error => {
