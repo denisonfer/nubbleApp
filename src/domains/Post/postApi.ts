@@ -9,7 +9,7 @@ async function getList(
     params,
   });
 
-  return response.data;
+  return response;
 }
 
 export const postApi = { getList };

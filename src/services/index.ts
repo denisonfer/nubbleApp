@@ -3,3 +3,5 @@ export * from './toast/toastTypes';
 
 export * from './authCredentials/authCredentialsType';
 export * from './authCredentials/hooks/useAuthCredentials';
+
+export * from './storage/storage';

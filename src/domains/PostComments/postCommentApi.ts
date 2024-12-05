@@ -16,7 +16,7 @@ async function getPostCommentList(
     },
   });
 
-  return response.data;
+  return response;
 }
 
 async function createComment(
@@ -28,15 +28,15 @@ async function createComment(
     message,
   });
 
-  return response.data;
+  return response;
 }
 
 async function removeComment(comment_id: number): Promise<string> {
-  const response = await api.delete<{ message: string }>(
+  const response = await api.del<{ message: string }>(
     `${ENDPOINT}/${comment_id}`,
   );
 
-  return response.data.message;
+  return response.message;
 }
 
 export const postCommentApi = {

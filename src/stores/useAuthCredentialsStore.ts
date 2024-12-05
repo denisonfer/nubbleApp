@@ -5,7 +5,7 @@ import { TAuthCredentialsServices } from '@services';
 
 import { TAuth } from '@domains';
 
-import { storage } from '../services/storage';
+import { storage } from '../services/storage/storage';
 
 export const useAuthCredentialsStore = create<TAuthCredentialsServices>()(
   persist(
