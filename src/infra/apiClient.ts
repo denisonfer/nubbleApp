@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios, { AxiosError, AxiosRequestConfig, Method } from 'axios';
 
-import { authServices } from '@domains';
 import { useAuthCredentialsStore, useConfigStore } from '@stores';
 import { platform } from '@utils';
 
@@ -12,7 +11,7 @@ type TApiClientRequestOptions<TData> = {
   data: TData;
   headers?: THeaders;
   isRefresh?: boolean;
-  isPaginated?: boolean;
+  //  isPaginated?: boolean;
 };
 
 axios.interceptors.response.use(
@@ -20,7 +19,6 @@ axios.interceptors.response.use(
   err => {
     const removeCredentials =
       useAuthCredentialsStore.getState().removeCredentials;
-    const { logout } = authServices;
 
     const axiosError: AxiosError = err;
 
@@ -30,7 +28,6 @@ axios.interceptors.response.use(
 
     if (err.response.status === 401) {
       try {
-        logout();
         removeCredentials();
       } catch (error) {
         throw error;
@@ -68,14 +65,12 @@ export const request = async <T = any>({
   data,
   headers,
   isRefresh,
-  isPaginated,
   ...params
 }: TApiClientRequestOptions<T>): Promise<T> => {
   const formattedParams = { ...params };
 
-  // Remove campos não definidos
   Object.entries(formattedParams).forEach(([key, item]) => {
-    if (item === undefined) delete (formattedParams as any)[key];
+    if (!item) delete (formattedParams as any)[key];
   });
 
   const axiosConfig: AxiosRequestConfig = {
@@ -83,16 +78,14 @@ export const request = async <T = any>({
     method,
     url,
     headers: { ...(headers ?? {}), ...(await getHeaders(data, isRefresh)) },
-    ...formattedParams,
-    params: method === 'GET' ? formattedParams : undefined,
+    params:
+      method === 'GET'
+        ? { ...(formattedParams as { params?: any })['params'] }
+        : undefined,
     data: method === 'POST' || method === 'PUT' ? data : undefined,
   };
 
   const response = await axios.request<T>(axiosConfig);
-
-  if (isPaginated) {
-    return response.data;
-  }
 
   return response.data;
 };
