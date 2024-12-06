@@ -10,6 +10,7 @@ import { storage } from '../services/storage';
 export const useAuthCredentialsStore = create<TAuthCredentialsServices>()(
   persist(
     set => ({
+      isLoading: true,
       authCredentials: null,
       saveCredentials: (ac: TAuth) => set({ authCredentials: ac }),
       removeCredentials: () => set({ authCredentials: null }),

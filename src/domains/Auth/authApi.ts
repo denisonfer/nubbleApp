@@ -9,11 +9,7 @@ async function signIn(email: string, password: string): Promise<IAuthApi> {
 }
 
 async function logout(): Promise<string> {
-  const response = await api.get<{ message: string }>('/profile/logout', {
-    headers: {
-      Authorization: `Bearer ${'NQ.etbyaNWw6rQg4F3Oyj0_U7YJYQj3MGoYz13HDQ68xFFF17uDU80j0cYOhR64'}`,
-    },
-  });
+  const response = await api.get<{ message: string }>('/profile/logout');
 
   return response.data.message;
 }

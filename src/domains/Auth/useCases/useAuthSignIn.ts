@@ -13,14 +13,13 @@ type TSignInDTO = {
 };
 
 export function useAuthSignIn(options?: TMutationProps<TAuth>) {
-  const { signIn, updateApiToken } = authServices;
+  const { signIn } = authServices;
   const { saveCredentials } = useAuthCredentials();
 
   const { mutate, isPending } = useMutation<TAuth, unknown, TSignInDTO>({
     mutationFn: ({ email, password }) => signIn(email, password),
     retry: false,
     onSuccess: data => {
-      updateApiToken(data.auth.token);
       saveCredentials(data);
     },
     onError: error => {
