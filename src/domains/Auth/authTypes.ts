@@ -14,3 +14,18 @@ export interface IAuthApi {
   };
   user: IUserApi;
 }
+
+export type TAuthSignUpDTO = {
+  firstName: string;
+  lastName: string;
+  username: string;
+  email: string;
+  password: string;
+};
+export interface IAuthSignUpDTOApi {
+  firstName: string;
+  lastName: string;
+  username: string;
+  email: string;
+  password: string;
+}

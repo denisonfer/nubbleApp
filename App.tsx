@@ -3,14 +3,15 @@ import React from 'react';
 import { ThemeProvider } from '@shopify/restyle';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import './reactotron';
 
-import { AuthCredentialsProvider } from '@services';
+import { AuthCredentialsProvider, initStorage, MMKVStorage } from '@services';
 
 import { Toast } from '@components';
 import { Routes } from '@routes';
 import { theme } from '@theme';
 
-import './reactotron';
+initStorage(MMKVStorage);
 
 const queryClient = new QueryClient();
 

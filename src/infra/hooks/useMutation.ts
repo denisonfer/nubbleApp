@@ -12,7 +12,7 @@ export function useMutation<TArgs, TData>(
   mutationFn: (args: TArgs) => Promise<TData>,
   options?: TMutationProps<TData>,
 ) {
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState<unknown>(false);
 
   const mutate = useCallback(async (args: TArgs) => {
@@ -39,7 +39,7 @@ export function useMutation<TArgs, TData>(
 
   return {
     mutate,
-    loading,
+    isLoading,
     error,
   };
 }

@@ -8,7 +8,7 @@ import { useAuthLogout } from '@domains';
 
 export function SettingsScreen() {
   const { showToast } = useToastServices();
-  const { mutate, loading } = useAuthLogout({
+  const { mutate, isLoading } = useAuthLogout({
     onError: () => {
       showToast({
         type: 'error',
@@ -22,7 +22,7 @@ export function SettingsScreen() {
     <Screen canGoBack paddingHorizontal="spc24" title="Configurações">
       <Button
         title="Sair da conta"
-        isLoading={loading}
+        isLoading={isLoading}
         onPress={() => mutate()}
       />
     </Screen>

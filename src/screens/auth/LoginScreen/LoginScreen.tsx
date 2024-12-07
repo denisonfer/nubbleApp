@@ -30,7 +30,7 @@ export function LoginScreen({ navigation }: TAuthScreenProps<'LoginScreen'>) {
     mode: 'onChange',
   });
 
-  const { mutate, loading } = useAuthSignIn();
+  const { mutate, isLoading } = useAuthSignIn();
   const { showToast } = useToastServices();
 
   const submitForm = useCallback(({ email, password }: TLoginForm) => {
@@ -74,6 +74,9 @@ export function LoginScreen({ navigation }: TAuthScreenProps<'LoginScreen'>) {
           name="email"
           control={control}
           boxProps={{ mb: 'spc20' }}
+          keyboardType="email-address"
+          autoCapitalize="none"
+          autoCorrect={false}
         />
 
         <FormPasswordInput
@@ -95,7 +98,7 @@ export function LoginScreen({ navigation }: TAuthScreenProps<'LoginScreen'>) {
           title="Entrar"
           onPress={handleSubmit(submitForm)}
           disabled={!formState.isValid}
-          isLoading={loading}
+          isLoading={isLoading}
         />
         <Button
           onPress={navigateToSignUp}

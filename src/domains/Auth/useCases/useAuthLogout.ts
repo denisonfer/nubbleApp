@@ -23,5 +23,5 @@ export function useAuthLogout(options?: TMutationProps<void>) {
     },
   });
 
-  return { mutate, loading: isPending, isError };
+  return { mutate, isLoading: isPending, isError };
 }

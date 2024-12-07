@@ -42,7 +42,7 @@ export function HomeScreen({}: TAppBottomTabScreenProps<'HomeScreen'>) {
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={<HomeHeader />}
         ListEmptyComponent={
-          <HomeEmpty loading={isLoading} error={isError} refetch={refetch} />
+          <HomeEmpty isLoading={isLoading} error={isError} refetch={refetch} />
         }
         contentContainerStyle={$contentContainer(postList.length || 0)}
         onEndReached={fetchNextPage}

@@ -3,13 +3,13 @@ import React from 'react';
 import { ActivityIndicator, Box, Button, Text } from '@components';
 
 type TProps = {
-  loading: boolean;
+  isLoading: boolean;
   error: unknown;
   refetch: () => void;
 };
 
-export function HomeEmpty({ loading, error, refetch }: TProps) {
-  const component = getComponent({ loading, error, refetch });
+export function HomeEmpty({ isLoading, error, refetch }: TProps) {
+  const component = getComponent({ isLoading, error, refetch });
   return (
     <Box flex={1} alignItems="center" justifyContent="center">
       {component}
@@ -17,9 +17,9 @@ export function HomeEmpty({ loading, error, refetch }: TProps) {
   );
 }
 
-function getComponent({ loading, error, refetch }: TProps) {
+function getComponent({ isLoading, error, refetch }: TProps) {
   switch (true) {
-    case loading:
+    case isLoading:
       return <ActivityIndicator color="primary" />;
     case error:
       return (

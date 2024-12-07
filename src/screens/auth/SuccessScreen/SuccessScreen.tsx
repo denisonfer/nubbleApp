@@ -14,7 +14,7 @@ export function SuccessScreen({
   }
 
   return (
-    <Screen>
+    <Screen paddingHorizontal="spc24">
       <Icon {...params.icon} size={48} />
 
       <Text preset="headingLarge" mt="spc24" mb="spc16">

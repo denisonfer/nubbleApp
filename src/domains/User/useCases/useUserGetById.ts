@@ -7,12 +7,12 @@ import { userServices } from '../userServices';
 export function useUserGetById(userId: number) {
   const {
     data: user,
-    isLoading: loading,
+    isLoading: isLoading,
     error,
   } = useQuery({
     queryKey: [EQueryKeys.UserGetById, userId],
     queryFn: () => userServices.getById(userId),
   });
 
-  return { user, loading, error };
+  return { user, isLoading, error };
 }

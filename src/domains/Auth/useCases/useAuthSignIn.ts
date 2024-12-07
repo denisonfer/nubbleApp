@@ -29,5 +29,5 @@ export function useAuthSignIn(options?: TMutationProps<TAuth>) {
     },
   });
 
-  return { mutate, loading: isPending };
+  return { mutate, isLoading: isPending };
 }

@@ -2,12 +2,16 @@ import { api } from '@api';
 
 import { authAdapter } from './authAdapter';
 import { authApi } from './authApi';
-import { TAuth } from './authTypes';
+import { TAuth, TAuthSignUpDTO } from './authTypes';
 
 async function signIn(email: string, password: string): Promise<TAuth> {
   const response = await authApi.signIn(email, password);
 
   return authAdapter.toAuth(response);
+}
+
+async function signUp(data: TAuthSignUpDTO): Promise<void> {
+  await authApi.signUp(data);
 }
 
 async function logout(): Promise<string> {
@@ -24,4 +28,10 @@ function removeApiToken() {
   api.defaults.headers.common.Authorization = null;
 }
 
-export const authServices = { signIn, logout, updateApiToken, removeApiToken };
+export const authServices = {
+  signIn,
+  signUp,
+  logout,
+  updateApiToken,
+  removeApiToken,
+};

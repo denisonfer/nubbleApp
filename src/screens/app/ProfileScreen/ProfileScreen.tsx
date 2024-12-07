@@ -8,11 +8,11 @@ import { useUserGetById } from '@domains';
 export function ProfileScreen({ route }: TAppScreenProps<'ProfileScreen'>) {
   const { userId } = route.params;
 
-  const { user, loading, error } = useUserGetById(parseInt(userId));
+  const { user, isLoading, error } = useUserGetById(parseInt(userId));
 
   return (
     <Screen canGoBack paddingHorizontal="spc24">
-      {loading && <ActivityIndicator color="primary" />}
+      {isLoading && <ActivityIndicator color="primary" />}
       {error && <Text>Ops! Algo deu errado 😢</Text>}
       {user && (
         <Box alignItems="center" justifyContent="center">
