@@ -14,8 +14,9 @@ import {
 import { useAppResetNavigation } from '@hooks';
 import { TAuthStackParamList } from '@routes';
 
-import { useAuthSignUp, useIsValueAvailable } from '@domains';
+import { useAuthSignUp } from '@domains';
 
+import { useAsyncValidation } from './hooks/useAsyncValidator';
 import { signUpSchema, TSignUpForm } from './signUpSchema';
 
 const DEFAULT_VALUES = {
@@ -39,14 +40,17 @@ export function SignUpScreen() {
       reset(RESET_SCREENS);
     },
   });
-  const { control, handleSubmit, formState, watch } = useForm<TSignUpForm>({
-    resolver: zodResolver(signUpSchema),
-    defaultValues: DEFAULT_VALUES,
-    mode: 'onChange',
-  });
+  const { control, handleSubmit, formState, watch, getFieldState } =
+    useForm<TSignUpForm>({
+      resolver: zodResolver(signUpSchema),
+      defaultValues: DEFAULT_VALUES,
+      mode: 'onChange',
+    });
 
-  const userName = watch('username');
-  const { isAvailable, isFetching } = useIsValueAvailable(userName);
+  const { usernameValidation, emailValidation } = useAsyncValidation({
+    watch,
+    getFieldState,
+  });
 
   function submitForm(data: TSignUpForm) {
     mutate(data);
@@ -82,8 +86,9 @@ export function SignUpScreen() {
         label="Seu username"
         placeholder="@"
         boxProps={{ mb: 'spc16' }}
+        errorMessage={usernameValidation.errorMessage}
         RightComponent={
-          isFetching ? (
+          usernameValidation.isFetching ? (
             <ActivityIndicator color="primary" size="small" />
           ) : undefined
         }
@@ -98,6 +103,12 @@ export function SignUpScreen() {
         keyboardType="email-address"
         autoCapitalize="none"
         autoCorrect={false}
+        errorMessage={emailValidation.errorMessage}
+        RightComponent={
+          emailValidation.isFetching ? (
+            <ActivityIndicator color="primary" size="small" />
+          ) : undefined
+        }
       />
 
       <FormPasswordInput
@@ -112,7 +123,11 @@ export function SignUpScreen() {
         title="Criar minha conta"
         onPress={handleSubmit(submitForm)}
         isLoading={isLoading}
-        disabled={!formState.isValid}
+        disabled={
+          !formState.isValid ||
+          usernameValidation.notReady ||
+          emailValidation.notReady
+        }
       />
     </Screen>
   );

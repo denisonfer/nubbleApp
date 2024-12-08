@@ -9,6 +9,7 @@ export function FormInput<TForm extends FieldValues>({
   name,
   control,
   rules,
+  errorMessage,
   ...tInputProps
 }: TInputProps & UseControllerProps<TForm>) {
   return (
@@ -20,7 +21,7 @@ export function FormInput<TForm extends FieldValues>({
         <Input
           value={value}
           onChangeText={onChange}
-          errorMessage={error?.message}
+          errorMessage={error?.message || errorMessage}
           {...tInputProps}
         />
       )}

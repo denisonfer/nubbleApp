@@ -14,6 +14,10 @@ async function signUp(data: TAuthSignUpDTO): Promise<void> {
   await authApi.signUp(data);
 }
 
+async function forgotPassword(email: string): Promise<void> {
+  await authApi.forgotPassword(email);
+}
+
 async function logout(): Promise<string> {
   const response = await authApi.logout();
 
@@ -22,14 +26,14 @@ async function logout(): Promise<string> {
 
 async function isUserNameAvailable(username: string): Promise<boolean> {
   const response = await authApi.isUserNameAvailable(username);
-
-  return response.isAvailable;
+  const isUnavailable = response.isAvailable;
+  return isUnavailable;
 }
 
 async function isEmailAvailable(email: string): Promise<boolean> {
   const response = await authApi.isEmailAvailable(email);
-
-  return response.isAvailable;
+  const isUnavailable = response.isAvailable;
+  return isUnavailable;
 }
 
 function updateApiToken(token: string) {
@@ -43,6 +47,7 @@ function removeApiToken() {
 export const authServices = {
   signIn,
   signUp,
+  forgotPassword,
   logout,
   updateApiToken,
   removeApiToken,

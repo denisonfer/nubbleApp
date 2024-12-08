@@ -18,7 +18,8 @@ export * from './User/userTypes';
 // Auth
 export * from './Auth/authServices';
 export * from './Auth/authTypes';
+export * from './Auth/useCases/useAuthForgotPassword';
 export * from './Auth/useCases/useAuthLogout';
 export * from './Auth/useCases/useAuthSignIn';
 export * from './Auth/useCases/useAuthSignUp';
-export * from './Auth/useCases/useIsValueAvailable';
+export * from './Auth/useCases/useValidateAuthValue';

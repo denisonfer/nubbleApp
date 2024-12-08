@@ -20,6 +20,14 @@ async function logout(): Promise<string> {
   return response.data.message;
 }
 
+async function forgotPassword(email: string): Promise<string> {
+  const response = await api.post<{ message: string }>('/forgot-password', {
+    email,
+  });
+
+  return response.data.message;
+}
+
 async function isUserNameAvailable(
   username: string,
 ): Promise<IIsValueAvailableApi> {
@@ -45,6 +53,7 @@ async function isEmailAvailable(email: string): Promise<IIsValueAvailableApi> {
 export const authApi = {
   signIn,
   signUp,
+  forgotPassword,
   logout,
   isUserNameAvailable,
   isEmailAvailable,

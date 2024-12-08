@@ -23,7 +23,7 @@ export const signUpSchema = z.object({
     .toLowerCase(),
 
   email: z.string().email('E-mail inválido'),
-  password: z.string().min(8, 'A senha deve ter pelo menos 6 caracteres'),
+  password: z.string().min(8, 'A senha deve ter pelo menos 8 caracteres'),
 });
 
 export type TSignUpForm = z.infer<typeof signUpSchema>;
