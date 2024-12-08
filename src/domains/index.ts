@@ -21,3 +21,4 @@ export * from './Auth/authTypes';
 export * from './Auth/useCases/useAuthLogout';
 export * from './Auth/useCases/useAuthSignIn';
 export * from './Auth/useCases/useAuthSignUp';
+export * from './Auth/useCases/useIsValueAvailable';

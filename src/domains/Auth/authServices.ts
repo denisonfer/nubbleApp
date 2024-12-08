@@ -20,6 +20,18 @@ async function logout(): Promise<string> {
   return response;
 }
 
+async function isUserNameAvailable(username: string): Promise<boolean> {
+  const response = await authApi.isUserNameAvailable(username);
+
+  return response.isAvailable;
+}
+
+async function isEmailAvailable(email: string): Promise<boolean> {
+  const response = await authApi.isEmailAvailable(email);
+
+  return response.isAvailable;
+}
+
 function updateApiToken(token: string) {
   api.defaults.headers.common.Authorization = `Bearer ${token}`;
 }
@@ -34,4 +46,6 @@ export const authServices = {
   logout,
   updateApiToken,
   removeApiToken,
+  isUserNameAvailable,
+  isEmailAvailable,
 };

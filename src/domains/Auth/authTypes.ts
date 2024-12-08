@@ -29,3 +29,8 @@ export interface IAuthSignUpDTOApi {
   email: string;
   password: string;
 }
+
+export interface IIsValueAvailableApi {
+  message: string;
+  isAvailable: boolean;
+}

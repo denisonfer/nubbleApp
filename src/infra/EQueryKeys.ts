@@ -3,4 +3,5 @@ export enum EQueryKeys {
   UsePostCommentList = 'UsePostCommentList',
   UserGetById = 'UserGetById',
   Auth = 'Auth',
+  IsValueAvailable = 'IsValueAvailable',
 }

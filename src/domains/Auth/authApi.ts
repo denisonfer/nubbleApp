@@ -1,6 +1,6 @@
 import { api } from '@api';
 
-import { IAuthApi, IAuthSignUpDTOApi } from './authTypes';
+import { IAuthApi, IAuthSignUpDTOApi, IIsValueAvailableApi } from './authTypes';
 
 async function signIn(email: string, password: string): Promise<IAuthApi> {
   const response = await api.post<IAuthApi>('/login', { email, password });
@@ -20,4 +20,32 @@ async function logout(): Promise<string> {
   return response.data.message;
 }
 
-export const authApi = { signIn, signUp, logout };
+async function isUserNameAvailable(
+  username: string,
+): Promise<IIsValueAvailableApi> {
+  const response = await api.get<IIsValueAvailableApi>('/validate-username', {
+    params: {
+      username,
+    },
+  });
+
+  return response.data;
+}
+
+async function isEmailAvailable(email: string): Promise<IIsValueAvailableApi> {
+  const response = await api.get<IIsValueAvailableApi>('/validate-email', {
+    params: {
+      email,
+    },
+  });
+
+  return response.data;
+}
+
+export const authApi = {
+  signIn,
+  signUp,
+  logout,
+  isUserNameAvailable,
+  isEmailAvailable,
+};

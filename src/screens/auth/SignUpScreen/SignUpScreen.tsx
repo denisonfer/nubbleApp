@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
 import {
+  ActivityIndicator,
   Button,
   FormInput,
   FormPasswordInput,
@@ -13,7 +14,7 @@ import {
 import { useAppResetNavigation } from '@hooks';
 import { TAuthStackParamList } from '@routes';
 
-import { useAuthSignUp } from '@domains';
+import { useAuthSignUp, useIsValueAvailable } from '@domains';
 
 import { signUpSchema, TSignUpForm } from './signUpSchema';
 
@@ -38,11 +39,14 @@ export function SignUpScreen() {
       reset(RESET_SCREENS);
     },
   });
-  const { control, handleSubmit, formState } = useForm<TSignUpForm>({
+  const { control, handleSubmit, formState, watch } = useForm<TSignUpForm>({
     resolver: zodResolver(signUpSchema),
     defaultValues: DEFAULT_VALUES,
     mode: 'onChange',
   });
+
+  const userName = watch('username');
+  const { isAvailable, isFetching } = useIsValueAvailable(userName);
 
   function submitForm(data: TSignUpForm) {
     mutate(data);
@@ -78,6 +82,11 @@ export function SignUpScreen() {
         label="Seu username"
         placeholder="@"
         boxProps={{ mb: 'spc16' }}
+        RightComponent={
+          isFetching ? (
+            <ActivityIndicator color="primary" size="small" />
+          ) : undefined
+        }
       />
 
       <FormInput
