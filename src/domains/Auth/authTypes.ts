@@ -3,6 +3,8 @@ import { IUserApi, TUser } from '../User/userTypes';
 export type TAuth = {
   auth: {
     token: string;
+    refreshToken: string;
+    expiresAt: string;
   };
   user: TUser;
 };
@@ -11,6 +13,8 @@ export interface IAuthApi {
   auth: {
     type: string;
     token: string;
+    refreshToken: string;
+    expires_at: string;
   };
   user: IUserApi;
 }
