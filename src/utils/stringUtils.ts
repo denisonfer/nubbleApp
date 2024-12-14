@@ -4,7 +4,8 @@ function formatFirstLetter(str: string) {
     .map(
       word => word.charAt(0).toUpperCase() + word.slice(1).toLocaleLowerCase(),
     )
-    .join(' ');
+    .join(' ')
+    .trim();
 }
 
 export const stringUtils = { formatFirstLetter };

@@ -7,7 +7,7 @@
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest",
+    "test": "jest --verbose --coverage",
     "prepare": "husky",
     "code-check": "eslint . && npx tsc --noEmit"
   },
@@ -48,6 +48,7 @@
     "@react-native/metro-config": "0.76.2",
     "@react-native/typescript-config": "0.76.2",
     "@tanstack/eslint-plugin-query": "^5.61.6",
+    "@types/jest": "^29.5.14",
     "@types/react": "^18.2.6",
     "@types/react-test-renderer": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^8.15.0",
