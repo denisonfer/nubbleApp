@@ -5,6 +5,7 @@ import React, {
   useState,
 } from 'react';
 
+import { registerInterceptor } from '@api';
 import { authServices, TAuth } from '@domains';
 
 import { authCredentialsStorage } from '../authCredentialsStorage';
@@ -24,6 +25,26 @@ export function AuthCredentialsProvider({ children }: PropsWithChildren) {
   useEffect(() => {
     initAuthCredentials();
   }, []);
+
+  useEffect(() => {
+    const interceptor = registerInterceptor({
+      authCredentials,
+      refreshCredentials,
+      removeCredentials,
+      saveCredentials,
+    });
+
+    return () => {
+      interceptor();
+    };
+  }, [authCredentials]);
+
+  async function refreshCredentials(): Promise<TAuth> {
+    const ac = await authServices.refreshCredentials();
+
+    await saveCredentials(ac);
+    return ac;
+  }
 
   async function initAuthCredentials(): Promise<void> {
     try {

@@ -1,6 +1,10 @@
+import { AxiosRequestConfig } from 'axios';
+
 import { api } from '@api';
 
 import { IAuthApi, IAuthSignUpDTOApi, IIsValueAvailableApi } from './authTypes';
+
+const REFRESH_TOKEN_URL = '/auth/refresh-token';
 
 async function signIn(email: string, password: string): Promise<IAuthApi> {
   const response = await api.post<IAuthApi>('/auth/login', { email, password });
@@ -18,6 +22,17 @@ async function logout(): Promise<string> {
   const response = await api.get<{ message: string }>('/auth/profile/logout');
 
   return response.data.message;
+}
+
+async function refreshCredentials(): Promise<IAuthApi> {
+  const response = await api.get<IAuthApi>(REFRESH_TOKEN_URL);
+
+  return response.data;
+}
+
+function isRefreshTokenRequest(request: AxiosRequestConfig): boolean {
+  const url = request.url;
+  return url === REFRESH_TOKEN_URL;
 }
 
 async function forgotPassword(email: string): Promise<string> {
@@ -61,6 +76,8 @@ export const authApi = {
   signUp,
   forgotPassword,
   logout,
+  refreshCredentials,
+  isRefreshTokenRequest,
   isUserNameAvailable,
   isEmailAvailable,
 };

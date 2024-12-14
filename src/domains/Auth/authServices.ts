@@ -44,6 +44,11 @@ function removeApiToken() {
   api.defaults.headers.common.Authorization = null;
 }
 
+async function refreshCredentials() {
+  const response = await authApi.refreshCredentials();
+  return authAdapter.toAuth(response);
+}
+
 export const authServices = {
   signIn,
   signUp,
@@ -53,4 +58,6 @@ export const authServices = {
   removeApiToken,
   isUserNameAvailable,
   isEmailAvailable,
+  refreshCredentials,
+  isRefreshTokenRequest: authApi.isRefreshTokenRequest,
 };
