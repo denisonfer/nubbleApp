@@ -2,9 +2,9 @@ const { fixupPluginRules } = require('@eslint/compat');
 const pluginQuery = require('@tanstack/eslint-plugin-query');
 const pluginImport = require('eslint-plugin-import');
 const pluginReactNative = require('eslint-plugin-react-native');
+const pluginTestingLibrary = require('eslint-plugin-testing-library');
 const pluginUnusedImports = require('eslint-plugin-unused-imports');
 const tseslint = require('typescript-eslint');
-
 module.exports = [
   ...tseslint.configs.recommended.map(config => ({
     ...config,
@@ -14,10 +14,12 @@ module.exports = [
   //default
   {
     name: '@promentech/eslint-config',
+    files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
     plugins: {
       import: fixupPluginRules(pluginImport),
       'unused-imports': pluginUnusedImports,
       'react-native': fixupPluginRules(pluginReactNative),
+      'testing-library': pluginTestingLibrary,
     },
     languageOptions: {
       parserOptions: {

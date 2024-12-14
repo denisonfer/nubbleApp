@@ -19,6 +19,7 @@
       "@types": ["./src/types"],
       "@utils": ["./src/utils"],
       "@infra": ["./src/infra"],
+      "test-utils": ["./src/components/test/test-utils"]
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,
@@ -29,6 +30,11 @@
     "esModuleInterop": true
   },
 
-  "exclude": ["node_modules", "babel.config.js", "metro.config.js", "jest.config.js"],
+  "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js",
+    "jest-setup.ts"
+  ],
   "include": ["**/*.ts", "**/*.tsx"]
 }
