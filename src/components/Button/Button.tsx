@@ -17,6 +17,7 @@ export function Button({
     buttonPresetMapper[preset][disabled ? 'disabled' : 'default'];
   return (
     <TouchableOpacityBox
+      testID="button"
       alignItems="center"
       justifyContent="center"
       borderRadius="br16"
@@ -26,7 +27,10 @@ export function Button({
       {...buttonPreset.container}
       {...touchableOpacityBoxProps}>
       {isLoading ? (
-        <ActivityIndicator color={buttonPreset.content} />
+        <ActivityIndicator
+          testID="activity-indicator"
+          color={buttonPreset.content}
+        />
       ) : (
         <Text bold preset="paragraphMedium" color={buttonPreset.content}>
           {title}
