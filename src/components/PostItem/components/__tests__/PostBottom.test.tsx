@@ -1,4 +1,5 @@
-import { fireEvent, render } from '../../../test/test-utils';
+import { fireEvent, render } from '@test';
+
 import { PostBottom } from '../PostBottom';
 
 import { mockedPost } from './mockedData/mockedPost';

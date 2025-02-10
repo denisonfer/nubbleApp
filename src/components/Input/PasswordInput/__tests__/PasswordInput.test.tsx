@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from '../../../test/test-utils';
+import { fireEvent, render, screen } from '@test';
+
 import { PasswordInput } from '../PasswordInput';
 import { TPasswordInputProps } from '../types';
 

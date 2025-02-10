@@ -1,8 +1,9 @@
 import { StyleSheet } from 'react-native';
 
+import { fireEvent, render, screen } from '@test';
+
 import { theme } from '@theme';
 
-import { fireEvent, render, screen } from '../../test/test-utils';
 import { Button } from '../Button';
 import { TButtonProps } from '../types';
 

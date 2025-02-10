@@ -12,6 +12,7 @@
       "@routes": ["./src/routes"],
       "@screens": ["./src/screens"],
       "@services": ["./src/services"],
+      "@test": ["./src/test"],
       "@theme": ["./src/theme"],
       "@stores": ["./src/stores"],
       "@domains": ["./src/domains"],
@@ -19,7 +20,7 @@
       "@types": ["./src/types"],
       "@utils": ["./src/utils"],
       "@infra": ["./src/infra"],
-      "test-utils": ["./src/components/test/test-utils"]
+      "test-utils": ["src/test/test-utils"]
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,
