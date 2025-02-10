@@ -50,7 +50,7 @@ export function Icon({
 
   if (onPress) {
     return (
-      <Pressable onPress={onPress} hitSlop={10}>
+      <Pressable testID={name} onPress={onPress} hitSlop={10}>
         <IconComponent size={size} color={colors[color]} />
       </Pressable>
     );
