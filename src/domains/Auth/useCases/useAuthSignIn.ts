@@ -16,7 +16,11 @@ export function useAuthSignIn(options?: TMutationProps<TAuth>) {
   const { signIn } = authServices;
   const { saveCredentials } = useAuthCredentials();
 
-  const { mutate, isPending } = useMutation<TAuth, unknown, TSignInDTO>({
+  const { mutate, isPending, isSuccess, isError } = useMutation<
+    TAuth,
+    unknown,
+    TSignInDTO
+  >({
     mutationFn: ({ email, password }) => signIn(email, password),
     retry: false,
     onSuccess: data => {
@@ -29,5 +33,5 @@ export function useAuthSignIn(options?: TMutationProps<TAuth>) {
     },
   });
 
-  return { mutate, isLoading: isPending };
+  return { mutate, isLoading: isPending, isSuccess, isError };
 }

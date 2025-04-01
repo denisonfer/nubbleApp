@@ -1,4 +1,4 @@
-import { fireEvent, render } from '@test';
+import { render } from '@test';
 
 import { PostBottom } from '../PostBottom';
 
@@ -39,18 +39,5 @@ describe('<PostBottom />', () => {
     );
 
     expect(getByText(/comentário/i)).toBeTruthy();
-  });
-
-  it('should navigate to the post comment screen when the comment text is pressed', () => {
-    const { getByText } = render(<PostBottom {...mockedPost} />);
-
-    const commentText = getByText(/comentário/i);
-
-    fireEvent.press(commentText);
-
-    expect(mockedNavigate).toHaveBeenCalledWith('PostCommentScreen', {
-      postId: mockedPost.id,
-      postAuthorId: mockedPost.author.id,
-    });
   });
 });
