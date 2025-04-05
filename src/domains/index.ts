@@ -4,6 +4,7 @@ export * from './Post/types';
 export * from './Post/useCases/usePostList';
 
 // Post Comments
+export { POST_COMMENT_PATH } from './PostComments/postCommentApi';
 export * from './PostComments/postCommentServices';
 export * from './PostComments/postCommentTypes';
 export * from './PostComments/useCases/usePostCommentCreate';

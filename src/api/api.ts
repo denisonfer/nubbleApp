@@ -4,11 +4,13 @@ import axios from 'axios';
 
 import { authServices, TAuth } from '@domains';
 
+export const BASE_URL = Platform.select({
+  ios: 'http://localhost:3333',
+  android: 'http://10.0.2.2:3333',
+});
+
 export const api = axios.create({
-  baseURL: Platform.select({
-    ios: 'http://localhost:3333',
-    android: 'http://10.0.2.2:3333',
-  }),
+  baseURL: BASE_URL,
 });
 
 type TRegisterInterceptor = {
