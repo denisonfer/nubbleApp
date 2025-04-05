@@ -17,7 +17,6 @@ export const postCommentHandlers = [
     FULL_URL,
     async ({ request }) => {
       const body = await request.json();
-      console.log('body: ', body);
 
       const newPostCommentAPI: IPostCommentApi = {
         ...mockedData.postCommentAPI,
@@ -25,8 +24,8 @@ export const postCommentHandlers = [
         post_id: body.post_id,
         message: body.message || '',
       };
+
       inMemoryResponse.data = [newPostCommentAPI, ...inMemoryResponse.data];
-      console.log('inMemoryResponse: ', inMemoryResponse);
       inMemoryResponse.meta = {
         ...inMemoryResponse.meta,
         total: inMemoryResponse.meta.total + 1,
