@@ -50,7 +50,10 @@ export function PostCommentItem({ postComment, postAuthorId, postId }: TProps) {
   }
 
   return (
-    <Pressable disabled={!isAllowedRemoveComment} onLongPress={removeComment}>
+    <Pressable
+      testID="comment-item"
+      disabled={!isAllowedRemoveComment}
+      onLongPress={removeComment}>
       <Box flexDirection="row" mb="spc16" alignItems="center">
         <Avatar profileURL={postComment.author.profileURL} />
 

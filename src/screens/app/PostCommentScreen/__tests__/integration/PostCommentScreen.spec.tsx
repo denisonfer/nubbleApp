@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { server } from '@test';
-import { renderScreen, screen } from 'test-utils';
+import { fireEvent, renderScreen, screen } from 'test-utils';
 
 import { PostCommentScreen } from '../../PostCommentScreen';
 
@@ -24,8 +24,23 @@ describe('integration: PostCommentScreen', () => {
       />,
     );
 
+    // Verificar se o comentário original está sendo exibido
     const commentText = await screen.findByText(/comentário aleatório/i);
+    expect(commentText).toBeTruthy();
 
+    // achar o input
+    const input = screen.getByPlaceholderText(/adicione um comentário/i);
+
+    // digitar a mensagem
+    fireEvent.changeText(input, 'teste');
+    //clicar no botão de enviar
+    fireEvent.press(screen.getByText(/enviar/i));
+
+    // esperar o novo comentário aparecer
+    const newComment = await screen.findByText(/teste/i);
+    expect(newComment).toBeTruthy();
+
+    // Verificar se o comentário original ainda está sendo exibido
     expect(commentText).toBeTruthy();
   });
 });

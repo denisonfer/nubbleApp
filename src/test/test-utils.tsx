@@ -18,7 +18,6 @@ const queryClientConfig: QueryClientConfig = {
   defaultOptions: {
     queries: {
       retry: false,
-      staleTime: Infinity,
     },
     mutations: {
       retry: false,

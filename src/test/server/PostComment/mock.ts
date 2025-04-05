@@ -54,4 +54,5 @@ const mockedPostCommentResponse: IApiPaginated<IPostCommentApi> = {
 export const mockedData = {
   POST_ID,
   mockedPostCommentResponse,
+  postCommentAPI,
 };

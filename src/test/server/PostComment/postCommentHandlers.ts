@@ -1,13 +1,38 @@
-import { BASE_URL, IApiPaginated } from '@api';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { BASE_URL } from '@api';
 import { IPostCommentApi, POST_COMMENT_PATH } from '@domains';
 import { http, HttpResponse } from 'msw';
 import { mockedData } from './mock';
 
-export const postCommentHandlers = [
-  http.get(`${BASE_URL}${POST_COMMENT_PATH}`, () => {
-    const response: IApiPaginated<IPostCommentApi> =
-      mockedData.mockedPostCommentResponse;
+const FULL_URL = `${BASE_URL}${POST_COMMENT_PATH}`;
 
-    return HttpResponse.json(response, { status: 200 });
+const inMemoryResponse = { ...mockedData.mockedPostCommentResponse };
+
+export const postCommentHandlers = [
+  http.get(FULL_URL, () => {
+    return HttpResponse.json(inMemoryResponse, { status: 200 });
   }),
+
+  http.post<any, { post_id: number; message: string }>(
+    FULL_URL,
+    async ({ request }) => {
+      const body = await request.json();
+      console.log('body: ', body);
+
+      const newPostCommentAPI: IPostCommentApi = {
+        ...mockedData.postCommentAPI,
+        id: 999,
+        post_id: body.post_id,
+        message: body.message || '',
+      };
+      inMemoryResponse.data = [newPostCommentAPI, ...inMemoryResponse.data];
+      console.log('inMemoryResponse: ', inMemoryResponse);
+      inMemoryResponse.meta = {
+        ...inMemoryResponse.meta,
+        total: inMemoryResponse.meta.total + 1,
+      };
+
+      return HttpResponse.json(newPostCommentAPI, { status: 201 });
+    },
+  ),
 ];
