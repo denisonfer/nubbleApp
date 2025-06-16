@@ -7,4 +7,5 @@ export type TScreenProps = TBoxProps & {
   canGoBack?: boolean;
   scrollable?: boolean;
   title?: string;
+  HeaderComponent?: ReactNode;
 };

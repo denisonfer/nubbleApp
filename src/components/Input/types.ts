@@ -4,8 +4,9 @@ import { TextInputProps } from 'react-native';
 import { TBoxProps } from '../Box/Box';
 
 export type TInputProps = TextInputProps & {
-  label: string;
+  label?: string;
   errorMessage?: string;
   boxProps?: TBoxProps;
   RightComponent?: ReactElement;
+  LeftComponent?: ReactElement;
 };

@@ -1,6 +1,6 @@
-import { TMetaData } from '@types';
+import { TMetaData, TPagination } from '@types';
 
-import { IMetaApi } from './types';
+import { IApiPaginated, IMetaApi } from './types';
 
 function toMetaData(meta: IMetaApi): TMetaData {
   return {
@@ -14,4 +14,13 @@ function toMetaData(meta: IMetaApi): TMetaData {
   };
 }
 
-export const apiAdapter = { toMetaData };
+function toPageModel<TApiType, TModelType>(
+  apiData: IApiPaginated<TApiType>,
+  adapterToModel: (apiData: TApiType) => TModelType,
+): TPagination<TModelType> {
+  return {
+    data: apiData.data.map(adapterToModel),
+    meta: toMetaData(apiData.meta),
+  };
+}
+export const apiAdapter = { toMetaData, toPageModel };

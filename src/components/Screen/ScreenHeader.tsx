@@ -6,10 +6,12 @@ import { Box, Icon, Text, TouchableOpacityBox } from '@components';
 
 import { TScreenProps } from './types';
 
-type TProps = Pick<TScreenProps, 'canGoBack' | 'title'>;
+type TProps = Pick<TScreenProps, 'canGoBack' | 'title' | 'HeaderComponent'>;
 
-export function ScreenHeader({ canGoBack, title }: TProps) {
+export function ScreenHeader({ canGoBack, title, HeaderComponent }: TProps) {
   const navigation = useNavigation();
+
+  const isVisibleLabelGoBack = !title && !HeaderComponent;
 
   return (
     <Box
@@ -21,15 +23,18 @@ export function ScreenHeader({ canGoBack, title }: TProps) {
         <TouchableOpacityBox
           onPress={navigation.goBack}
           flexDirection="row"
-          alignItems="center">
+          alignItems="center"
+          mr="spc12">
           <Icon name="arrowLeft" color="primary" />
-          {!title && (
+          {isVisibleLabelGoBack && (
             <Text preset="paragraphMedium" semiBold ml="spc12">
               Voltar
             </Text>
           )}
         </TouchableOpacityBox>
       )}
+
+      {HeaderComponent}
 
       {title && (
         <Text preset="headingSmall" bold>

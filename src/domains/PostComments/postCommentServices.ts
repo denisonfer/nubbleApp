@@ -19,10 +19,10 @@ async function getPostCommentList({
     per_page: 10,
   });
 
-  return {
-    meta: apiAdapter.toMetaData(postCommentList.meta),
-    data: postCommentList.data.map(postCommentAdapter.toPostCommentList),
-  };
+  return apiAdapter.toPageModel(
+    postCommentList,
+    postCommentAdapter.toPostCommentList,
+  );
 }
 
 async function createComment(

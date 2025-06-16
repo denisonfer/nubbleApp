@@ -11,6 +11,7 @@ export function Input({
   label,
   errorMessage,
   RightComponent,
+  LeftComponent,
   boxProps,
   ...textInputProps
 }: TInputProps) {
@@ -34,12 +35,19 @@ export function Input({
   };
 
   return (
-    <Box {...boxProps}>
+    <Box flex={1} {...boxProps}>
       <Pressable onPress={focusInput}>
-        <Text preset="paragraphMedium" mb="spc4">
-          {label}
-        </Text>
+        {label && (
+          <Text preset="paragraphMedium" mb="spc4">
+            {label}
+          </Text>
+        )}
         <Box {...$InputContainer}>
+          {LeftComponent && (
+            <Box height={20} width={20} mr="spc16">
+              {LeftComponent}
+            </Box>
+          )}
           <TextInput
             ref={inputRef}
             placeholderTextColor={colors.gray2}

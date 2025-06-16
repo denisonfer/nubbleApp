@@ -12,10 +12,7 @@ type TProps = {
 async function getList({ page }: TProps): Promise<TPagination<TPost>> {
   const postListApi = await postApi.getList({ page, per_page: 10 });
 
-  return {
-    meta: apiAdapter.toMetaData(postListApi.meta),
-    data: postListApi.data.map(postAdapter.toPostList),
-  };
+  return apiAdapter.toPageModel(postListApi, postAdapter.toPostList);
 }
 
 export const postServices = { getList };

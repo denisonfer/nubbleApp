@@ -21,6 +21,7 @@ export function Screen({
   scrollable = false,
   title,
   style,
+  HeaderComponent,
   ...tBoxProps
 }: TScreenProps) {
   const { colors } = useAppTheme();
@@ -42,7 +43,11 @@ export function Screen({
             style,
           ]}
           {...tBoxProps}>
-          <ScreenHeader canGoBack={canGoBack} title={title} />
+          <ScreenHeader
+            canGoBack={canGoBack}
+            title={title}
+            HeaderComponent={HeaderComponent}
+          />
           {children}
         </Box>
       </Container>
