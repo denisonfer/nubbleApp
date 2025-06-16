@@ -35,7 +35,7 @@ export function Input({
   };
 
   return (
-    <Box flex={1} {...boxProps}>
+    <Box {...boxProps}>
       <Pressable onPress={focusInput}>
         {label && (
           <Text preset="paragraphMedium" mb="spc4">

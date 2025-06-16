@@ -13,6 +13,7 @@ export * from './PostComments/useCases/usePostCommentRemove';
 
 // User
 export * from './User/useCases/useUserGetById';
+export * from './User/useCases/useUserSearch';
 export * from './User/userServices';
 export * from './User/userTypes';
 

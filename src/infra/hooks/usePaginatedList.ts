@@ -13,9 +13,15 @@ type TUsePaginatedListResult<TData> = {
   fetchNextPage: () => void;
 };
 
+type TUsePaginatedListOptions = {
+  enabled?: boolean;
+  staleTime?: number;
+};
+
 export function usePaginatedList<TData>(
   queryKey: readonly unknown[],
   getList: ({ page }: { page: number }) => Promise<TPagination<TData>>,
+  options?: TUsePaginatedListOptions,
 ): TUsePaginatedListResult<TData> {
   const [list, setList] = useState<TData[]>([]);
 
@@ -30,8 +36,8 @@ export function usePaginatedList<TData>(
 
       return undefined;
     },
-
-    staleTime: 1000 * 30, // 30 seconds
+    staleTime: options?.staleTime ?? 1000 * 30, // 30 seconds
+    enabled: options?.enabled ?? true,
   });
 
   const { isLoading, isError, refetch, fetchNextPage, hasNextPage } = query;
