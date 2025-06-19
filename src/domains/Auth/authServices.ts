@@ -44,8 +44,8 @@ function removeApiToken() {
   api.defaults.headers.common.Authorization = null;
 }
 
-async function refreshCredentials() {
-  const response = await authApi.refreshCredentials();
+async function refreshCredentials(token: string) {
+  const response = await authApi.refreshCredentials(token);
   return authAdapter.toAuth(response);
 }
 

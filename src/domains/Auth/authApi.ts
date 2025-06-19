@@ -24,8 +24,10 @@ async function logout(): Promise<string> {
   return response.data.message;
 }
 
-async function refreshCredentials(): Promise<IAuthApi> {
-  const response = await api.get<IAuthApi>(REFRESH_TOKEN_URL);
+async function refreshCredentials(refreshToken: string): Promise<IAuthApi> {
+  const response = await api.post<IAuthApi>(REFRESH_TOKEN_URL, {
+    refreshToken,
+  });
 
   return response.data;
 }

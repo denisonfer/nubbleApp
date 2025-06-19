@@ -10,6 +10,7 @@ export * from './Input/MessageInput/MessageInput';
 export * from './Input/PasswordInput/FormPasswordInput/FormPasswordInput';
 export * from './Input/PasswordInput/PasswordInput';
 export * from './PostItem/PostItem';
+export * from './ProfileUser/ProfileUser';
 export * from './Screen/Containers';
 export * from './Screen/Screen';
 export * from './Text/Text';

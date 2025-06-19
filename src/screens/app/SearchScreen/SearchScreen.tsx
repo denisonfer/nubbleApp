@@ -1,15 +1,27 @@
-import { Icon, Input, Screen, Text } from '@components';
-import { useUserSearch } from '@domains';
+import { Box, Icon, Input, ProfileUser, Screen } from '@components';
+import { TUser, useUserSearch } from '@domains';
 import { useAppDebounce } from '@hooks';
 
 import { TAppScreenProps } from '@routes';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
+import { FlatList, ListRenderItemInfo } from 'react-native';
 
 export function SearchScreen({}: TAppScreenProps<'SearchScreen'>) {
   const [search, setSearch] = useState('');
   const debouncedSearch = useAppDebounce(search, 500);
 
-  const { list: userList, isLoading } = useUserSearch(debouncedSearch);
+  const { list: userList } = useUserSearch(debouncedSearch);
+
+  const renderItem = useCallback(
+    ({ item }: ListRenderItemInfo<TUser>) => {
+      return (
+        <Box mb="spc16">
+          <ProfileUser user={item} />
+        </Box>
+      );
+    },
+    [userList],
+  );
 
   return (
     <Screen
@@ -24,10 +36,11 @@ export function SearchScreen({}: TAppScreenProps<'SearchScreen'>) {
         />
       }
       paddingHorizontal="spc24">
-      <Text>Search Screen</Text>
-      {isLoading && <Text>Loading...</Text>}
-      {userList &&
-        userList.map(user => <Text key={user.id}>{user.userName}</Text>)}
+      <FlatList
+        keyExtractor={item => item.id.toString()}
+        data={userList}
+        renderItem={renderItem}
+      />
     </Screen>
   );
 }

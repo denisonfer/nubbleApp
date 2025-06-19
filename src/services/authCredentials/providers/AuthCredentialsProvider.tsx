@@ -6,7 +6,7 @@ import React, {
 } from 'react';
 
 import { registerInterceptor } from '@api';
-import { authServices, TAuth } from '@domains';
+import { authServices, TAuth, TUser } from '@domains';
 
 import { authCredentialsStorage } from '../authCredentialsStorage';
 import { TAuthCredentialsServices } from '../authCredentialsType';
@@ -16,6 +16,7 @@ export const AuthCredentialsContext = createContext<TAuthCredentialsServices>({
   authCredentials: null,
   saveCredentials: () => {},
   removeCredentials: () => {},
+  updateUser: () => {},
 });
 
 export function AuthCredentialsProvider({ children }: PropsWithChildren) {
@@ -29,7 +30,6 @@ export function AuthCredentialsProvider({ children }: PropsWithChildren) {
   useEffect(() => {
     const interceptor = registerInterceptor({
       authCredentials,
-      refreshCredentials,
       removeCredentials,
       saveCredentials,
     });
@@ -39,20 +39,12 @@ export function AuthCredentialsProvider({ children }: PropsWithChildren) {
     };
   }, [authCredentials]);
 
-  async function refreshCredentials(): Promise<TAuth> {
-    const ac = await authServices.refreshCredentials();
-
-    await saveCredentials(ac);
-    return ac;
-  }
-
   async function initAuthCredentials(): Promise<void> {
     try {
       const ac = await authCredentialsStorage.get();
       if (!ac) return;
       authServices.updateApiToken(ac.auth.token);
       setAuthCredentials(ac);
-      setIsLoading(false);
     } catch (error) {
       // TODO: handle error
       console.log('[initAuthCredentials] Error', error);
@@ -65,6 +57,12 @@ export function AuthCredentialsProvider({ children }: PropsWithChildren) {
     authServices.updateApiToken(ac.auth.token);
     await authCredentialsStorage.set(ac);
     setAuthCredentials(ac);
+  }
+
+  function updateUser(user: TUser) {
+    if (authCredentials) {
+      saveCredentials({ ...authCredentials, user });
+    }
   }
 
   async function removeCredentials(): Promise<void> {
@@ -80,6 +78,7 @@ export function AuthCredentialsProvider({ children }: PropsWithChildren) {
         authCredentials,
         saveCredentials,
         removeCredentials,
+        updateUser,
       }}>
       {children}
     </AuthCredentialsContext.Provider>
