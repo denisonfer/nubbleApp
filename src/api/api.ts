@@ -24,11 +24,15 @@ export function registerInterceptor({
   removeCredentials,
   saveCredentials,
 }: TRegisterInterceptor) {
-  const interceptor = axios.interceptors.response.use(
-    response => response,
+  const interceptor = api.interceptors.response.use(
+    response => {
+      return response;
+    },
     async responseError => {
       const originalRequest = responseError.config;
+
       const status = responseError.response?.status;
+
       const hasNotAuthCredentials = !authCredentials;
       const hasNotRefreshToken = !authCredentials?.auth.refreshToken;
 
@@ -48,12 +52,18 @@ export function registerInterceptor({
 
         originalRequest.sent = true;
 
-        const newAuthCredentials = await authServices.refreshCredentials(
-          authCredentials.auth.refreshToken,
-        );
-        saveCredentials(newAuthCredentials);
-        originalRequest.headers.Authorization = `Bearer ${newAuthCredentials.auth.token}`;
-        return api(originalRequest);
+        try {
+          const newAuthCredentials = await authServices.refreshCredentials(
+            authCredentials.auth.refreshToken,
+          );
+
+          saveCredentials(newAuthCredentials);
+          originalRequest.headers.Authorization = `Bearer ${newAuthCredentials.auth.token}`;
+          return api(originalRequest);
+        } catch (error) {
+          removeCredentials();
+          return Promise.reject(responseError);
+        }
       }
 
       return Promise.reject(responseError);
@@ -61,6 +71,6 @@ export function registerInterceptor({
   );
 
   return () => {
-    axios.interceptors.response.eject(interceptor);
+    api.interceptors.response.eject(interceptor);
   };
 }

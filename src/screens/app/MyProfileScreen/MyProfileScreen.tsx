@@ -1,16 +1,14 @@
 import React, { useCallback } from 'react';
 
-import { useAuthCredentials } from '@services';
-
 import { Box, Icon, Screen, Text } from '@components';
 import { TAppBottomTabScreenProps } from '@routes';
+import { useAuth } from '@services';
 
 export function MyProfileScreen({
   navigation,
 }: TAppBottomTabScreenProps<'MyProfileScreen'>) {
-  const { authCredentials } = useAuthCredentials();
-
-  const name = authCredentials?.user.fullName;
+  const { user } = useAuth();
+  const name = user?.fullName;
 
   const navigateToSettingsScreen = useCallback(() => {
     navigation.navigate('SettingsScreen');

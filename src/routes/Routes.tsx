@@ -1,15 +1,36 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
 
-import { useAuthCredentials } from '@services';
-
+import { registerInterceptor } from '@api';
+import { authServices } from '@domains';
+import { useAuth } from '@services';
 import { AppStack } from './AppStack';
 import { AuthStack } from './AuthStack';
 
 export function Routes() {
-  const { authCredentials } = useAuthCredentials();
-  const isSignedIn = authCredentials !== null;
+  const { updateApiToken } = authServices;
+  const { isSignedIn, credentials, user, removeCredentials, saveCredentials } =
+    useAuth();
+
+  useEffect(() => {
+    if (credentials) {
+      updateApiToken(credentials.token);
+
+      const interceptor = registerInterceptor({
+        authCredentials: {
+          auth: credentials,
+          user: user!,
+        },
+        removeCredentials,
+        saveCredentials,
+      });
+
+      return () => {
+        interceptor();
+      };
+    }
+  }, [credentials, user, removeCredentials, saveCredentials]);
 
   return (
     <NavigationContainer>

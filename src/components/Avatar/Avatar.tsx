@@ -11,8 +11,6 @@ type TProps = {
 };
 
 export function Avatar({ profileURL, size = 32, borderRadius = 16 }: TProps) {
-  console.log('profileURL: ', profileURL);
-
   if (!profileURL) {
     return (
       <Box

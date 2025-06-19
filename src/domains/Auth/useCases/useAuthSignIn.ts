@@ -2,8 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 
 import { TMutationProps } from '@infra';
 
-import { useAuthCredentials } from '@services';
-
+import { useAuth } from '@services';
 import { authServices } from '../authServices';
 import { TAuth } from '../authTypes';
 
@@ -13,8 +12,8 @@ type TSignInDTO = {
 };
 
 export function useAuthSignIn(options?: TMutationProps<TAuth>) {
-  const { signIn } = authServices;
-  const { saveCredentials } = useAuthCredentials();
+  const { signIn, updateApiToken } = authServices;
+  const { saveCredentials } = useAuth();
 
   const { mutate, isPending, isSuccess, isError } = useMutation<
     TAuth,
@@ -25,6 +24,7 @@ export function useAuthSignIn(options?: TMutationProps<TAuth>) {
     retry: false,
     onSuccess: data => {
       saveCredentials(data);
+      updateApiToken(data.auth.token);
     },
     onError: error => {
       if (options?.onError) {
