@@ -41,6 +41,7 @@ export const theme = createTheme({
     marked: palette.carrotSecondary,
   },
   spacing: {
+    spc0: 0,
     spc4: 4,
     spc8: 8,
     spc10: 10,

@@ -27,10 +27,16 @@ export type TAppStackParamList = {
 
 const Stack = createNativeStackNavigator<TAppStackParamList>();
 
-export function AppStack() {
+type TAppStackProps = {
+  initialRouteName?: keyof TAppStackParamList;
+};
+
+export function AppStack({
+  initialRouteName = 'AppBottomTab',
+}: TAppStackProps) {
   return (
     <Stack.Navigator
-      initialRouteName="AppBottomTab"
+      initialRouteName={initialRouteName}
       screenOptions={{
         headerShown: false,
         fullScreenGestureEnabled: true,

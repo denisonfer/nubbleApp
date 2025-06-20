@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useToastServices } from '@services';
+import { useSearchHistoryServices, useToastServices } from '@services';
 
 import { Button, Screen } from '@components';
 
@@ -8,7 +8,12 @@ import { useAuthLogout } from '@domains';
 
 export function SettingsScreen() {
   const { showToast } = useToastServices();
+  const { clearUsersSearchHistory } = useSearchHistoryServices();
+
   const { mutate, isLoading } = useAuthLogout({
+    onSuccess: () => {
+      clearUsersSearchHistory();
+    },
     onError: () => {
       showToast({
         type: 'error',

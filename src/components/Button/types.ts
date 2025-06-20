@@ -1,7 +1,7 @@
 import { TThemeColors } from '../../theme/theme';
 import { TTouchableOpacityBoxProps } from '../Box/Box';
 
-export type TButtonPreset = 'primary' | 'outline';
+export type TButtonPreset = 'primary' | 'outline' | 'text';
 
 export interface IButtonUI {
   container: TTouchableOpacityBoxProps;
@@ -46,6 +46,22 @@ export const buttonPresetMapper: Record<
       container: {
         borderWidth: 1,
         borderColor: 'gray4',
+      },
+      content: 'gray2',
+    },
+  },
+  text: {
+    default: {
+      container: {
+        backgroundColor: undefined,
+        padding: 'spc0',
+        margin: 'spc0',
+      },
+      content: 'primary',
+    },
+    disabled: {
+      container: {
+        backgroundColor: undefined,
       },
       content: 'gray2',
     },

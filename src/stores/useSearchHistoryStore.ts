@@ -8,9 +8,16 @@ export const useSearchHistoryStore = create<TSearchHistoryService>()(
     set => ({
       usersSearchHistory: [],
       addToUsersSearchHistory: user => {
-        set(state => ({
-          usersSearchHistory: [...state.usersSearchHistory, user],
-        }));
+        set(state => {
+          const usersList = [...state.usersSearchHistory];
+          const userAlreadyExists = usersList.find(
+            existingUser => existingUser.id === user.id,
+          );
+          if (userAlreadyExists) {
+            return state;
+          }
+          return { usersSearchHistory: [...usersList, user] };
+        });
       },
       removeFromUsersSearchHistory: userId => {
         set(state => ({

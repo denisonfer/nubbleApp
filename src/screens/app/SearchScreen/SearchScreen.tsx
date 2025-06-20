@@ -3,10 +3,13 @@ import { TUser, useUserSearch } from '@domains';
 import { useAppDebounce } from '@hooks';
 
 import { TAppScreenProps } from '@routes';
+import { useSearchHistoryServices } from '@services';
 import { useCallback, useState } from 'react';
 import { FlatList, ListRenderItemInfo } from 'react-native';
+import { SearchHistory } from './components/SearchHistory';
 
 export function SearchScreen({}: TAppScreenProps<'SearchScreen'>) {
+  const { addToUsersSearchHistory } = useSearchHistoryServices();
   const [search, setSearch] = useState('');
   const debouncedSearch = useAppDebounce(search, 500);
 
@@ -16,7 +19,13 @@ export function SearchScreen({}: TAppScreenProps<'SearchScreen'>) {
     ({ item }: ListRenderItemInfo<TUser>) => {
       return (
         <Box mb="spc16">
-          <ProfileUser user={item} />
+          <ProfileUser
+            user={item}
+            externalOnPress={() => {
+              addToUsersSearchHistory(item);
+            }}
+            avatarSize={48}
+          />
         </Box>
       );
     },
@@ -36,11 +45,14 @@ export function SearchScreen({}: TAppScreenProps<'SearchScreen'>) {
         />
       }
       paddingHorizontal="spc24">
-      <FlatList
-        keyExtractor={item => item.id.toString()}
-        data={userList}
-        renderItem={renderItem}
-      />
+      {!search && <SearchHistory />}
+      {search && (
+        <FlatList
+          keyExtractor={item => item.id.toString()}
+          data={userList}
+          renderItem={renderItem}
+        />
+      )}
     </Screen>
   );
 }
