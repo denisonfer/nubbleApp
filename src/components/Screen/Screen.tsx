@@ -22,6 +22,7 @@ export function Screen({
   title,
   style,
   HeaderComponent,
+  addHeaderPadding = false,
   ...tBoxProps
 }: TScreenProps) {
   const { colors } = useAppTheme();
@@ -47,6 +48,7 @@ export function Screen({
             canGoBack={canGoBack}
             title={title}
             HeaderComponent={HeaderComponent}
+            addHeaderPadding={addHeaderPadding}
           />
           {children}
         </Box>

@@ -14,3 +14,16 @@ jest.mock('@react-navigation/native', () => {
     }),
   };
 });
+
+// mock camera roll
+jest.mock('@react-native-camera-roll/camera-roll', () => ({
+  CameraRoll: {
+    getPhotos: jest.fn(async () => ({
+      edges: [
+        { node: { image: { uri: 'image 1' } } },
+        { node: { image: { uri: 'image 2' } } },
+        { node: { image: { uri: 'image 3' } } },
+      ],
+    })),
+  },
+}));

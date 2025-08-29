@@ -8,4 +8,5 @@ export type TScreenProps = TBoxProps & {
   scrollable?: boolean;
   title?: string;
   HeaderComponent?: ReactNode;
+  addHeaderPadding?: boolean;
 };
