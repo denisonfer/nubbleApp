@@ -10,7 +10,7 @@ const NUM_COLUMNS = 4;
 const ITEM_WIDTH = SCREEN_WIDTH / NUM_COLUMNS;
 
 export function NewPostScreen() {
-  const { photoList } = useCameraRoll();
+  const { photoList, fetchNextPage } = useCameraRoll(true);
 
   const renderItem = ({ item }: ListRenderItemInfo<string>) => (
     <Image
@@ -27,6 +27,8 @@ export function NewPostScreen() {
         renderItem={renderItem}
         numColumns={NUM_COLUMNS}
         keyExtractor={item => item}
+        onEndReached={fetchNextPage}
+        onEndReachedThreshold={0.5}
         ListHeaderComponent={
           <Header imageUri={photoList[4]} imageWidth={SCREEN_WIDTH} />
         }

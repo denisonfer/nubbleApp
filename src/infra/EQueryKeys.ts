@@ -6,4 +6,5 @@ export enum EQueryKeys {
   Auth = 'Auth',
   UsernameIsAvailable = 'UsernameIsAvailable',
   EmailIsAvailable = 'EmailIsAvailable',
+  CameraRollPhotoList = 'CameraRollPhotoList',
 }
