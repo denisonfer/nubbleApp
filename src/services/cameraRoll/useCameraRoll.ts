@@ -5,7 +5,10 @@ import { PermissionsAndroid, Platform } from 'react-native';
 import { cameraRollServices } from './cameraRollServices';
 import { TPhotoListPaginated } from './cameraRollTypes';
 
-export function useCameraRoll(hasPermission: boolean) {
+export function useCameraRoll(
+  hasPermission: boolean,
+  onInitialLoad?: (imageUri: string) => void,
+) {
   const query = useInfiniteQuery<TPhotoListPaginated>({
     queryKey: [EQueryKeys.CameraRollPhotoList],
     queryFn: ({ pageParam = 1 }) =>
@@ -21,6 +24,10 @@ export function useCameraRoll(hasPermission: boolean) {
   useEffect(() => {
     if (query.data) {
       setPhotoList(query.data.pages.flatMap(page => page.photoList));
+
+      if (query.data.pages.length === 1 && onInitialLoad) {
+        onInitialLoad(query.data.pages[0].photoList[0]);
+      }
     }
   }, [query.data]);
 

@@ -1,4 +1,5 @@
 import { Box, Button, Icon, TBoxProps, Text } from '@components';
+import { useNavigation } from '@react-navigation/native';
 import { ImageBackground, ImageStyle, StyleProp } from 'react-native';
 
 type TProps = {
@@ -7,12 +8,24 @@ type TProps = {
 };
 
 export function Header({ imageUri, imageWidth }: TProps) {
+  const navigation = useNavigation();
+
+  const navigateToPublishPostScreen = () => {
+    if (imageUri) {
+      navigation.navigate('PublishPostScreen', { imageUri });
+    }
+  };
+
   return (
     <Box>
       <ImageBackground
         source={{ uri: imageUri }}
         style={[{ width: imageWidth, height: imageWidth }, $imageBackground]}>
-        <Button title="Escolher essa" mb="spc24" />
+        <Button
+          title="Escolher essa"
+          mb="spc24"
+          onPress={navigateToPublishPostScreen}
+        />
       </ImageBackground>
       <Box {...$header}>
         <Text preset="headingSmall">Sua galeria</Text>
