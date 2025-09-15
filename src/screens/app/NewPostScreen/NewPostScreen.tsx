@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 
 import { Screen } from '@components';
-import { useCameraRoll } from '@services';
+import { useCameraRoll, usePermission } from '@services';
 import {
   Dimensions,
   FlatList,
@@ -16,10 +16,14 @@ const NUM_COLUMNS = 4;
 const ITEM_WIDTH = SCREEN_WIDTH / NUM_COLUMNS;
 
 export function NewPostScreen() {
+  const { status } = usePermission('photoLibrary');
   const flatListRef = useRef<FlatList>(null);
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
 
-  const { photoList, fetchNextPage } = useCameraRoll(true, setSelectedPhoto);
+  const { photoList, fetchNextPage } = useCameraRoll(
+    status === 'granted',
+    setSelectedPhoto,
+  );
 
   const onSelectPhoto = (photo: string) => {
     setSelectedPhoto(photo);

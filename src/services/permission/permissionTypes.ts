@@ -2,7 +2,9 @@ export type TPermissionStatus =
   | 'granted'
   | 'denied'
   | 'never_ask_again'
-  | 'unavailable';
+  | 'unavailable'
+  | 'blocked'
+  | 'limited';
 
 export type TPermissionName = 'photoLibrary' | 'camera';
 

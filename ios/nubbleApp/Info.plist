@@ -61,7 +61,9 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	
-	<!-- Permissões para Camera Roll -->
+	<!-- Permissões para Camera e Photo Library -->
+	<key>NSCameraUsageDescription</key>
+	<string>Este aplicativo precisa acessar sua câmera para tirar fotos.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Este aplicativo precisa acessar sua biblioteca de fotos para exibir e gerenciar suas imagens.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>

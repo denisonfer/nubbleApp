@@ -13,7 +13,7 @@ jest.mock('@services', () => {
 
   return {
     ...originalModule,
-    useAuthCredentials: () => ({
+    useAuth: () => ({
       saveCredentials: mockedSaveCredentials,
     }),
   };

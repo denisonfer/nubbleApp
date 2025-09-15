@@ -27,3 +27,11 @@ jest.mock('@react-native-camera-roll/camera-roll', () => ({
     })),
   },
 }));
+
+// mock react-native-permissions
+jest.mock('../services/permission/permissionService', () => ({
+  permissionService: {
+    request: jest.fn(),
+    check: jest.fn(),
+  },
+}));
