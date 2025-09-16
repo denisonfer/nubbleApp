@@ -8,6 +8,7 @@ import {
   BellOnIcon,
   BookmarkFillIcon,
   BookmarkIcon,
+  CameraClick,
   CameraIcon,
   ChatIcon,
   ChatOnIcon,
@@ -91,6 +92,7 @@ const iconsMapper = {
   search: SearchIcon,
   settings: SettingsIcon,
   trash: TrashIcon,
+  cameraClick: CameraClick,
 };
 
 export type TIconNames = keyof typeof iconsMapper;

@@ -16,6 +16,10 @@ export function Header({ imageUri, imageWidth }: TProps) {
     }
   };
 
+  const navigateToCameraScreen = () => {
+    navigation.navigate('CameraScreen');
+  };
+
   return (
     <Box>
       <ImageBackground
@@ -29,7 +33,7 @@ export function Header({ imageUri, imageWidth }: TProps) {
       </ImageBackground>
       <Box {...$header}>
         <Text preset="headingSmall">Sua galeria</Text>
-        <Icon name="camera" />
+        <Icon name="camera" onPress={navigateToCameraScreen} />
       </Box>
     </Box>
   );

@@ -13,6 +13,7 @@ export const palette = {
   redErrorLight: '#FBECEC',
 
   grayBlack: '#000000',
+  black60: 'rgba(0, 0, 0, 0.6)',
   gray1: '#636363',
   gray2: '#8E8E8E',
   gray3: '#B3B3B3',
@@ -39,6 +40,8 @@ export const theme = createTheme({
     successLight: palette.greenSuccessLight,
 
     marked: palette.carrotSecondary,
+
+    black60: palette.black60,
   },
   spacing: {
     spc0: 0,

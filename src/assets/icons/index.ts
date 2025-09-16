@@ -4,6 +4,7 @@ export * from './BellIcon';
 export * from './BellOnIcon';
 export * from './BookmarkFillIcon';
 export * from './BookmarkIcon';
+export * from './CameraClick';
 export * from './CameraIcon';
 export * from './ChatIcon';
 export * from './ChatOnIcon';
