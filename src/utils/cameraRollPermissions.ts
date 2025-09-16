@@ -1,6 +1,6 @@
 import { PermissionsAndroid, Platform } from 'react-native';
 
-export type PermissionStatus = 'granted' | 'denied' | 'never_ask_again';
+export type TPermissionStatus = 'granted' | 'denied' | 'never_ask_again';
 
 /**
  * Verifica se o aplicativo tem permissão para acessar a galeria de fotos no Android
@@ -111,7 +111,7 @@ export async function checkCameraRollPermissions(): Promise<boolean> {
   }
 
   // Para Android, verifica as permissões sem solicitar
-  if (Platform.Version >= 33) {
+  if (+Platform.Version >= 33) {
     return await PermissionsAndroid.check(
       PermissionsAndroid.PERMISSIONS.READ_MEDIA_IMAGES,
     );

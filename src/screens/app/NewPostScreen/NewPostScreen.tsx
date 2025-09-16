@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 
-import { Screen } from '@components';
+import { PermissionManager, Screen } from '@components';
 import { useCameraRoll, usePermission } from '@services';
 import {
   Dimensions,
@@ -41,19 +41,23 @@ export function NewPostScreen() {
   );
 
   return (
-    <Screen canGoBack title="Novo Post" addHeaderPadding>
-      <FlatList
-        ref={flatListRef}
-        data={photoList}
-        renderItem={renderItem}
-        numColumns={NUM_COLUMNS}
-        keyExtractor={item => item}
-        onEndReached={fetchNextPage}
-        onEndReachedThreshold={0.5}
-        ListHeaderComponent={
-          <Header imageUri={selectedPhoto ?? ''} imageWidth={SCREEN_WIDTH} />
-        }
-      />
-    </Screen>
+    <PermissionManager
+      permissionName="photoLibrary"
+      description="Conceda a permissão para acessar a galeria de fotos.">
+      <Screen canGoBack title="Novo Post" addHeaderPadding>
+        <FlatList
+          ref={flatListRef}
+          data={photoList}
+          renderItem={renderItem}
+          numColumns={NUM_COLUMNS}
+          keyExtractor={item => item}
+          onEndReached={fetchNextPage}
+          onEndReachedThreshold={0.5}
+          ListHeaderComponent={
+            <Header imageUri={selectedPhoto ?? ''} imageWidth={SCREEN_WIDTH} />
+          }
+        />
+      </Screen>
+    </PermissionManager>
   );
 }
