@@ -1,13 +1,20 @@
 import { Box, Icon, PermissionManager, TBoxProps } from '@components';
-import { useAppBoolean, useAppSafeArea } from '@hooks';
+import { useAppBoolean, useAppSafeArea, useAppState } from '@hooks';
+import { useIsFocused } from '@react-navigation/native';
 import { TAppScreenProps } from '@routes';
 import { Dimensions, StyleSheet } from 'react-native';
+import { Camera, useCameraDevice } from 'react-native-vision-camera';
 
 const CAMERA_VIEW = Dimensions.get('window').width;
 const HEIGHT_VIEW = (Dimensions.get('window').height - CAMERA_VIEW) / 2;
 
 export function CameraScreen({ navigation }: TAppScreenProps<'CameraScreen'>) {
   const { top } = useAppSafeArea();
+  const device = useCameraDevice('back');
+  const isFocused = useIsFocused();
+  const { appState } = useAppState();
+
+  const isActive = isFocused && appState === 'active';
 
   const [flashOn, toggleFlashOn] = useAppBoolean();
 
@@ -16,7 +23,13 @@ export function CameraScreen({ navigation }: TAppScreenProps<'CameraScreen'>) {
       permissionName="camera"
       description="Conceda a permissão para acessar a câmera.">
       <Box flex={1}>
-        <Box backgroundColor="background" style={StyleSheet.absoluteFill} />
+        {device != null && (
+          <Camera
+            device={device}
+            isActive={isActive}
+            style={StyleSheet.absoluteFill}
+          />
+        )}
 
         <Box flex={1} justifyContent="space-between">
           <Box {...$controlAreaTop} style={{ paddingTop: top }}>

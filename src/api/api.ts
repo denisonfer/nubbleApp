@@ -5,7 +5,7 @@ import axios from 'axios';
 import { authServices, TAuth } from '@domains';
 
 export const BASE_URL = Platform.select({
-  ios: 'http://localhost:3333',
+  ios: 'http://192.168.100.25:3333',
   android: 'http://10.0.2.2:3333',
 });
 

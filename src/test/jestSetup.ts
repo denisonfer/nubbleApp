@@ -15,6 +15,16 @@ jest.mock('@react-navigation/native', () => {
   };
 });
 
+// mock react-native-vision-camera (no native module in Jest)
+jest.mock('react-native-vision-camera', () => {
+  const { View } = jest.requireActual('react-native');
+  return {
+    Camera: View,
+    useCameraDevice: jest.fn(() => undefined),
+    useCameraPermission: jest.fn(() => ({ hasPermission: true })),
+  };
+});
+
 // mock camera roll
 jest.mock('@react-native-camera-roll/camera-roll', () => ({
   CameraRoll: {

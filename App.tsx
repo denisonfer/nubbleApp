@@ -13,6 +13,11 @@ import { theme } from '@theme';
 
 initStorage(MMKVStorage);
 
+if (__DEV__) {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  require('./reactotron');
+}
+
 const queryClient = new QueryClient();
 
 function App() {
