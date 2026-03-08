@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 
 import { PermissionManager, Screen } from '@components';
-import { useCameraRoll, usePermission } from '@services';
+import { useMultimediaGetPhotos, usePermission } from '@services';
 import {
   Dimensions,
   FlatList,
@@ -20,7 +20,7 @@ export function NewPostScreen() {
   const flatListRef = useRef<FlatList>(null);
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
 
-  const { photoList, fetchNextPage } = useCameraRoll(
+  const { photoList, fetchNextPage } = useMultimediaGetPhotos(
     status === 'granted',
     setSelectedPhoto,
   );

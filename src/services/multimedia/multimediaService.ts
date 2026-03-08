@@ -1,5 +1,5 @@
 import { CameraRoll } from '@react-native-camera-roll/camera-roll';
-import { TPhotoListPaginated } from './cameraRollTypes';
+import { TImageForUpload, TPhotoListPaginated } from './multimediaTypes';
 
 async function getPhotoList(cursor?: string): Promise<TPhotoListPaginated> {
   const photoListApi = await CameraRoll.getPhotos({
@@ -16,6 +16,15 @@ async function getPhotoList(cursor?: string): Promise<TPhotoListPaginated> {
   };
 }
 
-export const cameraRollServices = {
+function prepareImageForUpload(imageUri: string): TImageForUpload {
+  return {
+    uri: imageUri,
+    name: 'name',
+    type: 'image/jpeg',
+  };
+}
+
+export const multimediaService = {
   getPhotoList,
+  prepareImageForUpload,
 };

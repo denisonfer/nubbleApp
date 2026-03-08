@@ -1,6 +1,7 @@
 import { apiAdapter } from '@api';
 import { TPagination } from '@types';
 
+import { TImageForUpload } from '@services';
 import { postAdapter } from './postAdapter';
 import { postApi } from './postApi';
 import { TPost } from './types';
@@ -15,4 +16,13 @@ async function getList({ page }: TProps): Promise<TPagination<TPost>> {
   return apiAdapter.toPageModel(postListApi, postAdapter.toPostList);
 }
 
-export const postServices = { getList };
+async function createPost(
+  text: string,
+  imageCover: TImageForUpload,
+): Promise<TPost> {
+  const postListApi = await postApi.createPost(text, imageCover);
+
+  return postAdapter.toPostList(postListApi);
+}
+
+export const postServices = { getList, createPost };

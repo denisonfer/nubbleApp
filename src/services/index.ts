@@ -9,5 +9,6 @@ export * from './storage/storage';
 export * from './searchHistory/hooks/useSearchHistory';
 export * from './searchHistory/searchHistoryTypes';
 
-export * from './cameraRoll';
 export * from './permission';
+
+export * from './multimedia';

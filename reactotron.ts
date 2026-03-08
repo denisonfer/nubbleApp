@@ -6,7 +6,7 @@ import { storageMMKV } from '@services';
 import { Platform } from 'react-native';
 
 const host = Platform.select({
-  ios: '192.168.100.25',
+  ios: process.env.IP_ADDRESS,
   android: '10.0.2.2',
 });
 

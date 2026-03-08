@@ -1,17 +1,17 @@
 import { EQueryKeys } from '@infra';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import { cameraRollServices } from './cameraRollServices';
-import { TPhotoListPaginated } from './cameraRollTypes';
+import { multimediaService } from './multimediaService';
+import { TPhotoListPaginated } from './multimediaTypes';
 
-export function useCameraRoll(
+export function useMultimediaGetPhotos(
   hasPermission: boolean,
   onInitialLoad?: (imageUri: string) => void,
 ) {
   const query = useInfiniteQuery<TPhotoListPaginated>({
     queryKey: [EQueryKeys.CameraRollPhotoList],
     queryFn: ({ pageParam = 1 }) =>
-      cameraRollServices.getPhotoList(pageParam as string),
+      multimediaService.getPhotoList(pageParam as string),
     initialPageParam: 1,
     getNextPageParam: ({ cursor }) => {
       return cursor;
