@@ -2,6 +2,7 @@ import { Box, Icon, PermissionManager, TBoxProps } from '@components';
 import { useAppBoolean, useAppSafeArea, useAppState } from '@hooks';
 import { useIsFocused } from '@react-navigation/native';
 import { TAppScreenProps } from '@routes';
+import { multimediaService } from '@services';
 import { useCallback, useRef, useState } from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
 import {
@@ -45,7 +46,7 @@ export function CameraScreen({ navigation }: TAppScreenProps<'CameraScreen'>) {
       });
 
       navigation.navigate('PublishPostScreen', {
-        imageUri: `file://${photo?.path}`,
+        imageUri: multimediaService.prepareImageUri(photo.path),
       });
     }
   }, [flashOn, navigation]);

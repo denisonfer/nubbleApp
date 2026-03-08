@@ -38,6 +38,24 @@ jest.mock('@react-native-camera-roll/camera-roll', () => ({
   },
 }));
 
+// mock expo-image-manipulator (no native module in Jest)
+jest.mock('expo-image-manipulator', () => ({
+  ImageManipulator: {
+    manipulate: jest.fn(() => ({
+      renderAsync: jest.fn(async () => ({
+        saveAsync: jest.fn(async () => ({
+          uri: 'mocked-image-uri',
+        })),
+      })),
+    })),
+  },
+  SaveFormat: {
+    JPEG: 'jpeg',
+    PNG: 'png',
+    WEBP: 'webp',
+  },
+}));
+
 // mock react-native-permissions
 jest.mock('../services/permission/permissionService', () => ({
   permissionService: {

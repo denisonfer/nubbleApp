@@ -37,7 +37,7 @@ export function usePostCreate(options?: TMutationProps<TPost>) {
     description: string;
     imageUri: string;
   }) {
-    const imageCover = multimediaService.prepareImageForUpload(imageUri);
+    const imageCover = await multimediaService.prepareImageForUpload(imageUri);
     mutate({ text: description, imageCover });
   }
 
