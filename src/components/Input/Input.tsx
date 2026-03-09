@@ -42,7 +42,7 @@ export function Input({
             {label}
           </Text>
         )}
-        <Box {...$InputContainer}>
+        <Box {...$InputContainer} backgroundColor="grayWhite">
           {LeftComponent && (
             <Box height={20} width={20} mr="spc16">
               {LeftComponent}

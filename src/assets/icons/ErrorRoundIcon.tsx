@@ -2,8 +2,8 @@ import React from 'react';
 
 import { Circle, Path, Svg } from 'react-native-svg';
 
+import { palette } from '@theme';
 import { TBasicIconProps } from '../../components/Icon/types';
-import { palette } from '../../theme/theme';
 
 export function ErrorRoundIcon({
   size = 20,
