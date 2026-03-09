@@ -1,7 +1,7 @@
 import { storage } from '@services';
 import { TSearchHistoryService } from 'src/services/searchHistory/searchHistoryTypes';
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { createJSONStorage, persist } from 'zustand/middleware';
 
 export const useSearchHistoryStore = create<TSearchHistoryService>()(
   persist(
@@ -32,7 +32,7 @@ export const useSearchHistoryStore = create<TSearchHistoryService>()(
     }),
     {
       name: '@SearchHistory',
-      storage: storage,
+      storage: createJSONStorage(() => storage),
     },
   ),
 );

@@ -1,20 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { BASE_URL } from '@api';
 import { IPostCommentApi, POST_COMMENT_PATH } from '@domains';
 import { http, HttpResponse } from 'msw';
 import { mockedData } from './mock';
 
-const FULL_URL = `${BASE_URL}${POST_COMMENT_PATH}`;
+// Use path pattern to match any base URL (Jest/Node has no location.href)
+const POST_COMMENT_PATTERN = new RegExp(`.*${POST_COMMENT_PATH.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}.*`);
 
 const inMemoryResponse = { ...mockedData.mockedPostCommentResponse };
 
 export const postCommentHandlers = [
-  http.get(FULL_URL, () => {
+  http.get(POST_COMMENT_PATTERN, () => {
     return HttpResponse.json(inMemoryResponse, { status: 200 });
   }),
 
   http.post<any, { post_id: number; message: string }>(
-    FULL_URL,
+    POST_COMMENT_PATTERN,
     async ({ request }) => {
       const body = await request.json();
 

@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { createJSONStorage, persist } from 'zustand/middleware';
 
 import { TAuthCredentialsServices } from '@services';
 
@@ -24,7 +24,7 @@ export const useAuthCredentialsStore = create<TAuthCredentialsServices>()(
     }),
     {
       name: '@AuthCredentials',
-      storage: storage,
+      storage: createJSONStorage(() => storage),
     },
   ),
 );

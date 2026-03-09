@@ -31,15 +31,6 @@ jest.mock('@hooks/useAppDebounce', () => ({
   useAppDebounce: jest.fn((value: string) => value),
 }));
 
-// Mock storage to avoid Zustand persist warnings
-jest.mock('@services/storage', () => ({
-  storage: {
-    getItem: jest.fn(() => Promise.resolve(null)),
-    setItem: jest.fn(() => Promise.resolve()),
-    removeItem: jest.fn(() => Promise.resolve()),
-  },
-}));
-
 const mockUsers = [
   {
     id: 1,

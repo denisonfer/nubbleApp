@@ -1,8 +1,21 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { server } from '@test';
 import { fireEvent, renderScreen, screen } from 'test-utils';
 
 import { PostCommentScreen } from '../../PostCommentScreen';
+
+// Mock API base URL so MSW handlers match axios requests (Jest has no process.env.IP_ADDRESS)
+jest.mock('@api', () => {
+  const actual = jest.requireActual<typeof import('@api')>('@api');
+  return {
+    ...actual,
+    BASE_URL: 'http://127.0.0.1:3333',
+    api: require('axios').default.create({
+      baseURL: 'http://127.0.0.1:3333',
+    }),
+  };
+});
 
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());

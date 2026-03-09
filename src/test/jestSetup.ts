@@ -4,6 +4,7 @@ import mockSafeAreContext from 'react-native-safe-area-context/jest/mock';
 
 jest.mock('react-native-safe-area-context', () => mockSafeAreContext);
 
+
 // mock useNavigation
 jest.mock('@react-navigation/native', () => {
   const originalModule = jest.requireActual('@react-navigation/native');
@@ -63,3 +64,22 @@ jest.mock('../services/permission/permissionService', () => ({
     check: jest.fn(),
   },
 }));
+
+// Mock storage for Zustand persist (avoids MMKV in Jest, applies to all tests)
+const mockStorageStore = new Map<string, string>();
+const mockStorage = {
+  getItem: (name: string) => mockStorageStore.get(name) ?? null,
+  setItem: (name: string, value: string) => mockStorageStore.set(name, value),
+  removeItem: (name: string) => mockStorageStore.delete(name),
+  getAllKeys: () => Promise.resolve(Array.from(mockStorageStore.keys())),
+};
+
+jest.mock('../services/storage/storage', () => ({
+  storage: mockStorage,
+  initStorage: jest.fn(),
+}));
+
+jest.mock('@services', () => {
+  const actual = jest.requireActual<typeof import('@services')>('@services');
+  return { ...actual, storage: mockStorage };
+});
