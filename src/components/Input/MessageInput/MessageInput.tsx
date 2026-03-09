@@ -30,7 +30,7 @@ export function MessageInput({
         onPress={isDisabledSend ? undefined : onPressSend}
         ml="spc12"
         bold
-        color={isDisabledSend ? 'gray1' : 'primary'}>
+        color={isDisabledSend ? 'gray1' : 'greenPrimary'}>
         Enviar
       </Text>
     </Box>

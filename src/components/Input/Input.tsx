@@ -5,6 +5,7 @@ import { useAppTheme } from '../../hooks/useAppTheme';
 import { Box, TBoxProps } from '../Box/Box';
 import { $fontFamilies, $fontSizes, Text } from '../Text/Text';
 
+import { colors } from '@theme';
 import { TInputProps } from './types';
 
 export function Input({
@@ -77,5 +78,6 @@ const $RNTextInput: TextStyle = {
   flex: 1,
   padding: 0,
   fontFamily: $fontFamilies.regular,
+  color: colors.palette.grayBlack,
   ...$fontSizes.paragraphMedium,
 };

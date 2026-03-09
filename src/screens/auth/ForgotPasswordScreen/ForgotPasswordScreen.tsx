@@ -19,7 +19,11 @@ import {
 const RESET_SCREENS: TAuthStackParamList['SuccessScreen'] = {
   title: `Enviamos as instruções ${'\n'}para seu e-mail`,
   description: 'Clique no link enviado no seu e-mail para recuperar sua senha',
-  icon: { name: 'messageRoundIcon', color: 'primary' },
+  icon: {
+    name: 'messageRoundIcon',
+    color: 'iconColor',
+    fillColor: 'iconFillColor',
+  },
 };
 
 export function ForgotPasswordScreen() {

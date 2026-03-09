@@ -5,6 +5,7 @@ import { TIconNames } from './Icon';
 export type TBasicIconProps = {
   color?: string;
   size?: number;
+  fillColor?: string;
 };
 
 export type TIconProps = {
@@ -12,5 +13,6 @@ export type TIconProps = {
   size?: number;
   /** @default backgroundContrast */
   color?: TThemeColors;
+  fillColor?: TThemeColors;
   onPress?: () => void;
 };

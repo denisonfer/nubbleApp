@@ -61,7 +61,7 @@ export function PostCommentItem({ postComment, postAuthorId, postId }: TProps) {
           <Text preset="paragraphSmall" bold>
             {postComment.author.name}
           </Text>
-          <Text preset="paragraphSmall">
+          <Text preset="paragraphSmall" color="paragraph">
             {postComment.message} - {postComment.createdAtRelative}
           </Text>
         </Box>

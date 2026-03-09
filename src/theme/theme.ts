@@ -4,7 +4,7 @@ import { createTheme } from '@shopify/restyle';
 import { colors } from './colors';
 
 export const theme = createTheme({
-  colors: colors.darkTheme,
+  colors: colors.lightTheme,
   spacing: {
     spc0: 0,
     spc4: 4,

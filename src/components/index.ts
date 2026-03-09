@@ -14,5 +14,6 @@ export * from './PostItem/PostItem';
 export * from './ProfileUser/ProfileUser';
 export * from './Screen/Containers';
 export * from './Screen/Screen';
+export * from './Separator/Separator';
 export * from './Text/Text';
 export * from './Toast/Toast';

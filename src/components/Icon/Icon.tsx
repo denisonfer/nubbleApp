@@ -45,6 +45,7 @@ export function Icon({
   size,
   onPress,
   color = 'backgroundContrast',
+  fillColor = 'background',
 }: TIconProps) {
   const { colors } = useAppTheme();
   const IconComponent = iconsMapper[name];
@@ -52,12 +53,22 @@ export function Icon({
   if (onPress) {
     return (
       <Pressable testID={name} onPress={onPress} hitSlop={10}>
-        <IconComponent size={size} color={colors[color]} />
+        <IconComponent
+          size={size}
+          color={colors[color]}
+          fillColor={colors[fillColor]}
+        />
       </Pressable>
     );
   }
 
-  return <IconComponent size={size} color={colors[color]} />;
+  return (
+    <IconComponent
+      size={size}
+      color={colors[color]}
+      fillColor={colors[fillColor]}
+    />
+  );
 }
 
 const iconsMapper = {

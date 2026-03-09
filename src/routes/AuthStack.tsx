@@ -17,7 +17,7 @@ export type TAuthStackParamList = {
   SuccessScreen: {
     title: string;
     description: string;
-    icon: Pick<TIconProps, 'name' | 'color'>;
+    icon: Pick<TIconProps, 'name' | 'color' | 'fillColor'>;
   };
   ForgotPasswordScreen: undefined;
 };

@@ -37,9 +37,13 @@ const lightTheme = {
   marked: palette.carrotSecondary,
 
   black60: palette.black60,
+  paragraph: palette.gray1,
+
+  iconColor: palette.greenPrimary,
+  iconFillColor: palette.grayWhite,
 };
 
-const darkTheme = {
+const darkTheme: typeof lightTheme = {
   ...palette,
   primary: palette.carrotSecondary,
   primaryContrast: palette.grayWhite,
@@ -58,6 +62,10 @@ const darkTheme = {
   marked: palette.carrotSecondary,
 
   black60: palette.black60,
+  paragraph: palette.grayWhite,
+
+  iconColor: palette.greenPrimaryLight,
+  iconFillColor: palette.grayBlack,
 };
 
 export const colors = {

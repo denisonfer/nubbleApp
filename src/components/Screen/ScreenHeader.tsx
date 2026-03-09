@@ -37,7 +37,7 @@ export function ScreenHeader({
           onPress={navigation.goBack}
           flexDirection="row"
           alignItems="center"
-          mr="spc12">
+          mr={isVisibleLabelGoBack ? 'spc10' : undefined}>
           <Icon name="arrowLeft" color="primary" />
           {isVisibleLabelGoBack && (
             <Text preset="paragraphMedium" semiBold ml="spc12">
