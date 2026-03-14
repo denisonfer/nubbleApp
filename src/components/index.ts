@@ -12,6 +12,7 @@ export * from './Input/PasswordInput/PasswordInput';
 export * from './PermissionManager/PermissionManager';
 export * from './PostItem/PostItem';
 export * from './ProfileUser/ProfileUser';
+export * from './RadioButton';
 export * from './Screen/Containers';
 export * from './Screen/Screen';
 export * from './Separator/Separator';
