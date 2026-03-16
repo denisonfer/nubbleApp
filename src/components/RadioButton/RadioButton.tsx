@@ -14,13 +14,13 @@ export function RadioButton({ isSelected, onPress }: TRadioButtonProps) {
       width={20}
       height={20}
       borderRadius="br12"
-      borderColor={isSelected ? 'primary' : undefined}
+      borderColor={isSelected ? 'primary' : 'onBackgroundGray2'}
       borderWidth={isSelected ? 2 : 1}
       onPress={onPress}>
       <Box
         width={12}
         height={12}
-        backgroundColor={isSelected ? 'primary' : undefined}
+        backgroundColor={isSelected ? 'primary' : 'transparent'}
         borderRadius="br12"></Box>
     </TouchableOpacityBox>
   );
