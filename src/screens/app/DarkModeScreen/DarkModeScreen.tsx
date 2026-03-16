@@ -25,6 +25,7 @@ const listItems: TOption[] = [
     themePreference: 'system',
   },
 ];
+
 export function DarkModeScreen({}: TAppScreenProps<'DarkModeScreen'>) {
   const [selectedItem, setSelectedItem] = useState<TOption>();
   return (
