@@ -6,8 +6,8 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import './reactotron';
 
 import { Toast } from '@components';
+import { useAppColorScheme } from '@hooks';
 import { Routes } from '@routes';
-import { theme } from '@theme';
 
 if (__DEV__) {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -17,10 +17,12 @@ if (__DEV__) {
 const queryClient = new QueryClient();
 
 function App() {
+  const themeScheme = useAppColorScheme();
+
   return (
     <QueryClientProvider client={queryClient}>
       <SafeAreaProvider>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={themeScheme}>
           <Routes />
           <Toast />
         </ThemeProvider>

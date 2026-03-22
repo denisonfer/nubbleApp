@@ -12,3 +12,5 @@ export * from './searchHistory/searchHistoryTypes';
 export * from './permission';
 
 export * from './multimedia';
+
+export * from './settings';

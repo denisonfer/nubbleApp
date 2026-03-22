@@ -1,12 +1,16 @@
 import { RadioButtonSelector, Screen } from '@components';
 import { TAppScreenProps } from '@routes';
-import { useState } from 'react';
 
-type TThemeMode = 'light' | 'dark' | 'system';
+import {
+  TThemePreference,
+  useSettingsService,
+  useThemePreference,
+} from '@services';
+
 type TOption = {
   label: string;
   description?: string;
-  themePreference: TThemeMode;
+  themePreference: TThemePreference;
 };
 
 const listItems: TOption[] = [
@@ -27,7 +31,16 @@ const listItems: TOption[] = [
 ];
 
 export function DarkModeScreen({}: TAppScreenProps<'DarkModeScreen'>) {
-  const [selectedItem, setSelectedItem] = useState<TOption>();
+  const themePreference = useThemePreference();
+  const { setThemePreference } = useSettingsService();
+  const selectedItem = listItems.find(
+    item => item.themePreference === themePreference,
+  );
+
+  const setSelectedItem = (item: TOption) => {
+    setThemePreference(item.themePreference);
+  };
+
   return (
     <Screen title="Modo escuro" canGoBack paddingHorizontal="spc24">
       <RadioButtonSelector

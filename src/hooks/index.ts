@@ -1,4 +1,5 @@
 export * from './useAppBoolean';
+export * from './useAppColorScheme';
 export * from './useAppDebounce';
 export * from './useAppResetNavigation';
 export * from './useAppSafeArea';
