@@ -58,6 +58,7 @@ module.exports = [
         'error',
         {
           groups: ['external', 'builtin', 'internal', 'parent', 'sibling'],
+          distinctGroup: false,
           pathGroups: [
             {
               pattern: 'react+(|-native)',
@@ -66,6 +67,11 @@ module.exports = [
             },
             {
               pattern: '@assets/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '@api',
               group: 'internal',
               position: 'before',
             },
@@ -80,7 +86,18 @@ module.exports = [
               position: 'before',
             },
             {
-              pattern: '@+(routes|screens|components|hooks|theme)',
+              pattern:
+                '@+(routes|screens|components|hooks|theme|stores|domains|types|utils)',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '@test',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: 'test-utils',
               group: 'internal',
               position: 'before',
             },
@@ -90,7 +107,7 @@ module.exports = [
               position: 'before',
             },
           ],
-          pathGroupsExcludedImportTypes: ['react+(|-native)'],
+          pathGroupsExcludedImportTypes: ['react+(|-native)', 'test-utils'],
           alphabetize: {
             order: 'asc',
             caseInsensitive: true,
@@ -103,6 +120,9 @@ module.exports = [
   //typescript
   {
     name: '@promentech/eslint-config-typescript',
+    plugins: {
+      'unused-imports': pluginUnusedImports,
+    },
     settings: {
       'import/resolver': {
         typescript: {
@@ -119,6 +139,7 @@ module.exports = [
     },
     files: ['**/*.ts', '**/*.tsx'],
     rules: {
+      'unused-imports/no-unused-imports': 'error',
       ...pluginImport.configs.typescript.rules,
       '@typescript-eslint/no-unused-vars': [
         'warn',

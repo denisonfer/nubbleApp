@@ -11,7 +11,6 @@ jest.mock('@react-navigation/native', () => {
 });
 
 import { AppStack } from '@routes';
-
 import { useSearchHistoryStore } from '@stores';
 import { server } from '@test';
 import { act, fireEvent, renderScreen, screen, waitFor } from 'test-utils';

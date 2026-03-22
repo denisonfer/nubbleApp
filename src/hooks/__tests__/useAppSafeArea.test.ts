@@ -1,7 +1,6 @@
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { theme } from '@theme';
-
 import { renderHook } from 'test-utils';
 
 import { useAppSafeArea } from '../useAppSafeArea';

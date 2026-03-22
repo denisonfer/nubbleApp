@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native';
 
 import { theme } from '@theme';
-
 import { fireEvent, render, screen } from '@test';
 
 import { Button } from '../Button';
