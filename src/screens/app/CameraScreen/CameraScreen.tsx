@@ -3,8 +3,9 @@ import { useAppBoolean, useAppSafeArea, useAppState } from '@hooks';
 import { useIsFocused } from '@react-navigation/native';
 import { TAppScreenProps } from '@routes';
 import { multimediaService } from '@services';
+import { WINDOW_WIDTH, WINDOW_HEIGHT } from '@utils';
 import { useCallback, useRef, useState } from 'react';
-import { Dimensions, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import {
   Camera,
   Templates,
@@ -12,8 +13,8 @@ import {
   useCameraFormat,
 } from 'react-native-vision-camera';
 
-const CAMERA_VIEW = Dimensions.get('window').width;
-const HEIGHT_VIEW = (Dimensions.get('window').height - CAMERA_VIEW) / 2;
+const CAMERA_VIEW = WINDOW_WIDTH;
+const HEIGHT_VIEW = (WINDOW_HEIGHT - CAMERA_VIEW) / 2;
 
 export function CameraScreen({ navigation }: TAppScreenProps<'CameraScreen'>) {
   const cameraRef = useRef<Camera>(null);

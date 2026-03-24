@@ -5,8 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { registerInterceptor } from '@api';
 import { authServices } from '@domains';
 import { useAuth } from '@services';
-import { AppStack } from './AppStack';
-import { AuthStack } from './AuthStack';
+import { OnboardingStack } from './OnboardingStack';
 
 export function Routes() {
   const { updateApiToken } = authServices;
@@ -34,7 +33,8 @@ export function Routes() {
 
   return (
     <NavigationContainer>
-      {isSignedIn ? <AppStack /> : <AuthStack />}
+      {/* {isSignedIn ? <AppStack /> : <AuthStack />} */}
+      <OnboardingStack />
     </NavigationContainer>
   );
 }

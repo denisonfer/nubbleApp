@@ -1,7 +1,8 @@
 import React from 'react';
-import { Dimensions, Image, ImageStyle, StyleProp } from 'react-native';
+import { Image, ImageStyle, StyleProp } from 'react-native';
 
 import { TPost } from '@domains';
+import { SCREEN_WIDTH } from '@utils';
 
 type TProps = Pick<TPost, 'imageURL'>;
 
@@ -10,7 +11,7 @@ export function PostImage({ imageURL }: TProps) {
 }
 
 const $image: StyleProp<ImageStyle> = {
-  width: Dimensions.get('screen').width,
+  width: SCREEN_WIDTH,
   height: 260,
   marginHorizontal: -24,
 };

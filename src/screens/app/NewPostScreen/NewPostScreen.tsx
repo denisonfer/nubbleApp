@@ -2,16 +2,10 @@ import React, { useRef, useState } from 'react';
 
 import { PermissionManager, Screen } from '@components';
 import { useMultimediaGetPhotos, usePermission } from '@services';
-import {
-  Dimensions,
-  FlatList,
-  Image,
-  ListRenderItemInfo,
-  Pressable,
-} from 'react-native';
+import { FlatList, Image, ListRenderItemInfo, Pressable } from 'react-native';
 import { Header } from './components/Header';
+import { SCREEN_WIDTH } from '@utils';
 
-const SCREEN_WIDTH = Dimensions.get('window').width;
 const NUM_COLUMNS = 4;
 const ITEM_WIDTH = SCREEN_WIDTH / NUM_COLUMNS;
 

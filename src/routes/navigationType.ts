@@ -5,6 +5,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { TAppBottomTabParamList } from './AppBottomTab';
 import { TAppStackParamList } from './AppStack';
 import { TAuthStackParamList } from './AuthStack';
+import { TOnboardingStackParamList } from './OnboardingStack';
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -24,3 +25,6 @@ export type TAppBottomTabScreenProps<T extends keyof TAppBottomTabParamList> =
     BottomTabScreenProps<TAppBottomTabParamList, T>,
     NativeStackScreenProps<TAppStackParamList, 'AppBottomTab'>
   >;
+
+export type TOnboardingScreenProps<T extends keyof TOnboardingStackParamList> =
+  NativeStackScreenProps<TOnboardingStackParamList, T>;

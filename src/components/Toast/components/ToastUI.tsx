@@ -1,5 +1,4 @@
 import React from 'react';
-import { Dimensions } from 'react-native';
 
 import { TToast, TToastType } from '@services';
 
@@ -9,12 +8,13 @@ import { $shadowProps } from '@theme';
 import { Box, TBoxProps } from '../../Box/Box';
 import { Icon } from '../../Icon/Icon';
 import { Text, TTextProps } from '../../Text/Text';
+import { SCREEN_WIDTH } from '@utils';
 
 type TProps = {
   toast: TToast;
 };
 
-const MAX_WIDTH = Dimensions.get('screen').width * 0.9;
+const MAX_WIDTH = SCREEN_WIDTH * 0.9;
 export function ToastUI({ toast }: TProps) {
   return (
     <Box {...$wrapper}>

@@ -2,10 +2,11 @@ import { Box, Button, Input, Screen, Text } from '@components';
 import { usePostCreate } from '@domains';
 import { TAppScreenProps } from '@routes';
 import { useToastServices } from '@services';
+import { WINDOW_WIDTH } from '@utils';
 import { useCallback, useState } from 'react';
-import { Dimensions, Image } from 'react-native';
+import { Image } from 'react-native';
 
-const IMAGE_WIDTH = Dimensions.get('window').width / 2;
+const IMAGE_WIDTH = WINDOW_WIDTH / 2;
 
 export function PublishPostScreen({
   route,
