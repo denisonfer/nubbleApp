@@ -12,6 +12,7 @@ import {
 const useSettingsStore = create<TSettingsStore>()(
   persist(
     (set, get) => ({
+      isActiveOnboarding: true,
       appThemeScheme: 'light',
       themePreference: 'system',
       setThemePreference: (newThemePreference: TThemePreference) => {
@@ -32,6 +33,9 @@ const useSettingsStore = create<TSettingsStore>()(
           set({ appThemeScheme: updatedAppTheme });
         }
       },
+      finishOnboarding: () => {
+        set({ isActiveOnboarding: false });
+      },
     }),
     {
       name: '@Settings',
@@ -39,6 +43,13 @@ const useSettingsStore = create<TSettingsStore>()(
     },
   ),
 );
+
+export function useIsActiveOnboarding(): boolean {
+  const isActiveOnboarding = useSettingsStore(
+    state => state.isActiveOnboarding,
+  );
+  return isActiveOnboarding;
+}
 
 export function useAppThemeScheme(): TAppThemeScheme {
   const appTheme = useSettingsStore(state => state.appThemeScheme);
@@ -52,7 +63,7 @@ export function useThemePreference(): TThemePreference {
 
 export function useSettingsService(): Pick<
   TSettingsStore,
-  'setThemePreference' | 'onSystemThemeChange'
+  'setThemePreference' | 'onSystemThemeChange' | 'finishOnboarding'
 > {
   const setThemePreference = useSettingsStore(
     state => state.setThemePreference,
@@ -60,5 +71,7 @@ export function useSettingsService(): Pick<
   const onSystemThemeChange = useSettingsStore(
     state => state.onSystemThemeChange,
   );
-  return { setThemePreference, onSystemThemeChange };
+  const finishOnboarding = useSettingsStore(state => state.finishOnboarding);
+
+  return { setThemePreference, onSystemThemeChange, finishOnboarding };
 }

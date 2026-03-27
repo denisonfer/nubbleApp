@@ -25,6 +25,11 @@ export const useAuthCredentialsStore = create<TAuthCredentialsServices>()(
     {
       name: '@AuthCredentials',
       storage: createJSONStorage(() => storage),
+      onRehydrateStorage: () => () => {
+        setTimeout(() => {
+          useAuthCredentialsStore.setState({ isLoading: false });
+        }, 0);
+      },
     },
   ),
 );

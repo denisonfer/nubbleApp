@@ -6,11 +6,24 @@ import { registerInterceptor } from '@api';
 import { authServices } from '@domains';
 import { useAuth } from '@services';
 import { OnboardingStack } from './OnboardingStack';
+import { TRouteStack, useRouter } from './hooks/useRouter';
+import { LoadingScreen } from '@screens';
+import { AppStack } from './AppStack';
+import { AuthStack } from './AuthStack';
+
+const stackMapper: Record<TRouteStack, React.ReactNode> = {
+  OnboardingStack: <OnboardingStack />,
+  AuthStack: <AuthStack />,
+  AppStack: <AppStack />,
+  LoadingStack: <LoadingScreen />,
+};
 
 export function Routes() {
   const { updateApiToken } = authServices;
-  const { isSignedIn, credentials, user, removeCredentials, saveCredentials } =
-    useAuth();
+  const { credentials, user, removeCredentials, saveCredentials } = useAuth();
+  const stack = useRouter();
+
+  const Stack = stackMapper[stack];
 
   useEffect(() => {
     if (credentials) {
@@ -31,10 +44,5 @@ export function Routes() {
     }
   }, [credentials, user, removeCredentials, saveCredentials]);
 
-  return (
-    <NavigationContainer>
-      {/* {isSignedIn ? <AppStack /> : <AuthStack />} */}
-      <OnboardingStack />
-    </NavigationContainer>
-  );
+  return <NavigationContainer>{Stack}</NavigationContainer>;
 }

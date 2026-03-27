@@ -4,13 +4,19 @@ import { TOnboardingPageProps } from './OnboardingPage';
 type TBottomMenuProps = Pick<
   TOnboardingPageProps,
   'onPressNext' | 'onPressSkip'
->;
+> & {
+  isLastPage: boolean;
+};
 
-export function BottomMenu({ onPressNext, onPressSkip }: TBottomMenuProps) {
+export function BottomMenu({
+  onPressNext,
+  onPressSkip,
+  isLastPage,
+}: TBottomMenuProps) {
   return (
     <Box flexDirection="row" justifyContent="space-between">
-      <TouchableOpacityBox onPress={onPressSkip}>
-        <Text preset="paragraphMedium" color="backgroundContrast" semiBold>
+      <TouchableOpacityBox onPress={onPressSkip} hitSlop={10}>
+        <Text color="gray2" semiBold>
           Pular
         </Text>
       </TouchableOpacityBox>
@@ -19,10 +25,12 @@ export function BottomMenu({ onPressNext, onPressSkip }: TBottomMenuProps) {
         alignItems="center"
         gap="spc8"
         onPress={onPressNext}>
-        <Text preset="paragraphMedium" color="backgroundContrast" bold>
-          Próximo
+        <Text color="backgroundContrast" bold>
+          {isLastPage ? 'Começar' : 'Próximo'}
         </Text>
-        <Icon name="arrowRight" size={20} color="carrotSecondary" />
+        {!isLastPage && (
+          <Icon name="arrowRight" size={20} color="carrotSecondary" />
+        )}
       </TouchableOpacityBox>
     </Box>
   );

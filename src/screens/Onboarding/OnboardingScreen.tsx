@@ -4,11 +4,14 @@ import { OnboardingPage } from './components/OnboardingPage';
 import { Box } from '@components';
 import { FlatList, ListRenderItemInfo } from 'react-native';
 import { TOnboardingItem, onboardingData } from './components/OnboardingData';
+import { useSettingsService } from '@services';
 
 export function OnboardingScreen({}: TOnboardingScreenProps<'OnboardingScreen'>) {
   const flatListRef = useRef<FlatList>(null);
 
   const [pageIndex, setPageIndex] = useState(0);
+
+  const { finishOnboarding } = useSettingsService();
 
   const handleScrollToNextPage = () => {
     const isLastPage = pageIndex === onboardingData.length - 1;
@@ -27,7 +30,7 @@ export function OnboardingScreen({}: TOnboardingScreenProps<'OnboardingScreen'>)
   };
 
   const handleFinishOnboarding = () => {
-    //TODO: implement finish onboarding
+    finishOnboarding();
   };
 
   const renderItem = ({ item }: ListRenderItemInfo<TOnboardingItem>) => {
@@ -41,12 +44,12 @@ export function OnboardingScreen({}: TOnboardingScreenProps<'OnboardingScreen'>)
   };
 
   return (
-    <Box flex={1}>
+    <Box flex={1} backgroundColor="background">
       <FlatList
         ref={flatListRef}
         data={onboardingData}
         renderItem={renderItem}
-        keyExtractor={item => item.title}
+        keyExtractor={(item, index) => index.toString()}
         showsVerticalScrollIndicator={false}
         pagingEnabled
         horizontal

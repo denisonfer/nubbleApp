@@ -12,5 +12,7 @@ export function ImageHeader({ image }: TProps) {
 
   const source = appThemeScheme === 'light' ? image.light : image.dark;
 
-  return <Image source={source} style={{ width: SCREEN_WIDTH }} />;
+  return (
+    <Image source={source} style={{ width: SCREEN_WIDTH, height: '100%' }} />
+  );
 }

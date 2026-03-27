@@ -1,5 +1,8 @@
+//loading
+export * from './loading';
+
 //onboarding
-export * from './Onboarding';
+export * from './onboarding';
 
 //auth
 export * from './auth/ForgotPasswordScreen/ForgotPasswordScreen';

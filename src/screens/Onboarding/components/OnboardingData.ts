@@ -8,35 +8,53 @@ export type TOnboardingItem = {
     light: TImageOnboarding;
     dark: TImageOnboarding;
   };
-  title: string;
+  title: Array<{ text: string; isHighlighted: boolean }>;
   subtitle: string;
+  index: number;
+  totalPages: number;
+  isLastPage: boolean;
 };
 
-const onboardingPage1: TOnboardingItem = {
+type TOnboardingItemWithoutMetaData = Omit<
+  TOnboardingItem,
+  'index' | 'totalPages' | 'isLastPage'
+>;
+
+const onboardingPage1: TOnboardingItemWithoutMetaData = {
   image: {
     light: images.onboardingLight1,
     dark: images.onboardingDark1,
   },
-  title: 'Uma rede social de conexões reais',
+  title: [
+    { text: 'Uma rede social de ', isHighlighted: false },
+    { text: 'conexões reais', isHighlighted: true },
+  ],
   subtitle:
     'Fique por dentro do que acontece com as pessoas que você mais gosta',
 };
 
-const onboardingPage2: TOnboardingItem = {
+const onboardingPage2: TOnboardingItemWithoutMetaData = {
   image: {
     light: images.onboardingLight2,
     dark: images.onboardingDark2,
   },
-  title: 'Compartilhe suas histórias com seus amigos próximos',
+  title: [
+    { text: 'Compartilhe suas ', isHighlighted: false },
+    { text: 'histórias ', isHighlighted: true },
+    { text: 'com seus amigos próximos', isHighlighted: false },
+  ],
   subtitle: 'Tenha sua linha do tempo personalizada',
 };
 
-const onboardingPage3: TOnboardingItem = {
+const onboardingPage3: TOnboardingItemWithoutMetaData = {
   image: {
     light: images.onboardingLight3,
     dark: images.onboardingDark3,
   },
-  title: 'Interaja em tempo real com as pessoas',
+  title: [
+    { text: 'Interaja ', isHighlighted: true },
+    { text: 'em tempo real com as pessoas', isHighlighted: false },
+  ],
   subtitle: 'Curta, comente e favorite os conteúdos que você mais gostar',
 };
 
@@ -44,4 +62,9 @@ export const onboardingData = [
   onboardingPage1,
   onboardingPage2,
   onboardingPage3,
-];
+].map((page, index, pages) => ({
+  ...page,
+  index,
+  totalPages: pages.length,
+  isLastPage: index === pages.length - 1,
+}));

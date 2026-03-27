@@ -16,19 +16,28 @@ export function OnboardingPage({
   onPressNext,
   onPressSkip,
 }: TOnboardingPageProps) {
-  const { image, title, subtitle } = pageItem;
+  const { image, title, subtitle, isLastPage, index, totalPages } = pageItem;
 
   return (
     <Box flex={1} width={SCREEN_WIDTH}>
-      <Box flex={4} backgroundColor="error">
+      <Box flex={4}>
         <ImageHeader image={image} />
       </Box>
 
-      <Box flex={5} backgroundColor="success">
-        <Content title={title} subtitle={subtitle} />
+      <Box flex={5} paddingHorizontal="spc24">
+        <Content
+          title={title}
+          subtitle={subtitle}
+          index={index}
+          totalPages={totalPages}
+        />
       </Box>
-      <Box flex={1} backgroundColor="background">
-        <BottomMenu onPressNext={onPressNext} onPressSkip={onPressSkip} />
+      <Box flex={1} paddingHorizontal="spc24">
+        <BottomMenu
+          onPressNext={onPressNext}
+          onPressSkip={onPressSkip}
+          isLastPage={isLastPage}
+        />
       </Box>
     </Box>
   );
