@@ -1,6 +1,7 @@
 import { colors } from '@theme';
 import { Appearance, ColorSchemeName, Platform, StatusBar } from 'react-native';
 import { TAppThemeScheme, TThemePreference } from './settingsType';
+import RNBootSplash from 'react-native-bootsplash';
 
 function onThemePreferenceChange(
   preference: TThemePreference,
@@ -36,8 +37,21 @@ function handleStatusBar(appColorScheme: TAppThemeScheme) {
   }
 }
 
+async function hideSplashScreen() {
+  try {
+    const isVisible = await RNBootSplash.isVisible();
+    if (isVisible) {
+      await RNBootSplash.hide({ fade: true });
+    }
+  } catch (error) {
+    console.error(error);
+    await RNBootSplash.hide({ fade: true });
+  }
+}
+
 export const settingsService = {
   onThemePreferenceChange,
   onSystemThemeChange,
   handleStatusBar,
+  hideSplashScreen,
 };

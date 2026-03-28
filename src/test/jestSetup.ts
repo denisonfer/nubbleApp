@@ -4,7 +4,6 @@ import mockSafeAreContext from 'react-native-safe-area-context/jest/mock';
 
 jest.mock('react-native-safe-area-context', () => mockSafeAreContext);
 
-
 // mock useNavigation
 jest.mock('@react-navigation/native', () => {
   const originalModule = jest.requireActual('@react-navigation/native');
@@ -83,3 +82,8 @@ jest.mock('@services', () => {
   const actual = jest.requireActual<typeof import('@services')>('@services');
   return { ...actual, storage: mockStorage };
 });
+
+jest.mock('react-native-bootsplash', () => ({
+  isVisible: jest.fn(() => true),
+  hide: jest.fn(),
+}));
