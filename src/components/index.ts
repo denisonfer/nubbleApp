@@ -18,3 +18,4 @@ export * from './Screen/Screen';
 export * from './Separator/Separator';
 export * from './Text/Text';
 export * from './Toast/Toast';
+export * from './InfinityScrollList/InfinityScrollList';

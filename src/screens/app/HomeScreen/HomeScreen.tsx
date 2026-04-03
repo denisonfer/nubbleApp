@@ -1,60 +1,32 @@
-import React, { useRef } from 'react';
-import {
-  FlatList,
-  ListRenderItemInfo,
-  RefreshControl,
-  StyleProp,
-  ViewStyle,
-} from 'react-native';
+import React from 'react';
+import { ListRenderItemInfo, StyleProp, ViewStyle } from 'react-native';
 
-import { useScrollToTop } from '@react-navigation/native';
-
-import { PostItem, Screen } from '@components';
+import { InfinityScrollList, PostItem, Screen } from '@components';
 import { TAppBottomTabScreenProps } from '@routes';
 
-import { TPost, usePostList } from '@domains';
+import { postServices, TPost } from '@domains';
 
-import { HomeEmpty } from './components/HomeEmpty';
 import { HomeHeader } from './components/HomeHeader';
+import { EQueryKeys } from '@infra';
 
 export function HomeScreen({}: TAppBottomTabScreenProps<'HomeScreen'>) {
-  const flatListRef = useRef<FlatList<TPost>>(null);
-  useScrollToTop(flatListRef);
-  const {
-    list: postList,
-    isLoading,
-    isError,
-    refetch,
-    fetchNextPage,
-  } = usePostList();
-
   function renderPost({ item: post }: ListRenderItemInfo<TPost>) {
     return <PostItem post={post} />;
   }
 
   return (
     <Screen style={$screen}>
-      <FlatList
-        ref={flatListRef}
-        data={postList}
-        keyExtractor={post => post.id}
+      <InfinityScrollList
+        getList={postServices.getList}
         renderItem={renderPost}
-        showsVerticalScrollIndicator={false}
-        ListHeaderComponent={<HomeHeader />}
-        ListEmptyComponent={
-          <HomeEmpty isLoading={isLoading} error={isError} refetch={refetch} />
-        }
-        contentContainerStyle={$contentContainer(postList.length || 0)}
-        onEndReached={fetchNextPage}
-        onEndReachedThreshold={0.5}
-        refreshControl={
-          <RefreshControl
-            refreshing={isLoading}
-            onRefresh={refetch}
-            progressViewOffset={50}
-          />
-        }
-        refreshing={isLoading}
+        queryKey={EQueryKeys.UsePostList}
+        flatListProps={{
+          ListHeaderComponent: <HomeHeader />,
+        }}
+        emptyListProps={{
+          emptyMessage: 'Não há posts',
+          errorMessage: 'Erro ao carregar posts',
+        }}
       />
     </Screen>
   );
@@ -65,8 +37,4 @@ const $screen: StyleProp<ViewStyle> = {
   paddingBottom: 0,
   paddingTop: 0,
   paddingHorizontal: 0,
-};
-
-const $contentContainer = (postListLength: number): StyleProp<ViewStyle> => {
-  return { flex: postListLength === 0 ? 1 : undefined };
 };

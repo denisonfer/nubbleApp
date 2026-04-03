@@ -77,7 +77,7 @@ export function registerInterceptor({
           saveCredentials(newAuthCredentials);
           originalRequest.headers.Authorization = `Bearer ${newAuthCredentials.auth.token}`;
           return api(originalRequest);
-        } catch (error) {
+        } catch (_) {
           removeCredentials();
           return Promise.reject(responseError);
         }

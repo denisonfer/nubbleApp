@@ -1,3 +1,5 @@
+<!-- [MermaidChart: 2b414fb4-2515-49d1-8fa3-cf92039c63c6] -->
+
 # CLAUDE.md — Project Guidelines
 
 You are an expert in TypeScript, React Native CLI, and Mobile UI development.

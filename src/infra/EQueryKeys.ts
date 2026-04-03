@@ -1,5 +1,6 @@
 export enum EQueryKeys {
   UsePostList = 'UsePostList',
+  UseFavoriteList = 'UseFavoriteList',
   UsePostCommentList = 'UsePostCommentList',
   UserGetById = 'UserGetById',
   UserList = 'UserList',
